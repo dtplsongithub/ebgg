@@ -9,46 +9,23 @@ float Cx, Cy;
 int paloffset = 0;
 
 
-String bgname = "ergonomics";
-color[] pal = {#003300, #006600, #009900, #006600, #003300, #000000, #000000, #000000, #000000, #000000};
-int palf = 10;
-boolean palc = true;
-boolean palcreverse = false;
-int palssa = 0;
-float vCx = 0, vCy = 0;
-int[][] ptm = {
-  {1,2,3,4,5,4,3,2,1,0},
-  {1,2,3,4,5,4,3,2,1,0},
-  {2,3,4,5,4,3,2,1,0,1},
-  {2,3,4,5,4,3,2,1,0,1},
-  {3,4,5,4,3,2,1,0,1,2},
-  {3,4,5,4,3,2,1,0,1,2},
-  {4,5,4,3,2,1,0,1,2,3},
-  {4,5,4,3,2,1,0,1,2,3},
-  {5,4,3,2,1,0,1,2,3,4},
-  {5,4,3,2,1,0,1,2,3,4},
-  {0,0,0,0,0,0,0,0,0,0},
-  {4,3,2,1,0,1,2,3,4,5},
-  {4,3,2,1,0,1,2,3,4,5},
-  {3,2,1,0,1,2,3,4,5,4},
-  {3,2,1,0,1,2,3,4,5,4},
-  {2,1,0,1,2,3,4,5,4,3},
-  {2,1,0,1,2,3,4,5,4,3},
-  {1,0,1,2,3,4,5,4,3,2},
-  {1,0,1,2,3,4,5,4,3,2},
-  {0,1,2,3,4,5,4,3,2,1},
-  {0,1,2,3,4,5,4,3,2,1},
-  {5,5,5,5,5,5,5,5,5,5},
-};
-int scale = 4; // why would there be a different scale on each axis?
-float Mxscale = 0;
-double Mxtemp = 0;
-float Mxfreq = 0;
-int Mxinterl = 1;
-float Myscale = 12;
-double Mytemp = 0;
-float Myfreq = 6;
-int staticx = 0;
+String bgname = "no background loaded...";
+color[] pal;
+int palf;
+boolean palc;
+boolean palcreverse;
+int palssa;
+float vCx, vCy;
+int[][] ptm;
+int scale; // why would there be a different scale on each axis?
+float Mxscale;
+double Mxtemp;
+float Mxfreq;
+int Mxinterl;
+float Myscale;
+double Mytemp;
+float Myfreq;
+int staticx;
 
 int inactive = 0;
 
