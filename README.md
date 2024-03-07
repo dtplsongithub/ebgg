@@ -2,7 +2,7 @@
 earthbound background generator (processing edition™)
 <br><br>
 ### What's this? <br>
-a silly little program in which yo can make earthbound-styled backgrounds <br>
+a silly little program in which you can make earthbound-styled backgrounds <br>
 <br>
 ### How to make my own background? <br>
 /bghelp.txt<br>
