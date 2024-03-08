@@ -12,4 +12,5 @@ if there are any bugs, please make an issue about it, thanks <br>
 This program was made in [Processing v4.3](https://processing.org/), so it needs [OpenJDK](https://adoptium.net/) for it to work. <br>
 ### Special thanks to:
 Restart ([github](https://github.com/RestartB), [youtube](https://www.youtube.com/channel/UC3UtM9TCOEfkMHYg56_LfqA)), tom1212 ([github](https://github.com/thepotatolover), [youtube](https://www.youtube.com/channel/UCtV19qZdwro8P-pMUbMN0DQ)) - linux version tester <br>
+<br>
 made in 2024
