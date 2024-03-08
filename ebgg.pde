@@ -46,57 +46,74 @@ void setup() {
 }
 
 void draw() {
-  inactive++;
-  background(0);
-  for (int y = 0; y < 720/scale; y++){
-    Mxtemp = Math.sin(Math.toRadians((y+t))*Mxfreq)*Mxscale*((int(y%2==0)*-Mxinterl*2+1));
-    Mytemp = Math.sin(Math.toRadians((y+t))*Myfreq)*Myscale;
-    for (int x = 0; x < 960/scale; x++){
-      int ptmy = rem(Math.round(y+Cy+(int)(Math.round(Mytemp))),ptm.length);
-      int ptmx = rem(Math.round(x+Cx+(int)(Math.round(Mxtemp))+random(0, staticx)),ptm[0].length);
-      if (ptm[ptmy][ptmx] < palssa) {
-        fill(pal[ptm[ptmy][ptmx]]);
-      } else {
-        fill(pal[rem(ptm[ptmy][ptmx]+paloffset,pal.length-palssa)+palssa]);
+  switch (menu) {
+    case 0: {
+      inactive++;
+      background(0);
+      for (int y = 0; y < 720/scale; y++){
+        Mxtemp = Math.sin(Math.toRadians((y+t))*Mxfreq)*Mxscale*((int(y%2==0)*-Mxinterl*2+1));
+        Mytemp = Math.sin(Math.toRadians((y+t))*Myfreq)*Myscale;
+        for (int x = 0; x < 960/scale; x++){
+          int ptmy = rem(Math.round(y+Cy+(int)(Math.round(Mytemp))),ptm.length);
+          int ptmx = rem(Math.round(x+Cx+(int)(Math.round(Mxtemp))+random(0, staticx)),ptm[0].length);
+          if (ptm[ptmy][ptmx] < palssa) {
+            fill(pal[ptm[ptmy][ptmx]]);
+          } else {
+            fill(pal[rem(ptm[ptmy][ptmx]+paloffset,pal.length-palssa)+palssa]);
+          }
+          rect(x*scale, y*scale, scale, scale);
+        }
       }
-      rect(x*scale, y*scale, scale, scale);
+      Cx += vCx;
+      Cy += vCy;
+      t++;
+      if(t%palf == 0){
+        paloffset++;
+        paloffset %= pal.length -1;
+      }
+      if (inactive<100){
+        fill(0, (100-Math.max(inactive, 90))*25.5);
+        rect(0, 0, textWidth(bgname) + 30, 30);
+        rect(0, height-30, textWidth("press b to choose a background") + 30, 30);
+        fill(255, (100-Math.max(inactive, 90))*25.5);
+        text(bgname, 10, 25); 
+        text("press b to choose a background", 10, height-5);
+      }
+      break;
+    }
+    case 1: {
+      background(0);
+      options();
     }
   }
-  Cx += vCx;
-  Cy += vCy;
-  t++;
-  if(t%palf == 0){
-    paloffset++;
-    paloffset %= pal.length -1;
-  }
-  if (inactive<100){
-    fill(0, (100-Math.max(inactive, 90))*25.5);
-    rect(0, 0, textWidth(bgname) + 30, 30);
-    fill(255, (100-Math.max(inactive, 90))*25.5);
-    text(bgname, 10, 25); 
-  }
-}
-
-void mousePressed() {
-  bgno++;
-  t = 0;
-  Cx = 0;
-  Cy = 0;
-  paloffset = 0;
-  bglist = loadFilenames(sketchPath("")+"data/", "deb");
-  try {
-    bgno %= bglist.length;
-  } catch (ArithmeticException e) {
-    bgno = 0;
-  }
-  loadbg(bglist[bgno]);
-  inactive = 0;
 }
 
 void mouseMoved() {
   inactive = 0;
 }
 void keyPressed() {
+  if (key == 'b' || key == 'B')  {
+    bglist = loadFilenames(sketchPath("")+"data/", "deb");
+    menu = 1;
+  }
+  if (menu == 1) {
+    if (key == ENTER) {
+      menu = 0;
+      t = 0;
+      Cx = 0;
+      Cy = 0;
+      paloffset = 0;
+      bglist = loadFilenames(sketchPath("")+"data/", "deb");
+      try {
+        bgno %= bglist.length;
+      } catch (ArithmeticException e) {
+        bgno = 0;
+      }
+      loadbg(bglist[menuselect]);
+      inactive = 0;
+    }
+  }
+  optchmc();
   inactive = 0;
 }
 
@@ -113,4 +130,19 @@ String[] loadFilenames(String path, String filename) {
     if (files[i].toLowerCase().endsWith("."+filename)) filteredfiles = append(filteredfiles, files[i]);
   }
   return filteredfiles;
+}
+
+void optchmc() {
+  switch (keyCode) {
+    case 38: {
+      menuselect--;
+      if (menuselect<0) menuselect=bglist.length-1;
+      break;
+    }
+    case 40: {
+      menuselect++;
+      if (menuselect>bglist.length-1) menuselect=0;
+      break;
+    }
+  }
 }
