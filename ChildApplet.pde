@@ -1,3 +1,4 @@
+int oldmenu = -1;
 class ChildApplet extends PApplet {
   public ChildApplet() {
     super();
@@ -15,6 +16,8 @@ class ChildApplet extends PApplet {
   }
 
   public void draw() {
+    if (oldmenu != menu) 
+      windowTitle(menutitle[menu]);
     background(0);
     switch (menu) {
       case+0:
