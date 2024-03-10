@@ -6,6 +6,7 @@ ChildApplet editor;
 
 // variables
 long t = 0;
+long realt = 0;
 int bgno = 0;
 float Cx, Cy;
 int paloffset = 0;
@@ -35,20 +36,25 @@ int inactive = 0;
 PFont MSG20;
 
 void setup() {
+  log = new LOGFILE();
+  log.log("succesfully created LOGFILE");
   size(960, 720, P2D);
   noStroke();
   frameRate(30);
   MSG20 = loadFont("MS-Gothic-20.vlw");
   textFont(MSG20);
+  log.log("succesfully loaded font MSG20");
   loadbg();
   editor = new ChildApplet();
   
   windowMove(600, 200);
   windowResizable(false);
+  log.log("succesfully configured parent");
 }
 
 void draw() {
   inactive++;
+  realt++;
   background(0);
   for (int y = 0; y < height/scale; y++){
     Mxtemp = Math.sin(Math.toRadians((y+t))*Mxfreq)*Mxscale*((int(y%2==0)*-Mxinterl*2+1));
@@ -71,6 +77,14 @@ void draw() {
     paloffset++;
     paloffset %= pal.length -1;
   }
+  if (menu == 2){
+    windowMove(960, 200);
+    menu = 1;
+  }
+  if (menu == 3){
+    windowMove(600, 200);
+    menu = 0;
+  }
   if (inactive<100){
     fill(0, (100-Math.max(inactive, 90))*25.5);
     rect(0, 0, textWidth(bgname) + 30, 30);
@@ -83,7 +97,30 @@ void mouseMoved() {
   inactive = 0;
 }
 void keyPressed() {
+  if (key == ENTER && menu == 0) {
+    loadbg();
+  }
   inactive = 0;
+  if ((key == 'e'||key=='E') && menu == 0) {
+    menu = 2;
+    menuselect = 0;
+  }
+  if ((key == BACKSPACE) && menu == 1) {
+    menu = 3;
+  }
+  switch (keyCode) {
+    case 38: {
+      menuselect--;
+      if (menuselect<0) menuselect=bglist.length-1;
+      break;
+    }
+    case 40: {
+      menuselect++;
+      if (menuselect>bglist.length-1) menuselect=0;
+      break;
+    }
+  }
+  if (key == ESC) logexit();
 }
 
 int rem(int x, int n) {

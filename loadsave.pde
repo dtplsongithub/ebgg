@@ -31,9 +31,11 @@ void loadbg(String which){
   Myscale = float(values[13+ptmheight]);
   Myfreq = float(values[14+ptmheight]);
   staticx = int(values[15+ptmheight]);
+  log.log("succesfully loaded background "+which);
 }
 
 String[] bglist;
 void loadbglist(){
   bglist = loadStrings("bglist");
+  log.log("succesfully loaded background list");
 }

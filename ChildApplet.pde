@@ -3,6 +3,7 @@ class ChildApplet extends PApplet {
   public ChildApplet() {
     super();
     PApplet.runSketch(new String[]{this.getClass().getName()}, this);
+    log.log("succesfully created childapplet");
   }
 
   public void settings() {
@@ -13,15 +14,18 @@ class ChildApplet extends PApplet {
     windowMove(150, 200);
     windowResizable(false);
     textFont(MSG20);
+    log.log("succesfully configured childapplet");
   }
 
   public void draw() {
-    if (oldmenu != menu) 
+    if (oldmenu != menu) {
       windowTitle(menutitle[menu]);
+      log.log("switched to menu "+menu);
+      oldmenu = menu;
+    }
     background(0);
     switch (menu) {
-      case+0:
-      case 1: {
+      case 0: {
         textSize(32);
         fill(255);
         text(menutitle[menu], 20, 20, 380, 999);
@@ -37,10 +41,27 @@ class ChildApplet extends PApplet {
           }
           text(bglist[i], 30, i*30+100, 380, 999);
         }
+          text("press e to go to the editor", 30, 700 ,380, 999);
+        break;
+      }
+      case 1: {
+        textSize(32);
+        fill(255);
+        text(menutitle[menu], 20, 20, 380, 999);
+        textSize(20);
+        text("press backspace to go to the", 30, 680 ,380, 999);
+        text("background selector menu", 30, 700, 380, 999);
+        editor();
         break;
       }
       case 2: {
-        editor();
+        surface.setSize(960, 720);
+        windowMove(0, 200);
+        break;
+      }
+      case 3: {
+        surface.setSize(400, 720);
+        windowMove(150, 200);
         break;
       }
     }
@@ -49,6 +70,15 @@ class ChildApplet extends PApplet {
     if (key == ENTER && menu == 0) {
       loadbg();
     }
+    if ((key == 'e'||key=='E') && menu == 0) {
+      menu = 2;
+      menuselect = 0;
+    }
+    if ((key == BACKSPACE) && menu == 1) {
+      menu = 3;
+      menuselect = 0;
+    }
+    println(menu);
     switch (keyCode) {
       case 38: {
         menuselect--;
