@@ -51,7 +51,26 @@ class ChildApplet extends PApplet {
         textSize(20);
         text("press backspace to go to the", 30, 680 ,380, 999);
         text("background selector menu", 30, 700, 380, 999);
-        editor();
+        
+        // EDITOR MENU
+        
+        fill(255);
+        for (int i = 0; i<edopname.length; i++) {
+          if (i==menuselect) {
+            fill(0, 255, 0);
+          } else {
+            fill(255);
+          }
+          text(edopname[i], 30, 100+i*30);
+          if (edopset[i].length != 1) {
+          } else {
+            switch (floor(edopset[i][0])) {
+              default: {
+                
+              }
+            }
+          }
+        }
         break;
       }
       case 2: {
@@ -73,10 +92,14 @@ class ChildApplet extends PApplet {
     if ((key == 'e'||key=='E') && menu == 0) {
       menu = 2;
       menuselect = 0;
+        surface.setSize(960, 720);
+        windowMove(0, 200);
     }
     if ((key == BACKSPACE) && menu == 1) {
       menu = 3;
       menuselect = 0;
+        surface.setSize(400, 720);
+        windowMove(150, 200);
     }
     println(menu);
     switch (keyCode) {
