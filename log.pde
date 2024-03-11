@@ -5,6 +5,7 @@ LOGFILE log;
 void logexit() {
   log.log("exiting...");
   saveStrings("log_"+TIMESTAMP+".log", log.logstrings);
+  exit();
 }
 
 String CURRENT_TIMESTAMP() {
@@ -20,5 +21,8 @@ class LOGFILE {
   public LOGFILE() {}
   public void log(String what) {
     logstrings = append(logstrings, "["+TIMESTAMP_DETAIL()+"; frame "+realt+"; "+millis()+" ms]"+": "+what);
+  }
+  public void error(String what) {
+    logstrings = append(logstrings, "["+TIMESTAMP_DETAIL()+"; frame "+realt+"; "+millis()+" ms]"+" ERROR: "+what);
   }
 }

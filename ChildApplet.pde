@@ -24,6 +24,7 @@ class ChildApplet extends PApplet {
       oldmenu = menu;
     }
     background(0);
+    renderButtons();
     switch (menu) {
       case 0: {
         textSize(32);
@@ -56,17 +57,78 @@ class ChildApplet extends PApplet {
         
         fill(255);
         for (int i = 0; i<edopname.length; i++) {
+          int y = 100+i*30;
           if (i==menuselect) {
             fill(0, 255, 0);
           } else {
             fill(255);
           }
-          text(edopname[i], 30, 100+i*30);
+          text(edopname[i], 30, y);
+          fill(255);
           if (edopset[i].length != 1) {
+            switch (i) {
+              case 2: {
+                option(int(palf), i, y);
+                break;
+              }
+              case 3: {
+                option(int(palc), i, y);
+                break;
+              }
+              case 4: {
+                option(int(palcreverse), i, y);
+                break;
+              }
+              case 5: {
+                option(palssa, i, y);
+                break;
+              }
+              case 6: {
+                option(vCx, i, y);
+                break;
+              }
+              case 7: {
+                option(vCy, i, y);
+                break;
+              }
+              case 9: {
+                option(scale, i, y);
+                break;
+              }
+              case 10: {
+                option(Mxscale, i, y);
+                break;
+              }
+              case 11: {
+                option(Mxfreq, i, y);
+                break;
+              }
+              case 12: {
+                option(Mxinterl, i, y);
+                break;
+              }
+              case 13: {
+                option(Myscale, i, y);
+                break;
+              }
+              case 14: {
+                option(Myfreq, i, y);
+                break;
+              }
+              case 15: {
+                option(staticx, i, y);
+                break;
+              }
+              default: {
+                log.error("unknown editor option "+i);
+                logexit();
+              }
+            }
           } else {
             switch (floor(edopset[i][0])) {
               default: {
-                
+                //log.error("unknown special editor option "+i);
+                //logexit();
               }
             }
           }
@@ -101,18 +163,19 @@ class ChildApplet extends PApplet {
         surface.setSize(400, 720);
         windowMove(150, 200);
     }
-    println(menu);
-    switch (keyCode) {
-      case 38: {
-        menuselect--;
-        if (menuselect<0) menuselect=bglist.length-1;
-        break;
-      }
-      case 40: {
-        menuselect++;
-        if (menuselect>bglist.length-1) menuselect=0;
-        break;
-      }
+    optioncheckkeypress();
+  }
+  void option(float what, int i, int y) {
+    if (!(what <= edopset[i][0])) text("<", 600, y);
+    String[] bool = {"no", "yes"};
+    if (edopset[i][0] == 0 &&edopset[i][2] == 1) {
+      text(bool[int(what)], 620, y);
+    } else {
+      text(nf(what, 1, 0), 620, y);
     }
+    if (!(what >= edopset[i][2])) text(">", 700, y);
+  }
+  public void mousePressed() {
+    checkButtons();
   }
 }

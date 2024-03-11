@@ -49,6 +49,10 @@ void setup() {
   
   windowMove(600, 200);
   windowResizable(false);
+  
+  buttons[0] = new Button("01_name", 600, 70, 160, 30, "click to edit", 1);
+  buttons[1] = new Button("01_pal", 600, 100, 160, 30, "click to edit", 1);
+  
   log.log("succesfully configured parent");
 }
 
@@ -108,18 +112,7 @@ void keyPressed() {
   if ((key == BACKSPACE) && menu == 1) {
     menu = 3;
   }
-  switch (keyCode) {
-    case 38: {
-      menuselect--;
-      if (menuselect<0) menuselect=bglist.length-1;
-      break;
-    }
-    case 40: {
-      menuselect++;
-      if (menuselect>bglist.length-1) menuselect=0;
-      break;
-    }
-  }
+  optioncheckkeypress();
   if (key == ESC) logexit();
 }
 
@@ -148,4 +141,27 @@ void loadbg() {
   loadbg(bglist[menuselect]);
   inactive = 0;
   bgno = menuselect;
+}
+
+void optioncheckkeypress() {
+  switch (keyCode) {
+    case 38: {
+      menuselect--;
+      if (menu == 0) {
+        if (menuselect<0) menuselect=bglist.length-1;
+      } else {
+        if (menuselect<0) menuselect=edopname.length-1;
+      }
+      break;
+    }
+    case 40: {
+      menuselect++;
+      if (menu == 0) {
+        if (menuselect>bglist.length-1) menuselect=0;
+      } else {
+        if (menuselect>edopname.length-1) menuselect=0;
+      }
+      break;
+    }
+  }
 }
