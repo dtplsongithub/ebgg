@@ -14,7 +14,7 @@ double Mytemp;
 double Mxtemp;
 
 // backgrouns settings
-String bgname = "no background loaded...";
+String backgroundName = "no background loaded...";
 color[] pal;
 int palf;
 boolean palc;
@@ -37,23 +37,27 @@ PFont MSG20;
 
 void setup() {
   log = new LOGFILE();
-  log.log("succesfully created LOGFILE");
-  size(960, 720, P2D);
+  log.created("LOGFILE");
+  size(960, 720, P3D);
   noStroke();
   frameRate(30);
   MSG20 = loadFont("MS-Gothic-20.vlw");
   textFont(MSG20);
-  log.log("succesfully loaded font MSG20");
+  log.loaded("font MSG20");
   loadbg();
   editor = new ChildApplet();
   
   windowMove(600, 200);
   windowResizable(false);
   
-  buttons[0] = new Button("01_name", 600, 70, 160, 30, "click to edit", 1);
-  buttons[1] = new Button("01_pal", 600, 100, 160, 30, "click to edit", 1);
+  buttons[0] = new Button("01_name", 600, 75, 160, 30, "click to edit", 1);
+  buttons[1] = new Button("01_pal", 600, 105, 160, 30, "click to edit", 1);
+  buttons[2] = new Button("01_ptm", 600, 315, 160, 30, "click to edit", 1);
+  buttons[3] = new Button("save", 30, 200, 100, 30, "go back", 5);
+  buttons[4] = new Button("save", 30, 680, 100, 30, "go back", 6);
+  buttons[5] = new Button("save", 30, 680, 100, 30, "go back", 7);
   
-  log.log("succesfully configured parent");
+  log.loaded("configured parent");
 }
 
 void draw() {
@@ -91,9 +95,9 @@ void draw() {
   }
   if (inactive<100){
     fill(0, (100-Math.max(inactive, 90))*25.5);
-    rect(0, 0, textWidth(bgname) + 30, 30);
+    rect(0, 0, textWidth(backgroundName) + 30, 30);
     fill(255, (100-Math.max(inactive, 90))*25.5);
-    text(bgname, 10, 25); 
+    text(backgroundName, 10, 25); 
   }
 }
 
@@ -112,7 +116,8 @@ void keyPressed() {
   if ((key == BACKSPACE) && menu == 1) {
     menu = 3;
   }
-  optioncheckkeypress();
+  optionsCheckKeyPress(keyCode);
+  if (menu == 5) keyboardDetection(keyCode, key);
   if (key == ESC) logexit();
 }
 
@@ -143,9 +148,9 @@ void loadbg() {
   bgno = menuselect;
 }
 
-void optioncheckkeypress() {
-  switch (keyCode) {
-    case 38: {
+void optionsCheckKeyPress(int kc) {
+  switch (kc) {
+    case UP: {
       menuselect--;
       if (menu == 0) {
         if (menuselect<0) menuselect=bglist.length-1;
@@ -154,7 +159,7 @@ void optioncheckkeypress() {
       }
       break;
     }
-    case 40: {
+    case DOWN: {
       menuselect++;
       if (menu == 0) {
         if (menuselect>bglist.length-1) menuselect=0;
@@ -162,6 +167,26 @@ void optioncheckkeypress() {
         if (menuselect>edopname.length-1) menuselect=0;
       }
       break;
+    }
+    case +RIGHT:
+    case LEFT: {
+      if (menu == 1) {
+        switch (menuselect) {
+          case 2:
+            if ((palf<=edopset[2][0] && kc==LEFT) || (palf>=edopset[2][2] && kc==RIGHT)) return;
+            palf += edopset[2][1]*((kc==LEFT)?-1 :1); break;
+          case 3:
+            palc = kc==RIGHT; break;
+          case 4:
+            palcreverse = kc==RIGHT; break;
+          case 5:
+            if ((palssa<=edopset[menuselect][0] && kc==LEFT) || (palssa>=edopset[menuselect][2] && kc==RIGHT)) return;
+            palssa += edopset[menuselect][1]*((kc==LEFT)?-1 :1); break;
+          case 6:
+            if ((vCx<=edopset[menuselect][0] && kc==LEFT) || (vCx>=edopset[2][2] && kc==RIGHT)) return;
+            vCx += edopset[menuselect][1]*((kc==LEFT)?-1 :1); break;
+        }
+      }
     }
   }
 }

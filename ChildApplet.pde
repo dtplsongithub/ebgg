@@ -3,7 +3,7 @@ class ChildApplet extends PApplet {
   public ChildApplet() {
     super();
     PApplet.runSketch(new String[]{this.getClass().getName()}, this);
-    log.log("succesfully created childapplet");
+    log.created("childapplet");
   }
 
   public void settings() {
@@ -14,7 +14,7 @@ class ChildApplet extends PApplet {
     windowMove(150, 200);
     windowResizable(false);
     textFont(MSG20);
-    log.log("succesfully configured childapplet");
+    log.loaded("configured childapplet");
   }
 
   public void draw() {
@@ -25,12 +25,12 @@ class ChildApplet extends PApplet {
     }
     background(0);
     renderButtons();
+    textSize(32);
+    fill(255);
+    text(menutitle[menu], 20, 20, 380, 999);
+    textSize(20);
     switch (menu) {
       case 0: {
-        textSize(32);
-        fill(255);
-        text(menutitle[menu], 20, 20, 380, 999);
-        textSize(20);
         for (int i = 0; i<bglist.length; i++){
           if (i==menuselect) {
             fill(0, 255, 0);
@@ -46,12 +46,7 @@ class ChildApplet extends PApplet {
         break;
       }
       case 1: {
-        textSize(32);
-        fill(255);
-        text(menutitle[menu], 20, 20, 380, 999);
-        textSize(20);
-        text("press backspace to go to the", 30, 680 ,380, 999);
-        text("background selector menu", 30, 700, 380, 999);
+        text("press backspace to go to the background selector menu", 30, 700);
         
         // EDITOR MENU
         
@@ -67,61 +62,47 @@ class ChildApplet extends PApplet {
           fill(255);
           if (edopset[i].length != 1) {
             switch (i) {
-              case 2: {
+              case 2:
                 option(int(palf), i, y);
                 break;
-              }
-              case 3: {
+              case 3: 
                 option(int(palc), i, y);
                 break;
-              }
-              case 4: {
+              case 4: 
                 option(int(palcreverse), i, y);
                 break;
-              }
-              case 5: {
+              case 5: 
                 option(palssa, i, y);
                 break;
-              }
-              case 6: {
+              case 6: 
                 option(vCx, i, y);
                 break;
-              }
-              case 7: {
+              case 7: 
                 option(vCy, i, y);
                 break;
-              }
-              case 9: {
+              case 9: 
                 option(scale, i, y);
                 break;
-              }
-              case 10: {
+              case 10: 
                 option(Mxscale, i, y);
                 break;
-              }
-              case 11: {
+              case 11: 
                 option(Mxfreq, i, y);
                 break;
-              }
-              case 12: {
+              case 12: 
                 option(Mxinterl, i, y);
                 break;
-              }
-              case 13: {
+              case 13: 
                 option(Myscale, i, y);
                 break;
-              }
-              case 14: {
+              case 14: 
                 option(Myfreq, i, y);
                 break;
-              }
-              case 15: {
+              case 15: 
                 option(staticx, i, y);
                 break;
-              }
               default: {
-                log.error("unknown editor option "+i);
-                logexit();
+                log.warn("unknown editor option "+i);
               }
             }
           } else {
@@ -145,9 +126,19 @@ class ChildApplet extends PApplet {
         windowMove(150, 200);
         break;
       }
+      case 5: {
+        push();
+        text(backgroundName, 30, 100);
+        strokeWeight(2);
+        if ( realt % 60 == 0 ) line(textWidth(backgroundName)+30, 100, textWidth(backgroundName)+30, 120);
+        line(30, 100, 50, 100);
+        pop();
+        break;
+      }
     }
   }
   public void keyPressed() {
+    if (menu == 5) keyboardDetection(editor.keyCode, editor.key);
     if (key == ENTER && menu == 0) {
       loadbg();
     }
@@ -163,12 +154,12 @@ class ChildApplet extends PApplet {
         surface.setSize(400, 720);
         windowMove(150, 200);
     }
-    optioncheckkeypress();
+    optionsCheckKeyPress(editor.keyCode);
   }
   void option(float what, int i, int y) {
     if (!(what <= edopset[i][0])) text("<", 600, y);
     String[] bool = {"no", "yes"};
-    if (edopset[i][0] == 0 &&edopset[i][2] == 1) {
+    if (edopset[i][0] == 0 && edopset[i][2] == 1) {
       text(bool[int(what)], 620, y);
     } else {
       text(nf(what, 1, 0), 620, y);

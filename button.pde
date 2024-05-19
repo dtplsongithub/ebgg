@@ -1,8 +1,8 @@
-Button[] buttons = new Button[2];
+Button[] buttons = new Button[6];
 
 class Button {
   String id, text;
-  int x, y, w, h, emenu;
+  int x, y, w, h, menu;
   public Button(String _id, int _x, int _y, int _w, int _h, String _text, int _menu) {
     this.id = _id;
     this.x = _x;
@@ -10,7 +10,7 @@ class Button {
     this.w = _w;
     this.h = _h;
     this.text = _text;
-    this.emenu = _menu;
+    this.menu = _menu;
     log.log("succesfully created button "+id);
   }
   public boolean checkIfHovered() {
@@ -20,7 +20,7 @@ class Button {
 
 void renderButtons() {
   for (Button i: buttons) { 
-    if (i.emenu != menu) continue;
+    if (i.menu != menu) continue;
     if (i.checkIfHovered()) {
       editor.fill(200);
     } else {
@@ -34,10 +34,25 @@ void renderButtons() {
 
 void checkButtons() {
   for (Button i: buttons) {
-    if (i.emenu != menu) continue;
+    if (i.menu != menu) continue;
     if (!i.checkIfHovered()) continue;
     switch (i.id) {
-      
+      case "01_name": {
+        menu = 5;
+        break;
+      }
+      case "01_pal": {
+        menu = 6;
+        break;
+      }
+      case "01_ptm": {
+        menu = 7;
+        break;
+      }
+      case "save": {
+        menu = 1;
+        break;
+      }
     }
   }
 }

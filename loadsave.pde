@@ -1,6 +1,6 @@
 void loadbg(String which){
   String[] values = loadStrings(which);
-  bgname = values[0];
+  backgroundName = values[0];
   pal = new color[values[1].split(",").length];
   for (int i = 0; i<pal.length; i++){
     pal[i] = unhex("ff"+values[1].split(",")[i].trim());
