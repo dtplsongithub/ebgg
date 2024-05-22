@@ -1,8 +1,13 @@
+: updater
+
+
 @echo off
 if exist temp\ (
+  echo Temp folder detected.
   rd /S /Q "temp\"
   mkdir temp
 ) else (
+  echo Temp folder not detected. Creating one...
   mkdir temp
 )
 cd temp
@@ -10,13 +15,6 @@ if exist latestversion.zip (
   del latestversion.zip
 )
 cls
-echo.
-echo.
-echo      +-------------+    code written by d
-echo     EBGG UPDATER V1.0
-echo      +-------------+    with a lot of stuff from stack overflow
-echo.
-echo.
 echo.
 echo What kind of ebgg version do you have?
 echo.
@@ -27,24 +25,19 @@ choice /C 12 /N
 cls
 if %ERRORLEVEL% EQU 2 (
   echo Downloading latest version...
-  powershell Invoke-WebRequest https://github.com/dtplsongithub/ebgg/releases/latest/download/windows-amd64-openJDK-included.zip -OutFile "latestversion.zip" >nul
-  cls
-  echo Unzipping...
+  powershell Invoke-WebRequest https://github.com/dtplsongithub/ebgg/releases/latest/download/windows-amd64-openJDK-included.zip -OutFile   latestversion.zip
+  echo %ERRORLEVEL%
   powershell Expand-Archive latestversion.zip -DestinationPath .\
-  xcopy ".\windows-amd64-openJDK-included\" .\ /Y /E
+  xcopy ".\windows-amd64-openJDK-included\" "..\" /L /Y /E
+  echo %ERRORLEVEL%
 ) else if %ERRORLEVEL% EQU 1 (
   echo Downloading latest version...
-  powershell Invoke-WebRequest https://github.com/dtplsongithub/ebgg/releases/latest/download/windows-amd64.zip -OutFile "latestversion.zip" >nul
-  cls
-  echo Unzipping...
+  powershell Invoke-WebRequest https://github.com/dtplsongithub/ebgg/releases/latest/download/windows-amd64.zip -OutFile   latestversion.zip
   powershell Expand-Archive latestversion.zip -DestinationPath .\
   cd..
-  cls
-  echo Copying files...
-  echo.
-  xcopy ".\temp\windows-amd64\" .\ /Y /E
+dir
+  xcopy ".\temp\windows-amd64\" ".\" /L /Y /E
 )
-cls
 echo Succesfully updated! Press any key to exit...
 pause>nul
 cd..

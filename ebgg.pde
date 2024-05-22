@@ -225,3 +225,16 @@ void optionsCheckKeyPress(int kc) {
     }
   }
 }
+/* // processing 3 shenanigans; add /* when done with exporting via processing 3
+
+void windowTitle(String title) {
+  frame.setTitle(title);
+}
+void windowMove(int x, int y) {
+  frame.setLocation(x, y);
+}
+void windowResizable(boolean eueue) {
+  frame.setResizable(eueue);
+}
+
+/**/
