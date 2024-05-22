@@ -42,7 +42,8 @@ class ChildApplet extends PApplet {
           }
           text(bglist[i], 30, i*30+100, 380, 999);
         }
-          text("press e to go to the editor", 30, 700 ,380, 999);
+        fill(255);
+        text("press e to go to the editor", 30, 700 ,380, 999);
         break;
       }
       case 1: {
@@ -75,28 +76,28 @@ class ChildApplet extends PApplet {
                 option(palssa, i, y);
                 break;
               case 6: 
-                option(vCx, i, y);
+                option(vCx, i, y, true);
                 break;
               case 7: 
-                option(vCy, i, y);
+                option(vCy, i, y, true);
                 break;
               case 9: 
                 option(scale, i, y);
                 break;
               case 10: 
-                option(Mxscale, i, y);
+                option(Mxscale, i, y, true);
                 break;
               case 11: 
-                option(Mxfreq, i, y);
+                option(Mxfreq, i, y, true);
                 break;
               case 12: 
                 option(Mxinterl, i, y);
                 break;
               case 13: 
-                option(Myscale, i, y);
+                option(Myscale, i, y, true);
                 break;
               case 14: 
-                option(Myfreq, i, y);
+                option(Myfreq, i, y, true);
                 break;
               case 15: 
                 option(staticx, i, y);
@@ -114,6 +115,11 @@ class ChildApplet extends PApplet {
             }
           }
         }
+        
+        // that little speech bubble thing
+        
+        if (bigstepsappear) image(bigsteps.image, 717, 148);
+        
         break;
       }
       case 2: {
@@ -166,7 +172,24 @@ class ChildApplet extends PApplet {
     }
     if (!(what >= edopset[i][2])) text(">", 700, y);
   }
+  void option(float what, int i, int y, boolean hasBigSteps) { // hasBigSteps isnt actually used. only the number of arguments count.
+    fill(255, 255, 0);
+    if (!(what <= edopset[i][0])) text("<<", 570, y);
+    fill(255);
+    if (!(what <= edopset[i][0])) text("<", 600, y);
+    String[] bool = {"no", "yes"};
+    if (edopset[i][0] == 0 && edopset[i][2] == 1) {
+      text(bool[int(what)], 620, y);
+    } else {
+      text(nf(what, 1, 0), 620, y);
+    }
+    if (!(what >= edopset[i][2])) text(">", 700, y);
+    fill(255, 255, 0);
+    if (!(what >= edopset[i][2])) text(">>", 720, y);
+    fill(255);
+  }
   public void mousePressed() {
     checkButtons();
+    // println(mouseX, mouseY);
   }
 }
