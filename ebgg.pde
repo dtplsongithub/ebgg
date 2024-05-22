@@ -191,13 +191,13 @@ void optionsCheckKeyPress(int kc) {
             vCy += edopset[menuselect][1]*((kc==LEFT)?-0.5 :0.5); break;
           case 9:
             if ((scale<=edopset[menuselect][0] && kc==LEFT) || (scale>=edopset[menuselect][2] && kc==RIGHT)) return;
-            scale += edopset[menuselect][1]*((kc==LEFT)?-0.5 :0.5); break;
+            scale += edopset[menuselect][1]*((kc==LEFT)?-1 :1); break;
           case 10:
             if ((Mxscale<=edopset[menuselect][0] && kc==LEFT) || (Mxscale>=edopset[menuselect][2] && kc==RIGHT)) return;
             Mxscale += edopset[menuselect][1]*((kc==LEFT)?-0.5 :0.5); break;
           case 11:
             if ((Mxfreq<=edopset[menuselect][0] && kc==LEFT) || (Mxfreq>=edopset[menuselect][2] && kc==RIGHT)) return;
-            Mxfreq += edopset[menuselect][1]*((kc==LEFT)?-0.5 :0.5); break;
+            Mxfreq += edopset[menuselect][1]*((kc==LEFT)?-10f :1f); break;
           case 12:
             if ((Mxinterl<=edopset[menuselect][0] && kc==LEFT) || (Mxinterl>=edopset[menuselect][2] && kc==RIGHT)) return;
             Mxinterl += edopset[menuselect][1]*((kc==LEFT)?-1 :1); break;
