@@ -81,10 +81,11 @@ void draw() {
   Cx += vCx;
   Cy += vCy;
   t++;
-  if(t%palf == 0){
-    paloffset++;
-    paloffset %= pal.length -1;
+  if(t%palf == 0 && palc){
+    paloffset += int(!palcreverse)*2-1;
+    paloffset = rem(paloffset, pal.length - 1);
   }
+  if (!palc) paloffset = 0;
   if (menu == 2){
     windowMove(960, 200);
     menu = 1;
@@ -183,8 +184,32 @@ void optionsCheckKeyPress(int kc) {
             if ((palssa<=edopset[menuselect][0] && kc==LEFT) || (palssa>=edopset[menuselect][2] && kc==RIGHT)) return;
             palssa += edopset[menuselect][1]*((kc==LEFT)?-1 :1); break;
           case 6:
-            if ((vCx<=edopset[menuselect][0] && kc==LEFT) || (vCx>=edopset[2][2] && kc==RIGHT)) return;
-            vCx += edopset[menuselect][1]*((kc==LEFT)?-1 :1); break;
+            if ((vCx<=edopset[menuselect][0] && kc==LEFT) || (vCx>=edopset[menuselect][2] && kc==RIGHT)) return;
+            vCx += edopset[menuselect][1]*((kc==LEFT)?-0.5 :0.5); break;
+          case 7:
+            if ((vCy<=edopset[menuselect][0] && kc==LEFT) || (vCy>=edopset[menuselect][2] && kc==RIGHT)) return;
+            vCy += edopset[menuselect][1]*((kc==LEFT)?-0.5 :0.5); break;
+          case 9:
+            if ((scale<=edopset[menuselect][0] && kc==LEFT) || (scale>=edopset[menuselect][2] && kc==RIGHT)) return;
+            scale += edopset[menuselect][1]*((kc==LEFT)?-0.5 :0.5); break;
+          case 10:
+            if ((Mxscale<=edopset[menuselect][0] && kc==LEFT) || (Mxscale>=edopset[menuselect][2] && kc==RIGHT)) return;
+            Mxscale += edopset[menuselect][1]*((kc==LEFT)?-0.5 :0.5); break;
+          case 11:
+            if ((Mxfreq<=edopset[menuselect][0] && kc==LEFT) || (Mxfreq>=edopset[menuselect][2] && kc==RIGHT)) return;
+            Mxfreq += edopset[menuselect][1]*((kc==LEFT)?-0.5 :0.5); break;
+          case 12:
+            if ((Mxinterl<=edopset[menuselect][0] && kc==LEFT) || (Mxinterl>=edopset[menuselect][2] && kc==RIGHT)) return;
+            Mxinterl += edopset[menuselect][1]*((kc==LEFT)?-1 :1); break;
+          case 13:
+            if ((Myscale<=edopset[menuselect][0] && kc==LEFT) || (Myscale>=edopset[menuselect][2] && kc==RIGHT)) return;
+            Myscale += edopset[menuselect][1]*((kc==LEFT)?-0.5 :0.5); break;
+          case 14:
+            if ((Myfreq<=edopset[menuselect][0] && kc==LEFT) || (Myfreq>=edopset[menuselect][2] && kc==RIGHT)) return;
+            Myfreq += edopset[menuselect][1]*((kc==LEFT)?-0.5 :0.5); break;
+          case 15:
+            if ((staticx<=edopset[menuselect][0] && kc==LEFT) || (staticx>=edopset[menuselect][2] && kc==RIGHT)) return;
+            staticx += edopset[menuselect][1]*((kc==LEFT)?-0.5 :0.5); break;
         }
       }
     }

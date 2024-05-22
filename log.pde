@@ -4,7 +4,7 @@ LOGFILE log;
 
 void logexit() {
   log.log("exiting...");
-  saveStrings("log_"+TIMESTAMP+".log", log.logstrings);
+  saveStrings("log.log", log.logstrings);
   exit();
 }
 
