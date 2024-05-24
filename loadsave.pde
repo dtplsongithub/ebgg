@@ -50,9 +50,31 @@ boolean fileExists(String filename) {
 }
 
 String[] saveBackground() {
-  String[] backgroundTemp = new String[15+ptm.length];
+  String[] backgroundTemp = new String[15+ptm.length+1];
+  backgroundTemp[0] = backgroundName;
+  String[] paltemp = new String[0];
+  for (int i = 0; i<pal.length; i++) {
+    paltemp = append(paltemp, hex(pal[i],6));
+  }
+  backgroundTemp[1] = join(paltemp, ",");
+  backgroundTemp[2] = palf+"";
+  backgroundTemp[3] = int(palc)+"";
+  backgroundTemp[4] = int(palcreverse)+"";
+  backgroundTemp[5] = palssa+"";
+  backgroundTemp[6] = vCx+"";
+  backgroundTemp[7] = vCy+"";
+  for (int i = 0; i<ptm.length; i++) {
+    backgroundTemp[8+i] = join(nf(ptm[i], 0), ",");
+  }
+  backgroundTemp[8+ptm.length] = "-ptmend";
+  backgroundTemp[9+ptm.length] = scale+"";
+  backgroundTemp[10+ptm.length] = Mxscale+"";
+  backgroundTemp[11+ptm.length] = Mxfreq+"";
+  backgroundTemp[12+ptm.length] = Mxinterl+"";
+  backgroundTemp[13+ptm.length] = Myscale+"";
+  backgroundTemp[14+ptm.length] = Myfreq+"";
+  backgroundTemp[15+ptm.length] = staticx+"";
   return backgroundTemp;
-  
 }
 
 boolean checkSave() {
@@ -63,8 +85,10 @@ boolean checkSave() {
     problem = true;
   }
   
-  if (config.length<settingsLength) {
-    config = expand(config, settingsLength);
+  if (config.length<defaultSettings.length) {
+    int originalConfigLength = config.length;
+    config = expand(config, defaultSettings.length);
+    arrayCopy(defaultSettings, originalConfigLength, config, originalConfigLength, defaultSettings.length-originalConfigLength);
     problem = true;
   } else if (config[0] != version) {
     config[0] = version;
@@ -73,6 +97,11 @@ boolean checkSave() {
   
   if (config[1] > 1) {
     config[1] = 0;
+    problem = true;
+  }
+  
+  if (config[2] < 1) {
+    config[2] = 30;
     problem = true;
   }
   

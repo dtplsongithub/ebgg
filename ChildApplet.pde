@@ -140,9 +140,9 @@ class ChildApplet extends PApplet {
       case 6: {
         for (int i = 0; i<pal.length; i++) {
           fill(pal[i]);
-          rect(160, 100+i*40+scrollY, 50, 40);
+          rect(170, 100+i*40+scrollY, 40, 40);
           fill(255);
-          text("#"+hex(pal[i]), 220, 130+i*40+scrollY);
+          text("#"+hex(pal[i], 6), 220, 130+i*40+scrollY);
         }
         text("paloffset >", 20, 130+paloffset*40+scrollY);
       }
@@ -204,6 +204,6 @@ class ChildApplet extends PApplet {
     // println(mouseX, mouseY);
   }
   public void mouseWheel(MouseEvent e) {
-    scrollY -= e.getCount()*15;
+    scrollY -= e.getCount()*config[2];
   }
 }

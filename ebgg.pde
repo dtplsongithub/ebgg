@@ -6,8 +6,7 @@ ChildApplet editor;
 
 // settings-related things
 byte version = 13;
-int settingsLength = 2;
-byte[] defaultSettings = {13, 0};
+byte[] defaultSettings = {13, 0, 30};
 byte[] config;
 
 // variables
@@ -55,6 +54,7 @@ void setup() {
   log.loaded("font MSGothic20");
   textFont(MSGothic20);
   loadbg();
+  printArray(saveBackground());
   editor = new ChildApplet();
 
   windowMove(600, 200);
@@ -174,8 +174,7 @@ void loadbg() {
 
 void optionsCheckKeyPress(int kc) {
   switch (kc) {
-  case UP:
-    {
+  case UP: {
       menuselect--;
       if (menu == 0) {
         if (menuselect<0) menuselect=bglist.length-1;
@@ -197,8 +196,7 @@ void optionsCheckKeyPress(int kc) {
   case +RIGHT:
   case +65:
   case +68:
-  case LEFT:
-    {
+  case LEFT: {
       if (menu == 1) {
         if (kc>60)bigstepsappear=false;
         switch (menuselect) {
@@ -263,15 +261,15 @@ void optionsCheckKeyPress(int kc) {
   }
 }
 /* // processing 3 shenanigans; add /* when done with exporting via processing 3
- 
- void windowTitle(String title) {
- frame.setTitle(title);
- }
- void windowMove(int x, int y) {
- frame.setLocation(x, y);
- }
- void windowResizable(boolean eueue) {
- frame.setResizable(eueue);
- }
+
+void windowTitle(String title) {
+  surface.setTitle(title);
+}
+void windowMove(int x, int y) {
+  frame.setLocation(x, y);
+}
+void windowResizable(boolean eueue) {
+  frame.setResizable(eueue);
+}
  
 /**/
