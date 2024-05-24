@@ -1,21 +1,21 @@
-float[][] edopset = {{1}, {2}, {1, 1, 999}, {0,1, 1}, {0,1, 1}, {0, 1, 999}, {-50, 0.05, 50}, {-50, 0.05, 50}, {3}, {1, 1, 16}, {0, 0.1, 40}, {-300, 0.1, 300}, {0,1, 1}, {-400, 0.1, 400}, {-30, 0.1, 30}, {0, 1, 400}};
+float[][] edopset = {{1}, {2}, {1, 1, 999}, {0, 1, 1}, {0, 1, 1}, {0, 1, 999}, {-50, 0.05, 50}, {-50, 0.05, 50}, {3}, {1, 1, 16}, {0, 0.1, 40}, {-300, 0.1, 300}, {0, 1, 1}, {-400, 0.1, 400}, {-30, 0.1, 30}, {0, 1, 400}};
 final String[] edopname = {
-"name",
-"pallete",
-"switch pal colors every n frames",
-"switch pal colors?",
-"switch pal colors in reverse?",
-"dont switch the first n items",
-"camera x velocity",
-"camera y velocity",
-"pallete map (or ptm)",
-"scale",
-"x wavyness scale",
-"x wavyness frequency",
-"interleaved x wavyness?",
-"y wavyness scale",
-"y wavyness frequency",
-"x static effect"
+  "name",
+  "palette",
+  "switch pal colors every n frames",
+  "switch pal colors?",
+  "switch pal colors in reverse?",
+  "dont switch the first n items",
+  "camera x velocity",
+  "camera y velocity",
+  "pallete map (or ptm)",
+  "scale",
+  "x wavyness scale",
+  "x wavyness frequency",
+  "interleaved x wavyness?",
+  "y wavyness scale",
+  "y wavyness frequency",
+  "x static effect"
 };
 
 

@@ -34,8 +34,48 @@ void loadbg(String which){
   log.log("succesfully loaded background "+which);
 }
 
+void savebg() {
+  
+}
+
 String[] bglist;
 void loadbglist(){
   bglist = loadStrings("bglist");
   log.log("succesfully loaded background list");
+}
+
+boolean fileExists(String filename) {
+  byte[] file = loadBytes(filename);
+  return file!=null;
+}
+
+String[] saveBackground() {
+  String[] backgroundTemp = new String[15+ptm.length];
+  return backgroundTemp;
+  
+}
+
+boolean checkSave() {
+  boolean problem = false;
+  if (!fileExists("config.dat")) {
+    saveBytes("config.dat", defaultSettings);
+    config = defaultSettings;
+    problem = true;
+  }
+  
+  if (config.length<settingsLength) {
+    config = expand(config, settingsLength);
+    problem = true;
+  } else if (config[0] != version) {
+    config[0] = version;
+    problem = true;
+  }
+  
+  if (config[1] > 1) {
+    config[1] = 0;
+    problem = true;
+  }
+  
+  saveBytes("config.dat", config);
+  return problem;
 }

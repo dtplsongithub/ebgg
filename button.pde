@@ -1,8 +1,9 @@
-Button[] buttons = new Button[6];
+Button[] buttons = new Button[9];
 
 class Button {
   String id, text;
   int x, y, w, h, menu;
+  boolean active = true;
   public Button(String _id, int _x, int _y, int _w, int _h, String _text, int _menu) {
     this.id = _id;
     this.x = _x;
@@ -20,7 +21,7 @@ class Button {
 
 void renderButtons() {
   for (Button i: buttons) { 
-    if (i.menu != menu) continue;
+    if (i.menu != menu || !i.active) continue;
     if (i.checkIfHovered()) {
       editor.fill(200);
     } else {
@@ -34,7 +35,7 @@ void renderButtons() {
 
 void checkButtons() {
   for (Button i: buttons) {
-    if (i.menu != menu) continue;
+    if (i.menu != menu || !i.active) continue;
     if (!i.checkIfHovered()) continue;
     switch (i.id) {
       case "01_name": {

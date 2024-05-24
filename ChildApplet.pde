@@ -13,7 +13,7 @@ class ChildApplet extends PApplet {
     windowTitle("editor");
     windowMove(150, 200);
     windowResizable(false);
-    textFont(MSG20);
+    textFont(MSGothic20);
     log.loaded("configured childapplet");
   }
 
@@ -25,10 +25,6 @@ class ChildApplet extends PApplet {
     }
     background(0);
     renderButtons();
-    textSize(32);
-    fill(255);
-    text(menutitle[menu], 20, 20, 380, 999);
-    textSize(20);
     switch (menu) {
       case 0: {
         for (int i = 0; i<bglist.length; i++){
@@ -133,15 +129,30 @@ class ChildApplet extends PApplet {
         break;
       }
       case 5: {
-        push();
+        pushStyle();
         text(backgroundName, 30, 100);
         strokeWeight(2);
         if ( realt % 60 == 0 ) line(textWidth(backgroundName)+30, 100, textWidth(backgroundName)+30, 120);
         line(30, 100, 50, 100);
-        pop();
+        popStyle();
         break;
       }
+      case 6: {
+        for (int i = 0; i<pal.length; i++) {
+          fill(pal[i]);
+          rect(160, 100+i*40+scrollY, 50, 40);
+          fill(255);
+          text("#"+hex(pal[i]), 220, 130+i*40+scrollY);
+        }
+        text("paloffset >", 20, 130+paloffset*40+scrollY);
+      }
     }
+    textSize(32);
+    fill(0);
+    rect(0, 0, 999, 50);
+    fill(255);
+    text(menutitle[menu], 20, 20, this.width, 999);
+    textSize(20);
   }
   public void keyPressed() {
     if (menu == 5) keyboardDetection(editor.keyCode, editor.key);
@@ -174,7 +185,7 @@ class ChildApplet extends PApplet {
   }
   void option(float what, int i, int y, boolean hasBigSteps) { // hasBigSteps isnt actually used. only the number of arguments count.
     fill(255, 255, 0);
-    if (!(what <= edopset[i][0])) text("<<", 570, y);
+    if (!(what <= edopset[i][0]) && hasBigSteps) text("<<", 570, y);
     fill(255);
     if (!(what <= edopset[i][0])) text("<", 600, y);
     String[] bool = {"no", "yes"};
@@ -185,11 +196,14 @@ class ChildApplet extends PApplet {
     }
     if (!(what >= edopset[i][2])) text(">", 700, y);
     fill(255, 255, 0);
-    if (!(what >= edopset[i][2])) text(">>", 720, y);
+    if (!(what >= edopset[i][2]) && hasBigSteps) text(">>", 720, y);
     fill(255);
   }
   public void mousePressed() {
     checkButtons();
     // println(mouseX, mouseY);
+  }
+  public void mouseWheel(MouseEvent e) {
+    scrollY -= e.getCount()*15;
   }
 }
