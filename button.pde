@@ -30,6 +30,7 @@ void renderButtons() {
     editor.rect(i.x, i.y, i.w, i.h);
     editor.fill(0);
     editor.text(i.text, i.x+10, i.y+20);
+    editor.fill(255);
   }
 }
 
@@ -38,20 +39,36 @@ void checkButtons() {
     if (i.menu != menu || !i.active) continue;
     if (!i.checkIfHovered()) continue;
     switch (i.id) {
-      case "01_name": {
-        menu = 5;
+      case "01_name": menu = 5; break;
+      case "01_pal": menu = 6; break;
+      case "01_ptm": menu = 7; break;
+      case "save": menu = 1; break;
+      case "saveBackground": {
+        if (fileExists(backgroundName+".deb")) {
+          buttons[6].id = "confirmOverwrite";
+          buttons[6].text = backgroundName+".deb already exists. overwrite?";
+          buttons[6].w = ceil(textWidth(backgroundName+".deb already exists. overwrite?"))+30;
+          buttons[7].active = true;
+        } else {
+          saveStrings("data/"+backgroundName+".deb", saveBackground());
+          loadbglist();
+        }
         break;
       }
-      case "01_pal": {
-        menu = 6;
+      case "confirmOverwrite": {
+        saveStrings("data/"+backgroundName+".deb", saveBackground());
+        buttons[6].id = "saveBackground";
+        buttons[6].text = "save";
+        buttons[6].w = 100;
+        buttons[7].active = false;
+        loadbglist();
         break;
       }
-      case "01_ptm": {
-        menu = 7;
-        break;
-      }
-      case "save": {
-        menu = 1;
+      case "cancelOverwrite": {
+        buttons[6].id = "saveBackground";
+        buttons[6].text = "save";
+        buttons[6].w = 100;
+        buttons[7].active = false;
         break;
       }
     }

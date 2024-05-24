@@ -165,7 +165,7 @@ void loadbg() {
   Cx = 0;
   Cy = 0;
   paloffset = 0;
-  bglist = loadFilenames(sketchPath("")+"data/", "deb");
+  loadbglist();
   loadbg(bglist[menuselect]);
   inactive = 0;
   bgno = menuselect;

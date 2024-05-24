@@ -40,7 +40,7 @@ void savebg() {
 
 String[] bglist;
 void loadbglist(){
-  bglist = loadStrings("bglist");
+  bglist = loadFilenames(sketchPath("")+"data/", "deb");
   log.log("succesfully loaded background list");
 }
 
