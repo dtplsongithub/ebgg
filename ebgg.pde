@@ -54,7 +54,6 @@ void setup() {
   log.loaded("font MSGothic20");
   textFont(MSGothic20);
   loadbg();
-  printArray(saveBackground());
   editor = new ChildApplet();
 
   windowMove(600, 200);
