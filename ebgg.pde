@@ -42,6 +42,10 @@ int inactive = 0;
 PFont MSGothic20;
 PFont MSGothic32;
 
+// other
+int paletteIndexToEdit;
+String paletteEditTemp = "";
+
 void setup() {
   log = new LOGFILE();
   log.created("LOGFILE");
@@ -71,6 +75,9 @@ void setup() {
   buttons[8] = new Button("cancelExit", 600, 650, 100, 30, "cancel", 1);
   buttons[8].active = false;
   buttons[8] = new Button("createPaletteColor", 600, 680, 260, 30, "create new palette color", 6);
+  buttons[9] = new Button("savePaletteColor", 600, 680, 260, 30, "save palette color", 8);
+  buttons[10] = new Button("deletePaletteColor", 600, 650, 260, 30, "delete this palette color", 6);
+  buttons[11] = new Button("editPaletteColor", 600, 620, 260, 30, "edit this palette color", 6);
 
   bigsteps = new MaskImage("bigsteps", ".png");
 
@@ -140,7 +147,7 @@ void keyPressed() {
     menu = 3;
   }
   optionsCheckKeyPress(keyCode);
-  if (menu == 5) keyboardDetection(keyCode, key);
+  if (menu == 5 || menu == 8 ) keyboardDetection(keyCode, key);
   if (key == ESC) logexit();
 }
 
@@ -175,20 +182,27 @@ void optionsCheckKeyPress(int kc) {
   switch (kc) {
   case UP: {
       menuselect--;
-      if (menu == 0) {
-        if (menuselect<0) menuselect=bglist.length-1;
-      } else {
-        if (menuselect<0) menuselect=edopname.length-1;
+      switch (menu) {
+        case 0:
+          if (menuselect<0) menuselect=bglist.length-1; break;
+        case 1:
+          if (menuselect<0) menuselect=edopname.length-1; break;
+        case 6: // palette editor
+          if (menuselect<0) menuselect=pal.length-1;
+          scrollY = -menuselect*40+height/2-100; break;
       }
       break;
     }
-  case DOWN:
-    {
+  case DOWN: {
       menuselect++;
-      if (menu == 0) {
-        if (menuselect>bglist.length-1) menuselect=0;
-      } else {
-        if (menuselect>edopname.length-1) menuselect=0;
+      switch (menu) {
+        case 0:
+          if (menuselect>bglist.length-1) menuselect=0; break;
+        case 1:
+          if (menuselect>edopname.length-1) menuselect=0; break;
+        case 6: // palette editor
+          if (menuselect>pal.length-1) menuselect=0;
+          scrollY = -menuselect*40+height/2-100; break;
       }
       break;
     }
@@ -256,6 +270,15 @@ void optionsCheckKeyPress(int kc) {
           break;
         }
       }
+      break;
+    }
+    case ENTER: {
+      if (menu == 6) {
+        menu = 8;
+        paletteIndexToEdit = menuselect;
+        paletteEditTemp = "#"+hex(pal[menuselect], 6);
+      }
+      break;
     }
   }
 }

@@ -1,4 +1,4 @@
-Button[] buttons = new Button[9];
+Button[] buttons = new Button[12];
 
 class Button {
   String id, text;
@@ -69,6 +69,36 @@ void checkButtons() {
         buttons[6].text = "save";
         buttons[6].w = 100;
         buttons[7].active = false;
+        break;
+      }
+      case "createPaletteColor": {
+        menuselect = pal.length;
+        pal = append(pal, 0xFFFFFFFF);
+        scrollY = -menuselect*40+height/2-100;
+        break;
+      }
+      case "savePaletteColor": {
+        if (paletteEditTemp.length() != 7) {
+          menutitle[8] = "please input a valid hex color. (#RRGGBB)";
+        } else {
+          menu = 6;
+          pal[paletteIndexToEdit] = unhex(paletteEditTemp.substring(1, paletteEditTemp.length()))|0xFF000000;
+          menutitle[8] = "edit palette color";
+        }
+        break;
+      }
+      case "editPaletteColor": {
+        menu = 8;
+        paletteIndexToEdit = menuselect;
+        paletteEditTemp = "#"+hex(pal[menuselect], 6);
+        break;
+      }
+      case "deletePaletteColor": {
+        if (pal.length>max(palssa, 2)) {
+          arrayCopy(pal, menuselect+1, pal, menuselect, pal.length-menuselect-1);
+          pal = shorten(pal);
+        };
+        if (menuselect>0)menuselect--;
         break;
       }
     }

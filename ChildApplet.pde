@@ -132,19 +132,36 @@ class ChildApplet extends PApplet {
         pushStyle();
         text(backgroundName, 30, 100);
         strokeWeight(2);
-        if ( realt % 60 == 0 ) line(textWidth(backgroundName)+30, 100, textWidth(backgroundName)+30, 120);
-        line(30, 100, 50, 100);
+        stroke(255);
+        if ( realt % 60 < 30 ) line(textWidth(backgroundName)+30, 100, textWidth(backgroundName)+30, 80);
+        line(0, 101, width, 101);
         popStyle();
         break;
       }
       case 6: {
+        noStroke();
         for (int i = 0; i<pal.length; i++) {
+          if (i == menuselect) {
+            fill(0x77FFFFFF);
+            rect(170, 100+i*40+scrollY, 800, 40);
+          }
           fill(pal[i]);
           rect(170, 100+i*40+scrollY, 40, 40);
           fill(255);
           text("#"+hex(pal[i], 6), 220, 130+i*40+scrollY);
         }
-        text("paloffset >", 20, 130+paloffset*40+scrollY);
+        text("paloffset >", 20, 130+(paloffset+palssa)*40+scrollY);
+        break;
+      }
+      case 8: {
+        pushStyle();
+        text(paletteEditTemp, 30, 100);
+        strokeWeight(2);
+        stroke(255);
+        if ( realt % 60 < 30 ) line(textWidth(paletteEditTemp)+30, 100, textWidth(paletteEditTemp)+30, 80);
+        line(0, 101, width, 101);
+        popStyle();
+        break;
       }
     }
     textSize(32);
@@ -155,7 +172,7 @@ class ChildApplet extends PApplet {
     textSize(20);
   }
   public void keyPressed() {
-    if (menu == 5) keyboardDetection(editor.keyCode, editor.key);
+  if (menu == 5 || menu == 8 ) keyboardDetection(editor.keyCode, editor.key);
     if (key == ENTER && menu == 0) {
       loadbg();
     }
