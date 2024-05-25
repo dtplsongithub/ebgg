@@ -79,7 +79,7 @@ void setup() {
   buttons[10] = new Button("deletePaletteColor", 600, 650, 260, 30, "delete this palette color", 6);
   buttons[11] = new Button("editPaletteColor", 600, 620, 260, 30, "edit this palette color", 6);
 
-  bigsteps = new MaskImage("bigsteps", ".png");
+  bigsteps = new MaskImage("assets/bigsteps", ".png");
 
   log.loaded("checking save...");
 
