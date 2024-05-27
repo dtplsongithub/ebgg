@@ -14,7 +14,7 @@ echo.
 echo.
 echo      +-------------+    code written by d
 echo     EBGG UPDATER V1.0
-echo      +-------------+    with a lot of stuff from stack overflow
+echo      +-------------+
 echo.
 echo.
 echo.
