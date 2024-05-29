@@ -17,6 +17,44 @@ final String[] edopname = {
   "y wavyness frequency",
   "x static effect"
 };
+Toolbox toolbox;
 
-
-// editor settings
+class Toolbox {
+  ImageButton[] ib;
+  Button[] b;
+  boolean[] order = { // true = its an image button
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false
+  };
+  public Toolbox() {
+    ib = new ImageButton[7];
+    b = new Button[1];
+    ib[0] = new ImageButton("editorPencil", 30, 100, 7, "assets/pencil.png", 2);
+    ib[1] = new ImageButton("editorLine", 30+32*1, 100, 7, "assets/line.png", 2);
+    ib[2] = new ImageButton("editorRect", 30+32*2, 100, 7, "assets/rectangle.png", 2);
+    ib[3] = new ImageButton("editorFillRect", 30+32*3, 100, 7, "assets/filledRectangle.png", 2);
+    ib[4] = new ImageButton("editorCircle", 30+32*4, 100, 7, "assets/circle.png", 2);
+    ib[5] = new ImageButton("editorFillCircle", 30+32*5, 100, 7, "assets/filledCircle.png", 2);
+    ib[6] = new ImageButton("editorGrid", 30+32*6, 100, 7, "assets/grid.png", 2);
+    b[0] = new Button("editorStatusBar", 30+32*6, 100, 33*7, 32, "Toggle status bar", 7);
+  }
+  public void render() {
+    int orderb = 0;
+    int orderib = 0;
+    for (boolean isImageButton: order) {
+      if (isImageButton) {
+        ib[orderib].render();
+        orderib++;
+      } else {
+        b[orderb].render();
+        orderb++;
+      }
+    }
+  }
+}

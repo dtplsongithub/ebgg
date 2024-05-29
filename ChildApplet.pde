@@ -153,6 +153,10 @@ class ChildApplet extends PApplet {
         text("paloffset >", 20, 130+(paloffset+palssa)*40+scrollY);
         break;
       }
+      case 7: {
+        toolbox.render();
+        break;
+      }
       case 8: {
         pushStyle();
         text(paletteEditTemp, 30, 100);
@@ -162,6 +166,9 @@ class ChildApplet extends PApplet {
         line(0, 101, width, 101);
         popStyle();
         break;
+      }
+      default: {
+        text("the chances of you seeing this is very low and if you CAN see this please make a github issue and also tell me this: \nmenu:" + menu, 30, 100);
       }
     }
     textSize(32);
