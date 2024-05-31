@@ -9,8 +9,7 @@ final String[] edopname = {
   "camera x velocity",
   "camera y velocity",
   "pallete map (or ptm)",
-  "scale",
-  "x wavyness scale",
+  "scale",\
   "x wavyness frequency",
   "interleaved x wavyness?",
   "y wavyness scale",
@@ -22,16 +21,7 @@ Toolbox toolbox;
 class Toolbox {
   ImageButton[] ib;
   Button[] b;
-  boolean[] order = { // true = its an image button
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-    false
-  };
+  int currentToolSelected = 0;
   public Toolbox() {
     ib = new ImageButton[7];
     b = new Button[1];
@@ -42,19 +32,24 @@ class Toolbox {
     ib[4] = new ImageButton("editorCircle", 30+32*4, 100, 7, "assets/circle.png", 2);
     ib[5] = new ImageButton("editorFillCircle", 30+32*5, 100, 7, "assets/filledCircle.png", 2);
     ib[6] = new ImageButton("editorGrid", 30+32*6, 100, 7, "assets/grid.png", 2);
-    b[0] = new Button("editorStatusBar", 30+32*6, 100, 33*7, 32, "Toggle status bar", 7);
+    b[0] = new Button("editorStatusBar", 30+32*7, 100, 33*7, 32, "Toggle status bar", 7);
   }
   public void render() {
-    int orderb = 0;
-    int orderib = 0;
-    for (boolean isImageButton: order) {
-      if (isImageButton) {
-        ib[orderib].render();
-        orderib++;
-      } else {
-        b[orderb].render();
-        orderb++;
-      }
+    for (ImageButton i: ib) i.render();
+    for (Button i: b) i.render();
+    editor.text("current tool selected: "+this.currentToolSelected, 500, 100);
+  }
+  public void checkPress() {
+    for (int i = 0; i<ib.length; i++) {
+      ImageButton temp = ib[i];
+      if (temp.activeMenu != menu || !temp.active) continue;
+      if (!temp.checkIfHovered()) continue;
+      if (i != 6) currentToolSelected = i;
+    }
+    for (int i = 0; i<b.length; i++) {
+      Button temp = b[i];
+      if (temp.activeMenu != menu || !temp.active) continue;
+      if (!temp.checkIfHovered()) continue;
     }
   }
 }

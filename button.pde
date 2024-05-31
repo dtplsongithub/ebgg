@@ -151,4 +151,5 @@ void checkButtons() {
       }
     }
   }
+  toolbox.checkPress();
 }
