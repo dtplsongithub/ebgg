@@ -9,7 +9,7 @@ final String[] edopname = {
   "camera x velocity",
   "camera y velocity",
   "pallete map (or ptm)",
-  "scale",\
+  "scale",
   "x wavyness frequency",
   "interleaved x wavyness?",
   "y wavyness scale",
@@ -33,11 +33,14 @@ class Toolbox {
     ib[5] = new ImageButton("editorFillCircle", 30+32*5, 100, 7, "assets/filledCircle.png", 2);
     ib[6] = new ImageButton("editorGrid", 30+32*6, 100, 7, "assets/grid.png", 2);
     b[0] = new Button("editorStatusBar", 30+32*7, 100, 33*7, 32, "Toggle status bar", 7);
+    b[0].toggler = true;
+    b[0].toggle = true;
   }
   public void render() {
     for (ImageButton i: ib) i.render();
     for (Button i: b) i.render();
     editor.text("current tool selected: "+this.currentToolSelected, 500, 100);
+    
   }
   public void checkPress() {
     for (int i = 0; i<ib.length; i++) {
@@ -50,6 +53,7 @@ class Toolbox {
       Button temp = b[i];
       if (temp.activeMenu != menu || !temp.active) continue;
       if (!temp.checkIfHovered()) continue;
+      if (b[i].toggler) b[i].toggle=!b[i].toggle;
     }
   }
 }

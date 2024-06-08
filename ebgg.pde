@@ -62,6 +62,7 @@ void setup() {
   textFont(MSGothic20);
   loadbg();
   editor = new ChildApplet();
+  surface.setSize(960, 720);
 
   windowMove(600, 200);
   windowResizable(false);
@@ -289,16 +290,3 @@ void optionsCheckKeyPress(int kc) {
     }
   }
 }
-/* // processing 3 shenanigans; add /* when done with exporting via processing 3
-
-void windowTitle(String title) {
-  surface.setTitle(title);
-}
-void windowMove(int x, int y) {
-  frame.setLocation(x, y);
-}
-void windowResizable(boolean eueue) {
-  frame.setResizable(eueue);
-}
- 
-/**/

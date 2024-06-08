@@ -3,7 +3,7 @@ Button[] buttons = new Button[12];
 class Button {
   String id, text;
   int x, y, w, h, activeMenu;
-  boolean active = true;
+  boolean active = true, toggle = false, toggler = false;
   public Button(String _id, int _x, int _y, int _w, int _h, String _text, int _menu) {
     this.id = _id;
     this.x = _x;
@@ -25,6 +25,10 @@ class Button {
     editor.text(this.text, this.x+10, this.y+20);
     if (this.checkIfHovered()) {
       editor.fill(0, 127, 255, 127);
+      editor.rect(this.x, this.y, this.w, this.h);
+    }
+    if (toggler && toggle) {
+      editor.fill(0, 127, 255, 64);
       editor.rect(this.x, this.y, this.w, this.h);
     }
     editor.fill(255);
