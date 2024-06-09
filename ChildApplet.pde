@@ -14,17 +14,21 @@ class ChildApplet extends PApplet {
     windowMove(150, 200);
     windowResizable(false);
     textFont(MSGothic20);
-    log.loaded(" childapplet");
+    ((PGraphicsOpenGL)g).textureSampling(3); 
+    log.loaded("childapplet");
   }
 
   public void draw() {
     if (oldmenu != menu) {
-      windowTitle(menutitle[menu]);
+      try {
+        windowTitle(menutitle[menu]);
+      } catch (ArrayIndexOutOfBoundsException e) {
+        log.error("ArrayIndexOutOfBoundsException on changing window title");
+      }
       log.log("switched to menu "+menu);
       oldmenu = menu;
     }
     background(0);
-    renderButtons();
     switch (menu) {
       case 0: {
         for (int i = 0; i<bglist.length; i++){
@@ -102,20 +106,9 @@ class ChildApplet extends PApplet {
                 log.warn("unknown editor option "+i);
               }
             }
-          } else {
-            switch (floor(edopset[i][0])) {
-              default: {
-                //log.error("unknown special editor option "+i);
-                //logexit();
-              }
-            }
           }
-        }
-        
-        // that little speech bubble thing
-        
+        }        
         if (bigstepsappear) image(bigsteps.image, 717, 148);
-        
         break;
       }
       case 2: {
@@ -154,6 +147,7 @@ class ChildApplet extends PApplet {
         break;
       }
       case 7: {
+        toolbox.checkDraw();
         toolbox.render();
         break;
       }
@@ -168,15 +162,20 @@ class ChildApplet extends PApplet {
         break;
       }
       default: {
-        text("the chances of you seeing this is very low and if you CAN see this please make a github issue and also tell me this: \nmenu:" + menu, 30, 100);
+        text("the chances of you seeing this is very\n low and if you CAN see this please\n make a github issue and also\n tell me this: \nmenu:" + menu, 30, 100);
       }
     }
-    textSize(32);
+    textFont(MSGothic32);
     fill(0);
     rect(0, 0, 999, 50);
     fill(255);
-    text(menutitle[menu], 20, 20, this.width, 999);
-    textSize(20);
+    try {
+      text(menutitle[menu], 20, 20, this.width, 999);
+    } catch (ArrayIndexOutOfBoundsException e) {
+      log.error("ArrayIndexOutOfBoundsException on rendering title");
+    }
+    textFont(MSGothic20);
+    renderButtons();
   }
   public void keyPressed() {
   if (menu == 5 || menu == 8 ) keyboardDetection(editor.keyCode, editor.key);
@@ -196,6 +195,7 @@ class ChildApplet extends PApplet {
         windowMove(150, 200);
     }
     optionsCheckKeyPress(editor.keyCode);
+    if (key == ESC) logexit();
   }
   void option(float what, int i, int y) {
     if (!(what <= edopset[i][0])) text("<", 600, y);

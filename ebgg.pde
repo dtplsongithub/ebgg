@@ -55,7 +55,7 @@ void setup() {
   size(960, 720, P2D);
   noStroke();
   frameRate(30);
-  MSGothic20 = loadFont("MS-Gothic-32.vlw");
+  MSGothic32 = loadFont("MS-Gothic-32.vlw");
   log.loaded("font MSGothic32");
   MSGothic20 = loadFont("MS-Gothic-20.vlw");
   log.loaded("font MSGothic20");
@@ -64,24 +64,25 @@ void setup() {
   editor = new ChildApplet();
   surface.setSize(960, 720);
 
+
   windowMove(600, 200);
   windowResizable(false);
 
-  buttons[0] = new Button("01_name", 600, 75, 160, 30, "click to edit", 1);
-  buttons[1] = new Button("01_pal", 600, 105, 160, 30, "click to edit", 1);
-  buttons[2] = new Button("01_ptm", 600, 315, 160, 30, "click to edit", 1);
-  buttons[3] = new Button("save", 30, 200, 100, 30, "go back", 5);
-  buttons[4] = new Button("save", 30, 680, 100, 30, "go back", 6);
-  buttons[5] = new Button("save", 30, 680, 100, 30, "go back", 7);
-  buttons[6] = new Button("saveBackground", 30, 650, 100, 30, "save", 1);
-  buttons[7] = new Button("cancelOverwrite", 600, 650, 100, 30, "cancel", 1);
+  buttons[0] = new TextButton("01_name", 600, 75, 160, 30, "click to edit", 1);
+  buttons[1] = new TextButton("01_pal", 600, 105, 160, 30, "click to edit", 1);
+  buttons[2] = new TextButton("01_ptm", 600, 315, 160, 30, "click to edit", 1);
+  buttons[3] = new TextButton("save", 30, 200, 100, 30, "go back", 5);
+  buttons[4] = new TextButton("save", 30, 680, 100, 30, "go back", 6);
+  buttons[5] = new TextButton("save", 30, 680, 100, 30, "go back", 7);
+  buttons[6] = new TextButton("saveBackground", 30, 650, 100, 30, "save", 1);
+  buttons[7] = new TextButton("cancelOverwrite", 600, 650, 100, 30, "cancel", 1);
   buttons[7].active = false;
-  buttons[8] = new Button("cancelExit", 600, 650, 100, 30, "cancel", 1);
+  buttons[8] = new TextButton("cancelExit", 600, 650, 100, 30, "cancel", 1);
   buttons[8].active = false;
-  buttons[8] = new Button("createPaletteColor", 600, 680, 260, 30, "create new palette color", 6);
-  buttons[9] = new Button("savePaletteColor", 600, 680, 260, 30, "save palette color", 8);
-  buttons[10] = new Button("deletePaletteColor", 600, 650, 260, 30, "delete this palette color", 6);
-  buttons[11] = new Button("editPaletteColor", 600, 620, 260, 30, "edit this palette color", 6);
+  buttons[9] = new TextButton("createPaletteColor", 600, 680, 260, 30, "create new palette color", 6);
+  buttons[10] = new TextButton("savePaletteColor", 600, 680, 260, 30, "save palette color", 8);
+  buttons[11] = new TextButton("deletePaletteColor", 600, 650, 260, 30, "delete this palette color", 6);
+  buttons[12] = new TextButton("editPaletteColor", 600, 620, 260, 30, "edit this palette color", 6);
 
 
   // load assets
