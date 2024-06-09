@@ -1,7 +1,7 @@
 int menuselect = 0;
 int menu = 0;
 String[] menutitle = {
-  "choose a background",
+  "load a background",
   "editor",
   "loading...",
   "loading...",

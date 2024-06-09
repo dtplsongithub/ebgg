@@ -14,7 +14,7 @@ class ChildApplet extends PApplet {
     windowMove(150, 200);
     windowResizable(false);
     textFont(MSGothic20);
-    log.loaded("configured childapplet");
+    log.loaded(" childapplet");
   }
 
   public void draw() {

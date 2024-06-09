@@ -98,6 +98,7 @@ void setup() {
 }
 
 void draw() {
+  mouseX = 29;
   inactive++;
   realt++;
   background(0);
