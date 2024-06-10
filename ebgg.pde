@@ -2,11 +2,17 @@
 DJV_EBG
  */
 
+import java.awt.*;
+import javax.swing.*;
+import javax.imageio.*;
+Robot robot;
+
 ChildApplet editor;
+AwtProgram1 awt;
 
 // settings-related things
-byte version = 13;
-byte[] defaultSettings = {13, 0, 30};
+byte version = 14;
+byte[] defaultSettings = {14, 0, 30};
 byte[] config;
 
 // variables
@@ -63,6 +69,7 @@ void setup() {
   loadbg();
   editor = new ChildApplet();
   surface.setSize(960, 720);
+  menu = 10;
 
 
   windowMove(600, 200);
@@ -74,32 +81,49 @@ void setup() {
   buttons[3] = new TextButton("save", 30, 200, 100, 30, "go back", 5);
   buttons[4] = new TextButton("save", 30, 680, 100, 30, "go back", 6);
   buttons[5] = new TextButton("save", 30, 680, 100, 30, "go back", 7);
+  
   buttons[6] = new TextButton("saveBackground", 30, 650, 100, 30, "save", 1);
   buttons[7] = new TextButton("cancelOverwrite", 600, 650, 100, 30, "cancel", 1);
   buttons[7].active = false;
   buttons[8] = new TextButton("cancelExit", 600, 650, 100, 30, "cancel", 1);
   buttons[8].active = false;
+  
   buttons[9] = new TextButton("createPaletteColor", 600, 680, 260, 30, "create new palette color", 6);
   buttons[10] = new TextButton("savePaletteColor", 600, 680, 260, 30, "save palette color", 8);
   buttons[11] = new TextButton("deletePaletteColor", 600, 650, 260, 30, "delete this palette color", 6);
   buttons[12] = new TextButton("editPaletteColor", 600, 620, 260, 30, "edit this palette color", 6);
+  
+  buttons[13] = new TextButton("goToLoader", 30, 100, 260, 30,  "load a background", 10);
+  buttons[14] = new TextButton("goToWindow2", 30, 130, 260, 30, "about & other", 10);
+  buttons[15] = new TextButton("goToEditor", 30, 160, 260, 30,  "editor", 10);
+  buttons[16] = new TextButton("goToTitlescreen", 30, 680, 100, 30, "back", 0);
+  buttons[17] = new TextButton("goToTitlescreen", 30, 680, 100, 30, "back", 1);
 
 
   // load assets
   bigsteps = new MaskImage("assets/bigsteps", ".png");
-  
+
   toolbox = new Toolbox();
-  
+
   log.loaded("checking save...");
 
   config = loadBytes("config.dat");
   log.loaded(checkSave()?"problems were found and fixed.":"no problems found.");
 
+  try {
+    robot = new Robot();
+  } catch (AWTException e) {
+    showError("system does not support java.awt.robot", true);
+    exit();
+  }
+  
+  awt = new AwtProgram1();
+  errhandler.setLocation(-100, -100);
+
   log.loaded("finished loading");
 }
 
 void draw() {
-  mouseX = 29;
   inactive++;
   realt++;
   background(0);
@@ -127,11 +151,9 @@ void draw() {
   if (!palc) paloffset = 0;
   if (menu == 2) {
     windowMove(960, 200);
-    menu = 1;
   }
   if (menu == 3) {
     windowMove(600, 200);
-    menu = 0;
   }
   if (inactive<100) {
     fill(0, (100-Math.max(inactive, 90))*25.5);
@@ -149,13 +171,6 @@ void keyPressed() {
     loadbg();
   }
   inactive = 0;
-  if ((key == 'e'||key=='E') && menu == 0) {
-    menu = 2;
-    menuselect = 0;
-  }
-  if ((key == BACKSPACE) && menu == 1) {
-    menu = 3;
-  }
   optionsCheckKeyPress(keyCode);
   if (menu == 5 || menu == 8 ) keyboardDetection(keyCode, key);
   if (key == ESC) logexit();
@@ -190,36 +205,45 @@ void loadbg() {
 
 void optionsCheckKeyPress(int kc) {
   switch (kc) {
-  case UP: {
+  case UP:
+    {
       menuselect--;
       switch (menu) {
-        case 0:
-          if (menuselect<0) menuselect=bglist.length-1; break;
-        case 1:
-          if (menuselect<0) menuselect=edopname.length-1; break;
-        case 6: // palette editor
-          if (menuselect<0) menuselect=pal.length-1;
-          scrollY = -menuselect*40+height/2-100; break;
+      case 0:
+        if (menuselect<0) menuselect=bglist.length-1;
+        break;
+      case 1:
+        if (menuselect<0) menuselect=edopname.length-1;
+        break;
+      case 6: // palette editor
+        if (menuselect<0) menuselect=pal.length-1;
+        scrollY = -menuselect*40+height/2-100;
+        break;
       }
       break;
     }
-  case DOWN: {
+  case DOWN:
+    {
       menuselect++;
       switch (menu) {
-        case 0:
-          if (menuselect>bglist.length-1) menuselect=0; break;
-        case 1:
-          if (menuselect>edopname.length-1) menuselect=0; break;
-        case 6: // palette editor
-          if (menuselect>pal.length-1) menuselect=0;
-          scrollY = -menuselect*40+height/2-100; break;
+      case 0:
+        if (menuselect>bglist.length-1) menuselect=0;
+        break;
+      case 1:
+        if (menuselect>edopname.length-1) menuselect=0;
+        break;
+      case 6: // palette editor
+        if (menuselect>pal.length-1) menuselect=0;
+        scrollY = -menuselect*40+height/2-100;
+        break;
       }
       break;
     }
   case +RIGHT:
   case +65:
   case +68:
-  case LEFT: {
+  case LEFT:
+    {
       if (menu == 1) {
         if (kc>60)bigstepsappear=false;
         switch (menuselect) {
@@ -282,7 +306,8 @@ void optionsCheckKeyPress(int kc) {
       }
       break;
     }
-    case ENTER: {
+  case ENTER:
+    {
       if (menu == 6) {
         menu = 8;
         paletteIndexToEdit = menuselect;

@@ -38,16 +38,14 @@ class ChildApplet extends PApplet {
             fill(255);
           }
           if (i == bgno) {
-            text(">", 10, i*30+100, 380, 999);
+            text(">", 10, i*30+100+scrollY, 380, 999);
           }
-          text(bglist[i], 30, i*30+100, 380, 999);
+          text(bglist[i], 30, i*30+100+scrollY, 380, 999);
         }
         fill(255);
-        text("press e to go to the editor", 30, 700 ,380, 999);
         break;
       }
       case 1: {
-        text("press backspace to go to the background selector menu", 30, 700);
         
         // EDITOR MENU
         
@@ -114,11 +112,15 @@ class ChildApplet extends PApplet {
       case 2: {
         surface.setSize(960, 720);
         windowMove(0, 200);
+        menu = 1;
         break;
       }
+      case +13:
       case 3: {
         surface.setSize(400, 720);
         windowMove(150, 200);
+        menu -= 3;
+        scrollY=0;
         break;
       }
       case 5: {
@@ -161,6 +163,9 @@ class ChildApplet extends PApplet {
         popStyle();
         break;
       }
+      case 10: {
+        break;
+      }
       default: {
         text("the chances of you seeing this is very\n low and if you CAN see this please\n make a github issue and also\n tell me this: \nmenu:" + menu, 30, 100);
       }
@@ -181,18 +186,6 @@ class ChildApplet extends PApplet {
   if (menu == 5 || menu == 8 ) keyboardDetection(editor.keyCode, editor.key);
     if (key == ENTER && menu == 0) {
       loadbg();
-    }
-    if ((key == 'e'||key=='E') && menu == 0) {
-      menu = 2;
-      menuselect = 0;
-        surface.setSize(960, 720);
-        windowMove(0, 200);
-    }
-    if ((key == BACKSPACE) && menu == 1) {
-      menu = 3;
-      menuselect = 0;
-        surface.setSize(400, 720);
-        windowMove(150, 200);
     }
     optionsCheckKeyPress(editor.keyCode);
     if (key == ESC) logexit();
@@ -228,6 +221,6 @@ class ChildApplet extends PApplet {
     // println(mouseX, mouseY);
   }
   public void mouseWheel(MouseEvent e) {
-    scrollY -= e.getCount()*config[2];
+    if (menu == 0 || menu == 6) scrollY -= e.getCount()*config[2];
   }
 }

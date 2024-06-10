@@ -1,4 +1,4 @@
-TextButton[] buttons = new TextButton[13];
+TextButton[] buttons = new TextButton[18];
 
 class TextButton {
   String id, text;
@@ -159,6 +159,10 @@ void checkButtons() {
         if (menuselect>0)menuselect--;
         break;
       }
+      case "goToLoader": menu=3;break;
+      case "goToWindow2": awt.window2.setVisible(true);break;
+      case "goToEditor": menu=2;break;
+      case "goToTitlescreen": menu=13;break;
     }
   }
   toolbox.checkPress();

@@ -1,5 +1,5 @@
 int menuselect = 0;
-int menu = 0;
+int menu = 10;
 String[] menutitle = {
   "load a background",
   "editor",
@@ -9,5 +9,7 @@ String[] menutitle = {
   "edit name",
   "edit palette",
   "edit palette map",
-  "edit palette color"
+  "edit palette color",
+  "",
+  "ebgg"
 };
