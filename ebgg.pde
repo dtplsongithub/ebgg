@@ -98,6 +98,8 @@ void setup() {
   buttons[15] = new TextButton("goToEditor", 30, 160, 260, 30,  "editor", 10);
   buttons[16] = new TextButton("goToTitlescreen", 30, 680, 100, 30, "back", 0);
   buttons[17] = new TextButton("goToTitlescreen", 30, 680, 100, 30, "back", 1);
+  buttons[18] = new TextButton("goToSettings", 30, 680, 100, 30, "back", 1);
+  buttons[19] = new TextButton("goToTitlescreen", 30, 680, 100, 30, "back", 11);
 
 
   // load assets

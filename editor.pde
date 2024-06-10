@@ -89,8 +89,12 @@ class Toolbox {
     int rp = 900/pal.length;
     for (int i = 0; i<pal.length; i++) {
       this.getColor(i);
-      editor.rect(30+i*rp, 650,rp, 30);
+      editor.rect(30+i*rp, 648,rp, 32);
     }
+    editor.fill(0, 127, 255, 64);
+    editor.rect(this.currentColorSelected*rp+30, 648,rp, 32);
+    editor.fill(0, 127, 255, 64);
+    if (editor.mouseX>30 && editor.mouseX<900 && editor.mouseY>650 && editor.mouseY<680) editor.rect(floor((editor.mouseX-30)/rp)*rp+30,648, rp, 32);
     editor.stroke(0);
     for (ImageButton i: ib) i.render();
     for (TextButton i: b) i.render();
