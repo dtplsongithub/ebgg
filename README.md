@@ -1,5 +1,5 @@
 # ebgg
-earthbound background generator (processing edition™)
+earthbound background generator (processing(aka java) edition™)
 <br><br>
 ### What's this? <br>
 a silly little program in which you can make earthbound-styled backgrounds <br>
