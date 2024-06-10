@@ -118,20 +118,15 @@ class Toolbox {
     }
   }
   public void checkDraw() {
-    int rs = floor(min(900/ptm[0].length, 440/ptm.length))+zoom;
+    int rs = floor(min(900/ptm[0].length, 400/ptm.length))+zoom;
     int rp = 900/pal.length;
     if (editor.mousePressed) {
       if (editor.mouseX >30+scrollX && editor.mouseX < ptm[0].length*rs+30+scrollX && editor.mouseY > 150+scrollY && editor.mouseY < ptm.length*rs+150+scrollY && CANDRAW) {
-        switch (currentToolSelected) {
-          default:
-            ptm[(editor.mouseY-150-scrollY)/rs][(editor.mouseX-30-scrollY)/rs] = this.currentColorSelected;
-            println("Good job!?");
-            break;
-        }
-      } else if (editor.mouseX>30 && editor.mouseX<900 && editor.mouseY>650 && editor.mouseY<680) {
-        
+        ptm[(editor.mouseY-150-scrollY)/rs][(editor.mouseX-30-scrollX)/rs] = this.currentColorSelected;
+      } else if (editor.mouseX>30 && editor.mouseX<900 && editor.mouseY>650 && editor.mouseY<680 && CANDRAW) {
+        this.currentColorSelected = (editor.mouseX-30)/rp;
       }
-    } else CANDRAW = false;
+    } else CANDRAW = true;
   }
   private void getColor(int i) {
     if (b[3].toggle) {
