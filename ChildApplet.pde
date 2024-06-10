@@ -119,8 +119,8 @@ class ChildApplet extends PApplet {
       case 3: {
         surface.setSize(400, 720);
         windowMove(150, 200);
-        menu -= 3;
         scrollY=0;
+        menu-=3;
         break;
       }
       case 5: {

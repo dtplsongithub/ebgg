@@ -53,22 +53,22 @@ class Toolbox {
     ib[5] = new ImageButton("editorFillCircle", 190, 68, 70, "assets/filledCircle.png", 2);
     b[0] = new TextButton("editorGrid", 30, 100, 110, 32, "Show grid", 7);
     b[0].toggler = true;
-    b[1] = new TextButton("editorStatusBar", 140, 100, 180, 32, "Show status bar", 7);
+    b[1] = new TextButton("editorResizePtm", 240, 100, 130, 32, "resize ptm", 7);
     b[1].toggler = true;
     b[1].toggle = true;
-    b[2] = new TextButton("editorPreviewMode", 320, 100, 200, 32, "Don't use palette", 7);
+    b[2] = new TextButton("editorPreviewMode", 370, 100, 200, 32, "Don't use palette", 7);
     b[2].toggler = true;
-    b[3] = new TextButton("editorUsePaloffset", 520, 100, 160, 32, "Use paloffset", 7);
+    b[3] = new TextButton("editorUsePaloffset", 570, 100, 160, 32, "Use paloffset", 7);
     b[3].toggler = true;
     ib[6] = new ImageButton("editorZoomIn", 872, 100, 7, "assets/zoomin.png", 2);
     ib[7] = new ImageButton("editorZoomOut", 904, 100, 7, "assets/zoomout.png", 2);
-    ib[8] = new ImageButton("editorMoveL", 700, 100, 7, "assets/left.png", 2);
+    ib[8] = new ImageButton("editorMoveL", 750, 100, 7, "assets/left.png", 2);
     ib[8].active = false;
-    ib[9] = new ImageButton("editorMoveU", 732, 84, 7, "assets/up.png", 2);
+    ib[9] = new ImageButton("editorMoveU", 782, 84, 7, "assets/up.png", 2);
     ib[9].active = false;
-    ib[10] = new ImageButton("editorMoveD", 732, 116, 7, "assets/down.png", 2);
+    ib[10] = new ImageButton("editorMoveD", 782, 116, 7, "assets/down.png", 2);
     ib[10].active = false;
-    ib[11] = new ImageButton("editorMoveR", 764, 100, 7, "assets/right.png", 2);
+    ib[11] = new ImageButton("editorMoveR", 814, 100, 7, "assets/right.png", 2);
     ib[11].active = false;
   }
   public void render() {
@@ -120,12 +120,14 @@ class Toolbox {
           case +9:
           case 10:
             scrollY+=300*(int(i==10)*2-1);
+            if (scrollY<0)scrollY=0;
             break;
           case +8:
           case 11:
             scrollX+=300*(int(i==11)*2-1);
+            if (scrollX<0)scrollX=0;
             break;
-          default: log.error("unknown toolbox imagebutton type "+i);
+          default: showError("unknown toolbox imagebutton type "+i, false);
         }
       }
     }

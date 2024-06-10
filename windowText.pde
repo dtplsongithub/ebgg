@@ -6,6 +6,7 @@ String whatsnew = "<html><h1 id='v1-4-0'>v1.4.0</h1>"+
 "<strong>[NEW]</strong> buttons to change menu instead of pressing a key<br>"+
 "<strong>[NEW]</strong> error handler<br>"+
 "<strong>[FIX]</strong> options going off limits<br>"+
+"<strong>[FIX]</strong> scrolling in ptm editor has been partially fixed<br>"+
 "<strong>Full Changelog</strong>: <a href='https://github.com/dtplsongithub/ebgg/compare/v1.3.1...v1.4.0'>https://github.com/dtplsongithub/ebgg/compare/v1.3.1...v1.4.0</a></p>"+
 "<h1 id='v1-3-1'>v1.3.1</h1>"+
 "<h2 id='2024-june-10'>2024 June 10</h2>"+

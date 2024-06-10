@@ -3,7 +3,7 @@ class AwtProgram1 {
   public AwtProgram1() {
     window2 = new JFrame("ebgg");
     window2.setSize(800, 600);
-    window2.setLocation(500, 500);
+    window2.setLocation(500, 100);
     window2.setResizable(false);
 
     JTabbedPane tabPanel = new JTabbedPane();
@@ -50,23 +50,8 @@ void showError(String error, boolean critical) {
     public void run() {
       JOptionPane.showMessageDialog(errhandler, error, "Error", JOptionPane.ERROR_MESSAGE);
       errhandler.setVisible(false);
+      if (critical) logexit();
     }
   });
   log.error(error);
-  if (critical) logexit();
 }
-
-/*
-void showError(String error, boolean critical) {
-  errhandler.setVisible(true);
-  EventQueue.invokeLater(new Runnable() {
-    @Override
-    public void run() {
-      JOptionPane.showMessageDialog(errhandler, error, "Error", JOptionPane.ERROR_MESSAGE);
-    }
-  });
-  log.error(error);
-  if (critical) logexit();
-}
-
-*/

@@ -155,6 +155,9 @@ void draw() {
   if (menu == 3) {
     windowMove(600, 200);
   }
+  if (menu == 13) {
+    windowMove(600, 200);
+  }
   if (inactive<100) {
     fill(0, (100-Math.max(inactive, 90))*25.5);
     rect(0, 0, textWidth(backgroundName) + 30, 30);
@@ -266,10 +269,14 @@ void optionsCheckKeyPress(int kc) {
         case 6:
           if ((vCx<=edopset[menuselect][0] && (kc==LEFT || kc==65)) || (vCx>=edopset[menuselect][2] && (kc==RIGHT || kc==68))) return;
           vCx += edopset[menuselect][1]*(kc>60?10:1)*((kc==LEFT||kc==65)?-1 :1);
+          if (vCx<=edopset[menuselect][0]) vCx=(edopset[menuselect][0]);
+          if (vCx>=edopset[menuselect][2]) vCx=(edopset[menuselect][2]);
           break;
         case 7:
           if ((vCy<=edopset[menuselect][0] && (kc==LEFT || kc==65)) || (vCy>=edopset[menuselect][2] && (kc==RIGHT || kc==68))) return;
           vCy += edopset[menuselect][1]*(kc>60?10:1)*((kc==LEFT||kc==65)?-1 :1);
+          if (vCy<=edopset[menuselect][0]) vCy=(edopset[menuselect][0]);
+          if (vCy>=edopset[menuselect][2]) vCy=(edopset[menuselect][2]);
           break;
         case 9:
           if (kc>60)return;
@@ -279,10 +286,14 @@ void optionsCheckKeyPress(int kc) {
         case 10:
           if ((Mxscale<=edopset[menuselect][0] && (kc==LEFT || kc==65)) || (Mxscale>=edopset[menuselect][2] && (kc==RIGHT || kc==68))) return;
           Mxscale += edopset[menuselect][1]*(kc>60?10:1)*((kc==LEFT||kc==65)?-1 :1);
+          if (Mxscale<=edopset[menuselect][0]) Mxscale=(edopset[menuselect][0]);
+          if (Mxscale>=edopset[menuselect][2]) Mxscale=(edopset[menuselect][2]);
           break;
         case 11:
           if ((Mxfreq<=edopset[menuselect][0] && (kc==LEFT || kc==65)) || (Mxfreq>=edopset[menuselect][2] && (kc==RIGHT || kc==68))) return;
           Mxfreq += edopset[menuselect][1]*(kc>60?10:1)*((kc==LEFT||kc==65)?-1 :1);
+          if (Mxscale<=edopset[menuselect][0]) Mxscale=(edopset[menuselect][0]);
+          if (Mxscale>=edopset[menuselect][2]) Mxscale=(edopset[menuselect][2]);
           break;
         case 12:
           if (kc>60)return;
@@ -292,10 +303,14 @@ void optionsCheckKeyPress(int kc) {
         case 13:
           if ((Myscale<=edopset[menuselect][0] && (kc==LEFT || kc==65)) || (Myscale>=edopset[menuselect][2] && (kc==RIGHT || kc==68))) return;
           Myscale += edopset[menuselect][1]*(kc>60?10:1)*((kc==LEFT||kc==65)?-1 :1);
+          if (Myscale<=edopset[menuselect][0]) Myscale=(edopset[menuselect][0]);
+          if (Myscale>=edopset[menuselect][2]) Myscale=(edopset[menuselect][2]);
           break;
         case 14:
           if ((Myfreq<=edopset[menuselect][0] && (kc==LEFT || kc==65)) || (Myfreq>=edopset[menuselect][2] && (kc==RIGHT || kc==68))) return;
           Myfreq += edopset[menuselect][1]*(kc>60?10:1)*((kc==LEFT||kc==65)?-1 :1);
+          if (Myfreq<=edopset[menuselect][0]) Myfreq=(edopset[menuselect][0]);
+          if (Myfreq>=edopset[menuselect][2]) Myfreq=(edopset[menuselect][2]);
           break;
         case 15:
           if (kc>60)return;
