@@ -11,5 +11,13 @@ String[] menutitle = {
   "edit palette map",
   "edit palette color",
   "",
-  "ebgg"
+  "ebgg",
+  "settings",
+  "loading...",
+  "loading...",
+  "resize ptm"
 };
+String[] menu14 = {
+  "width", "height"
+};
+int[] menu14tempValues = new int[2];

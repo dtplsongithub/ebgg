@@ -8,7 +8,7 @@ class MaskImage {
     try {
       image.mask(mask);
     } catch (NullPointerException e) {
-      log.error("No file "+filename+extension+" or "+filename+"_"+extension+" was found.");
+      log.error("No file "+filename+extension+" or "+filename+"_"+extension+" was found", true);
       return;
     }
   }

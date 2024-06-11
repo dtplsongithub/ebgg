@@ -14,7 +14,7 @@ class ChildApplet extends PApplet {
     windowMove(150, 200);
     windowResizable(false);
     textFont(MSGothic20);
-    ((PGraphicsOpenGL)g).textureSampling(3); 
+    ((PGraphicsOpenGL)g).textureSampling(3); // disable antialiasing on images
     log.loaded("childapplet");
   }
 
@@ -23,7 +23,7 @@ class ChildApplet extends PApplet {
       try {
         windowTitle(menutitle[menu]);
       } catch (ArrayIndexOutOfBoundsException e) {
-        log.error("ArrayIndexOutOfBoundsException on changing window title");
+        log.error("ArrayIndexOutOfBoundsException on changing window title", true);
       }
       log.log("switched to menu "+menu);
       oldmenu = menu;
@@ -166,8 +166,23 @@ class ChildApplet extends PApplet {
       case 10: {
         break;
       }
+      case 14: { // RESIZE PTM
+        for (int i = 0; i<bglist.length; i++){
+          if (i==menuselect) {
+            fill(0, 255, 0);
+          } else {
+            fill(255);
+          }
+          if (i == bgno) {
+            text(">", 10, i*30+100+scrollY, 380, 999);
+          }
+          text(bglist[i], 30, i*30+100+scrollY, 380, 999);
+        }
+        fill(255);
+        break;
+      }
       default: {
-        text("the chances of you seeing this is very\n low and if you CAN see this please\n make a github issue and also\n tell me this: \nmenu:" + menu, 30, 100);
+        log.error("Unknown menu: " + menu + "or missing break", true);
       }
     }
     textFont(MSGothic32);
@@ -177,7 +192,7 @@ class ChildApplet extends PApplet {
     try {
       text(menutitle[menu], 20, 20, this.width, 999);
     } catch (ArrayIndexOutOfBoundsException e) {
-      log.error("ArrayIndexOutOfBoundsException on rendering title");
+      log.error("ArrayIndexOutOfBoundsException on rendering title", true);
     }
     textFont(MSGothic20);
     renderButtons();

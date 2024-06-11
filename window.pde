@@ -5,6 +5,7 @@ class AwtProgram1 {
     window2.setSize(800, 600);
     window2.setLocation(500, 100);
     window2.setResizable(false);
+    window2.setAlwaysOnTop(true);
 
     JTabbedPane tabPanel = new JTabbedPane();
     
@@ -45,13 +46,41 @@ class AwtProgram1 {
 JFrame errhandler = new JFrame();
 void showError(String error, boolean critical) {
   errhandler.setVisible(true);
+  if (errorIsBeingShown) return;
+  errorIsBeingShown = true;
   EventQueue.invokeLater(new Runnable() {
     @Override
     public void run() {
-      JOptionPane.showMessageDialog(errhandler, error, "Error", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(errhandler, error+(critical?". The application will now close.":""), "Error", JOptionPane.ERROR_MESSAGE);
       errhandler.setVisible(false);
+      errorIsBeingShown = false;
       if (critical) logexit();
     }
   });
-  log.error(error);
+}
+void showWarning(String error) {
+  errhandler.setVisible(true);
+  if (warnIsBeingShown) return;
+  warnIsBeingShown = true;
+  EventQueue.invokeLater(new Runnable() {
+    @Override
+    public void run() {
+      JOptionPane.showMessageDialog(errhandler, error, "Warning", JOptionPane.WARNING_MESSAGE);
+      errhandler.setVisible(false);
+      warnIsBeingShown = false;
+    }
+  });
+}
+void showInfo(String info) {
+  errhandler.setVisible(true);
+  if (warnIsBeingShown) return;
+  warnIsBeingShown = true;
+  EventQueue.invokeLater(new Runnable() {
+    @Override
+    public void run() {
+      JOptionPane.showMessageDialog(errhandler, info, "Message", JOptionPane.PLAIN_MESSAGE);
+      errhandler.setVisible(false);
+      warnIsBeingShown = false;
+    }
+  });
 }

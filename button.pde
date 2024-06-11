@@ -1,4 +1,4 @@
-TextButton[] buttons = new TextButton[20];
+TextButton[] buttons = new TextButton[18];
 
 class TextButton {
   String id, text;
@@ -75,7 +75,7 @@ class ImageButton {
   public void render() {
     if (this.activeMenu != menu || !this.active) return;
     editor.pushMatrix();
-    editor.scale(2);
+    editor.scale(this.scale);
     editor.image(this.img, x/scale, y/scale);
     if (this.checkIfHovered()) {
       editor.fill(0, 127, 255, 127);
@@ -88,7 +88,11 @@ class ImageButton {
 
 void renderButtons() {
   for (TextButton i: buttons) {
-    i.render();
+    try {
+      i.render();
+    } catch (NullPointerException e) {
+      log.error("NullPointerException on renderButtons()", true);
+    }
   }
 }
 
@@ -137,11 +141,10 @@ void checkButtons() {
       }
       case "savePaletteColor": {
         if (paletteEditTemp.length() != 7) {
-          menutitle[8] = "please input a valid hex color. (#RRGGBB)";
+          showInfo("please input a valid hex color. (#RRGGBB)");
         } else {
           menu = 6;
           pal[paletteIndexToEdit] = unhex(paletteEditTemp.substring(1, paletteEditTemp.length()))|0xFF000000;
-          menutitle[8] = "edit palette color";
         }
         break;
       }
@@ -163,6 +166,7 @@ void checkButtons() {
       case "goToWindow2": awt.window2.setVisible(true);break;
       case "goToEditor": menu=2;break;
       case "goToTitlescreen": menu=13;break;
+      case "asdf":break;
     }
   }
   toolbox.checkPress();

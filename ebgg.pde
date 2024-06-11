@@ -10,6 +10,9 @@ Robot robot;
 ChildApplet editor;
 AwtProgram1 awt;
 
+boolean errorIsBeingShown = false;
+boolean warnIsBeingShown = false;
+
 // settings-related things
 byte version = 14;
 byte[] defaultSettings = {14, 0, 30};
@@ -33,7 +36,7 @@ boolean palc;
 boolean palcreverse;
 int palssa;
 float vCx, vCy;
-int[][] ptm;
+int[][] ptm = new int[2][2];
 int scale; // why would there be a different scale on each axis?
 float Mxscale;
 float Mxfreq;
@@ -68,12 +71,12 @@ void setup() {
   textFont(MSGothic20);
   loadbg();
   editor = new ChildApplet();
-  surface.setSize(960, 720);
+  // this.setSize(960, 720);
   menu = 10;
 
 
-  windowMove(600, 200);
-  windowResizable(false);
+  this.windowMove(600, 200);
+  this.windowResizable(false);
 
   buttons[0] = new TextButton("01_name", 600, 75, 160, 30, "click to edit", 1);
   buttons[1] = new TextButton("01_pal", 600, 105, 160, 30, "click to edit", 1);
@@ -93,14 +96,14 @@ void setup() {
   buttons[11] = new TextButton("deletePaletteColor", 600, 650, 260, 30, "delete this palette color", 6);
   buttons[12] = new TextButton("editPaletteColor", 600, 620, 260, 30, "edit this palette color", 6);
   
-  buttons[13] = new TextButton("goToLoader", 30, 100, 260, 30,  "load a background", 10);
-  buttons[14] = new TextButton("goToWindow2", 30, 130, 260, 30, "about & other", 10);
-  buttons[15] = new TextButton("goToEditor", 30, 160, 260, 30,  "editor", 10);
+  buttons[13] = new TextButton("goToLoader", 105, 200, 190, 30,  "load a background", 10);
+  buttons[14] = new TextButton("goToWindow2", 125, 250, 150, 30, "about & other", 10);
+  buttons[15] = new TextButton("goToEditor", 160, 300, 80, 30,  "editor", 10);
   buttons[16] = new TextButton("goToTitlescreen", 30, 680, 100, 30, "back", 0);
   buttons[17] = new TextButton("goToTitlescreen", 30, 680, 100, 30, "back", 1);
-  buttons[18] = new TextButton("goToSettings", 30, 680, 100, 30, "back", 1);
-  buttons[19] = new TextButton("goToTitlescreen", 30, 680, 100, 30, "back", 11);
-
+  // buttons[18] = new TextButton("goToSettings", 30, 680, 100, 30, "settings", 10);
+  // buttons[19] = new TextButton("goToTitlescreen", 30, 680, 100, 30, "back", 11);
+  
 
   // load assets
   bigsteps = new MaskImage("assets/bigsteps", ".png");
@@ -109,18 +112,21 @@ void setup() {
 
   log.loaded("checking save...");
 
-  config = loadBytes("config.dat");
-  log.loaded(checkSave()?"problems were found and fixed.":"no problems found.");
-
   try {
     robot = new Robot();
   } catch (AWTException e) {
-    showError("system does not support java.awt.robot", true);
+    log.error("system does not support java.awt.robot", true);
     exit();
   }
   
   awt = new AwtProgram1();
   errhandler.setLocation(-100, -100);
+
+  config = loadBytes("config.dat");
+  
+  boolean isnotok = checkSave();
+  if (isnotok) log.warn("config.dat problems were found and fixed.");
+  log.log(isnotok?"config.dat problems were found and fixed.":"No config.dat problems found.");
 
   log.loaded("finished loading");
 }
@@ -129,19 +135,23 @@ void draw() {
   inactive++;
   realt++;
   background(0);
-  for (int y = 0; y < height/scale; y++) {
-    Mxtemp = Math.sin(Math.toRadians((y+t))*Mxfreq)*Mxscale*((int(y%2==0)*-Mxinterl*2+1));
-    Mytemp = Math.sin(Math.toRadians((y+t))*Myfreq)*Myscale;
-    for (int x = 0; x < width/scale; x++) {
-      int ptmy = rem(Math.round(y+Cy+(int)(Math.round(Mytemp))), ptm.length);
-      int ptmx = rem(Math.round(x+Cx+(int)(Math.round(Mxtemp))+random(0, staticx)), ptm[0].length);
-      if (ptm[ptmy][ptmx] < palssa) {
-        fill(pal[ptm[ptmy][ptmx]]);
-      } else {
-        fill(pal[rem(ptm[ptmy][ptmx]+paloffset, pal.length-palssa)+palssa]);
+  try {
+    for (int y = 0; y < height/scale; y++) {
+      Mxtemp = Math.sin(Math.toRadians((y+t))*Mxfreq)*Mxscale*((int(y%2==0)*-Mxinterl*2+1));
+      Mytemp = Math.sin(Math.toRadians((y+t))*Myfreq)*Myscale;
+      for (int x = 0; x < width/scale; x++) {
+        int ptmy = rem(Math.round(y+Cy+(int)(Math.round(Mytemp))), ptm.length);
+        int ptmx = rem(Math.round(x+Cx+(int)(Math.round(Mxtemp))+random(0, staticx)), ptm[0].length);
+        if (ptm[ptmy][ptmx] < palssa) {
+          fill(pal[ptm[ptmy][ptmx]]);
+        } else {
+          fill(pal[rem(ptm[ptmy][ptmx]+paloffset, pal.length-palssa)+palssa]);
+        }
+        rect(x*scale, y*scale, scale, scale);
       }
-      rect(x*scale, y*scale, scale, scale);
     }
+  } catch (ArithmeticException e) {
+    log.error(e+"", true);
   }
   Cx += vCx;
   Cy += vCy;
@@ -152,13 +162,10 @@ void draw() {
   }
   if (!palc) paloffset = 0;
   if (menu == 2) {
-    windowMove(960, 200);
+    this.windowMove(960, 200);
   }
-  if (menu == 3) {
-    windowMove(600, 200);
-  }
-  if (menu == 13) {
-    windowMove(600, 200);
+  if (menu == 3 || menu == 13) {
+    this.windowMove(600, 200);
   }
   if (inactive<100) {
     fill(0, (100-Math.max(inactive, 90))*25.5);
@@ -241,6 +248,9 @@ void optionsCheckKeyPress(int kc) {
         if (menuselect>pal.length-1) menuselect=0;
         scrollY = -menuselect*40+height/2-100;
         break;
+      case 14:
+        if (menuselect>edopname.length-1) menuselect=0;
+        break;
       }
       break;
     }
@@ -258,9 +268,11 @@ void optionsCheckKeyPress(int kc) {
           palf += edopset[2][1]*((kc==LEFT)?-1 :1);
           break;
         case 3:
+          if (kc>60)return;
           palc = kc==RIGHT;
           break;
         case 4:
+          if (kc>60)return;
           palcreverse = kc==RIGHT;
           break;
         case 5:
@@ -319,7 +331,12 @@ void optionsCheckKeyPress(int kc) {
           if ((staticx<=edopset[menuselect][0] && kc==LEFT) || (staticx>=edopset[menuselect][2] && kc==RIGHT)) return;
           staticx += edopset[menuselect][1]*((kc==LEFT)?-1 :1);
           break;
+        default:
+          menuselect = 0;
         }
+      }
+      if (menu==14) {
+        if (menu14tempValues[menuselect]<=0 && kc==LEFT) return;
       }
       break;
     }

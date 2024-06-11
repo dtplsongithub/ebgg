@@ -53,12 +53,10 @@ class Toolbox {
     ib[5] = new ImageButton("editorFillCircle", 190, 68, 70, "assets/filledCircle.png", 2);
     b[0] = new TextButton("editorGrid", 30, 100, 110, 32, "Show grid", 7);
     b[0].toggler = true;
-    b[1] = new TextButton("editorResizePtm", 240, 100, 130, 32, "resize ptm", 7);
-    b[1].toggler = true;
-    b[1].toggle = true;
-    b[2] = new TextButton("editorPreviewMode", 370, 100, 200, 32, "Don't use palette", 7);
+    b[1] = new TextButton("editorResizePtm", 140, 100, 130, 32, "resize ptm", 7);
+    b[2] = new TextButton("editorPreviewMode", 270, 100, 200, 32, "Don't use palette", 7);
     b[2].toggler = true;
-    b[3] = new TextButton("editorUsePaloffset", 570, 100, 160, 32, "Use paloffset", 7);
+    b[3] = new TextButton("editorUsePaloffset", 470, 100, 160, 32, "Use paloffset", 7);
     b[3].toggler = true;
     ib[6] = new ImageButton("editorZoomIn", 872, 100, 7, "assets/zoomin.png", 2);
     ib[7] = new ImageButton("editorZoomOut", 904, 100, 7, "assets/zoomout.png", 2);
@@ -131,7 +129,7 @@ class Toolbox {
             scrollX+=300*(int(i==11)*2-1);
             if (scrollX<0)scrollX=0;
             break;
-          default: showError("unknown toolbox imagebutton type "+i, false);
+          default: log.error("Unknown toolbox imagebutton type "+i, false);
         }
       }
     }
@@ -140,6 +138,7 @@ class Toolbox {
       if (temp.activeMenu != menu || !temp.active) continue;
       if (!temp.checkIfHovered()) continue;
       if (b[i].toggler) b[i].toggle=!b[i].toggle;
+      if (i==1) menu = 14;
     }
   }
   public void checkDraw() {
