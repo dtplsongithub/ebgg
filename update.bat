@@ -14,7 +14,7 @@ echo.
 echo.
 echo      +-------------+    code written by d
 echo     EBGG UPDATER V1.0
-echo      +-------------+
+echo      +-------------+    last updated 2024 may 23
 echo.
 echo.
 echo.
@@ -31,7 +31,7 @@ if %ERRORLEVEL% EQU 2 (
   cls
   echo Unzipping...
   powershell Expand-Archive latestversion.zip -DestinationPath .\
-  xcopy ".\windows-amd64-openJDK-included\" .\ /Y /E
+  xcopy ".\windows-amd64-openJDK-included\" .\ /-Y /E
 ) else if %ERRORLEVEL% EQU 1 (
   echo Downloading latest version...
   powershell Invoke-WebRequest https://github.com/dtplsongithub/ebgg/releases/latest/download/windows-amd64.zip -OutFile "latestversion.zip" >nul
@@ -42,7 +42,7 @@ if %ERRORLEVEL% EQU 2 (
   cls
   echo Copying files...
   echo.
-  xcopy ".\temp\windows-amd64\" .\ /Y /E
+  xcopy ".\temp\windows-amd64\" .\ /-Y /E
 )
 cls
 echo Succesfully updated! Press any key to exit...
