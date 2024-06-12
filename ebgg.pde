@@ -3,7 +3,9 @@ DJV_EBG
  */
 
 import java.awt.*;
+import java.io.*;
 import javax.swing.*;
+import javax.swing.event.*;
 import javax.imageio.*;
 Robot robot;
 
@@ -79,7 +81,7 @@ void setup() {
   buttons[0] = new TextButton("01_name", 600, 75, 160, 30, "click to edit", 1);
   buttons[1] = new TextButton("01_pal", 600, 105, 160, 30, "click to edit", 1);
   buttons[2] = new TextButton("01_ptm", 600, 315, 160, 30, "click to edit", 1);
-  buttons[3] = new TextButton("goToEditor", 30, 200, 100, 30, "go back", 5);
+  buttons[3] = new TextButton("goToEditor", 30, 680, 100, 30, "go back", 5);
   buttons[4] = new TextButton("goToEditor", 30, 680, 100, 30, "go back", 6);
   buttons[5] = new TextButton("goToEditor", 30, 680, 100, 30, "go back", 7);
   

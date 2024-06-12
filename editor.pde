@@ -26,7 +26,7 @@ final String[] edopname = {
   "dont switch the first n items",
   "camera x velocity",
   "camera y velocity",
-  "palette map (or ptm)",
+  "pattern",
   "scale",
   "x wavyness scale",
   "x wavyness frequency",
@@ -53,7 +53,7 @@ class Toolbox {
     ib[5] = new ImageButton("editorFillCircle", 190, 68, 70, "assets/filledCircle.png", 2);
     b[0] = new TextButton("editorGrid", 30, 100, 110, 32, "Show grid", 7);
     b[0].toggler = true;
-    b[1] = new TextButton("editorResizePtm", 140, 100, 130, 32, "resize ptm", 7);
+    b[1] = new TextButton("editorResizePtm", 140, 100, 130, 32, "resize pattern", 7);
     b[2] = new TextButton("editorPreviewMode", 270, 100, 200, 32, "Don't use palette", 7);
     b[2].toggler = true;
     b[3] = new TextButton("editorUsePaloffset", 470, 100, 160, 32, "Use paloffset", 7);
@@ -85,9 +85,15 @@ class Toolbox {
     editor.fill(255);
     editor.text("Color picker", 30, 620);
     int rp = 900/pal.length;
-    for (int i = 0; i<pal.length; i++) {
-      this.getColor(i);
-      editor.rect(30+i*rp, 648,rp, 32);
+    
+    if (rp<2) {
+      fill(255);
+      text("Too many colors!!!!! :(", 660, 30);
+    } else {
+      for (int i = 0; i<pal.length; i++) {
+        this.getColor(i);
+        editor.rect(30+i*rp, 648,rp, 32);
+      }
     }
     editor.fill(0, 127, 255, 64);
     editor.rect(this.currentColorSelected*rp+30, 648,rp, 32);
@@ -144,6 +150,7 @@ class Toolbox {
   public void checkDraw() {
     int rs = floor(min(900/ptm[0].length, 400/ptm.length))+zoom;
     int rp = 900/pal.length;
+    if (rp<2) return;
     if (editor.mousePressed) {
       if (editor.mouseX >30+scrollX && editor.mouseX < ptm[0].length*rs+30+scrollX && editor.mouseY > 150+scrollY && editor.mouseY < ptm.length*rs+150+scrollY && CANDRAW) {
         ptm[(editor.mouseY-150-scrollY)/rs][(editor.mouseX-30-scrollX)/rs] = this.currentColorSelected;

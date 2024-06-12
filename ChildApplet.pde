@@ -148,6 +148,7 @@ class ChildApplet extends PApplet {
           text("#"+hex(pal[i], 6), 220, 130+i*40+scrollY);
         }
         text("paloffset >", 20, 130+(paloffset+palssa)*40+scrollY);
+        stroke(0);
         break;
       }
       case 7: {

@@ -13,7 +13,7 @@ void loadbg(String which){
     vCx = float(values[6]);
     vCy = float(values[7]);
     int ptmwidth = values[8].split(",").length-1;
-    if (ptmwidth<1) throw new Error("Invalid ptmwidth "+ptmwidth);
+    if (ptmwidth<1) throw new Error("Invalid pattern width "+ptmwidth);
     int ptmheight = 0;
     for (int i = 0; true; i++) {
       if(8+i>values.length-1)break;
@@ -38,7 +38,7 @@ void loadbg(String which){
   } catch (NumberFormatException e) {
     log.warn(e+". Failed to fully load background. Potential wrong background format.");
   } catch (Error e) {
-    log.warn(e + ". Failed to fully load background. Potential wrong background format.");
+    log.warn(e+". Failed to fully load background. Potential wrong background format.");
   }
 }
 
