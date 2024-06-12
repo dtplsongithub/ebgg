@@ -1,4 +1,4 @@
-TextButton[] buttons = new TextButton[18];
+TextButton[] buttons = new TextButton[20];
 
 class TextButton {
   String id, text;
@@ -166,7 +166,8 @@ void checkButtons() {
       case "goToWindow2": awt.window2.setVisible(true);break;
       case "goToEditor": menu=2;break;
       case "goToTitlescreen": menu=13;break;
-      case "asdf":break;
+      case "applyResize": ptm = new int[menu14tempValues[0]][menu14tempValues[1]]; menu=7;break;
+      case "cancelResize": menu=7;break;
     }
   }
   toolbox.checkPress();

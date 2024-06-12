@@ -18,6 +18,6 @@ String[] menutitle = {
   "resize ptm"
 };
 String[] menu14 = {
-  "width", "height"
+  "new width", "new height"
 };
-int[] menu14tempValues = new int[2];
+int[] menu14tempValues = {1, 1};

@@ -19,7 +19,7 @@ class ChildApplet extends PApplet {
   }
 
   public void draw() {
-    if (oldmenu != menu) {
+    if (oldmenu != menu && menu>=0) {
       try {
         windowTitle(menutitle[menu]);
       } catch (ArrayIndexOutOfBoundsException e) {
@@ -48,7 +48,10 @@ class ChildApplet extends PApplet {
       case 1: {
         
         // EDITOR MENU
-        
+        if (this.width !=960) {
+          surface.setSize(960, 720);
+          windowMove(0, 200);
+        }
         fill(255);
         for (int i = 0; i<edopname.length; i++) {
           int y = 100+i*30;
@@ -112,7 +115,6 @@ class ChildApplet extends PApplet {
       case 2: {
         surface.setSize(960, 720);
         windowMove(0, 200);
-        menu = 1;
         break;
       }
       case +13:
@@ -120,7 +122,7 @@ class ChildApplet extends PApplet {
         surface.setSize(400, 720);
         windowMove(150, 200);
         scrollY=0;
-        menu-=3;
+        menu -= 3;
         break;
       }
       case 5: {
@@ -167,32 +169,33 @@ class ChildApplet extends PApplet {
         break;
       }
       case 14: { // RESIZE PTM
-        for (int i = 0; i<bglist.length; i++){
+        for (int i = 0; i<menu14.length; i++){
           if (i==menuselect) {
             fill(0, 255, 0);
           } else {
             fill(255);
           }
-          if (i == bgno) {
-            text(">", 10, i*30+100+scrollY, 380, 999);
-          }
-          text(bglist[i], 30, i*30+100+scrollY, 380, 999);
+          text(menu14[i], 30, i*30+100, 380, 999);
+          this.option(menu14tempValues[i], 2, i*30+100);
         }
         fill(255);
+        text("!!NOTICE!! changing size will clear ptm!", 30, 400);
         break;
       }
       default: {
-        log.error("Unknown menu: " + menu + "or missing break", true);
+        log.error("Unknown menu: " + menu + " or missing break", true);
       }
     }
     textFont(MSGothic32);
     fill(0);
     rect(0, 0, 999, 50);
     fill(255);
-    try {
-      text(menutitle[menu], 20, 20, this.width, 999);
-    } catch (ArrayIndexOutOfBoundsException e) {
-      log.error("ArrayIndexOutOfBoundsException on rendering title", true);
+    if (menu>=0) {
+      try {
+        text(menutitle[menu], 20, 20, this.width, 999);
+      } catch (ArrayIndexOutOfBoundsException e) {
+        log.error("ArrayIndexOutOfBoundsException on rendering title", true);
+      }
     }
     textFont(MSGothic20);
     renderButtons();

@@ -27,22 +27,20 @@ int paloffset = 0;
 double Mytemp;
 double Mxtemp;
 int scrollY = 0;
+int timeUntilMenuChange = 0;
 
 // backgrouns settings
 String backgroundName = "no background loaded...";
 color[] pal;
 int palf;
-boolean palc;
-boolean palcreverse;
+boolean palc, palcreverse;
 int palssa;
 float vCx, vCy;
 int[][] ptm = new int[2][2];
-int scale; // why would there be a different scale on each axis?
-float Mxscale;
-float Mxfreq;
+int scale = 1;
+float Mxscale, Mxfreq;
 int Mxinterl;
-float Myscale;
-float Myfreq;
+float Myscale, Myfreq;
 int staticx;
 
 int inactive = 0;
@@ -81,9 +79,9 @@ void setup() {
   buttons[0] = new TextButton("01_name", 600, 75, 160, 30, "click to edit", 1);
   buttons[1] = new TextButton("01_pal", 600, 105, 160, 30, "click to edit", 1);
   buttons[2] = new TextButton("01_ptm", 600, 315, 160, 30, "click to edit", 1);
-  buttons[3] = new TextButton("save", 30, 200, 100, 30, "go back", 5);
-  buttons[4] = new TextButton("save", 30, 680, 100, 30, "go back", 6);
-  buttons[5] = new TextButton("save", 30, 680, 100, 30, "go back", 7);
+  buttons[3] = new TextButton("goToEditor", 30, 200, 100, 30, "go back", 5);
+  buttons[4] = new TextButton("goToEditor", 30, 680, 100, 30, "go back", 6);
+  buttons[5] = new TextButton("goToEditor", 30, 680, 100, 30, "go back", 7);
   
   buttons[6] = new TextButton("saveBackground", 30, 650, 100, 30, "save", 1);
   buttons[7] = new TextButton("cancelOverwrite", 600, 650, 100, 30, "cancel", 1);
@@ -103,6 +101,8 @@ void setup() {
   buttons[17] = new TextButton("goToTitlescreen", 30, 680, 100, 30, "back", 1);
   // buttons[18] = new TextButton("goToSettings", 30, 680, 100, 30, "settings", 10);
   // buttons[19] = new TextButton("goToTitlescreen", 30, 680, 100, 30, "back", 11);
+  buttons[18] = new TextButton("applyResize", 30, 680, 80, 30, "resize", 14);
+  buttons[19] = new TextButton("cancelResize", 110, 680, 80, 30, "cancel", 14);
   
 
   // load assets
@@ -161,11 +161,23 @@ void draw() {
     paloffset = rem(paloffset, pal.length - 1);
   }
   if (!palc) paloffset = 0;
-  if (menu == 2) {
-    this.windowMove(960, 200);
-  }
-  if (menu == 3 || menu == 13) {
-    this.windowMove(600, 200);
+  switch (menu) {
+    case 0:
+    case 10:
+      if (getWindowPosition()[0]!=600)
+        this.windowMove(600, 200);
+      break;
+    case 1:
+      if (getWindowPosition()[0]!=960)
+        this.windowMove(960, 200);
+      break;
+    case 2:
+      this.windowMove(960, 200);
+      menu = 1;
+      break;
+    case 3:
+    case 13:
+      this.windowMove(600, 200);
   }
   if (inactive<100) {
     fill(0, (100-Math.max(inactive, 90))*25.5);
@@ -231,6 +243,9 @@ void optionsCheckKeyPress(int kc) {
         if (menuselect<0) menuselect=pal.length-1;
         scrollY = -menuselect*40+height/2-100;
         break;
+      case 14:
+        if (menuselect<0) menuselect=menu14.length-1;
+        break;
       }
       break;
     }
@@ -249,7 +264,7 @@ void optionsCheckKeyPress(int kc) {
         scrollY = -menuselect*40+height/2-100;
         break;
       case 14:
-        if (menuselect>edopname.length-1) menuselect=0;
+        if (menuselect>menu14.length-1) menuselect=0;
         break;
       }
       break;
@@ -336,7 +351,8 @@ void optionsCheckKeyPress(int kc) {
         }
       }
       if (menu==14) {
-        if (menu14tempValues[menuselect]<=0 && kc==LEFT) return;
+        if (menu14tempValues[menuselect]<=1 && kc==LEFT) return;
+        menu14tempValues[menuselect] += ((kc==LEFT)?-1 :1);
       }
       break;
     }
@@ -350,4 +366,12 @@ void optionsCheckKeyPress(int kc) {
       break;
     }
   }
+}
+int[] getWindowPosition() {
+  int[] pos = new int[2];
+  com.jogamp.nativewindow.util.Point p = new com.jogamp.nativewindow.util.Point();
+  ((com.jogamp.newt.opengl.GLWindow) surface.getNative()).getLocationOnScreen(p);
+  pos[0] = p.getX();
+  pos[1] = p.getY();
+  return pos;
 }
