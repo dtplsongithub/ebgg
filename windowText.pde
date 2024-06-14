@@ -1,7 +1,7 @@
 String whatsnew = "<html><h1 id='v1-4-0'>v1.4.0</h1>"+
 "<h2 id='2024-june-12'>2024 June 12</h2>"+
 "<p><strong>[COOL]</strong> new &quot;What&#39;s new&quot; menu and &quot;About&quot; menu :)<br>"+
-"<strong>[NEW]</strong> rezise tool for editing ptm<br>"+
+"<strong>[NEW]</strong> rezise tool for editing pattern<br>"+
 "<strong>[NEW]</strong> title screen! ;)<br>"+
 "<strong>[NEW]</strong> buttons to change menu instead of pressing a key<br>"+
 "<strong>[NEW]</strong> current palette color is now finally shown<br>"+
@@ -12,7 +12,7 @@ String whatsnew = "<html><h1 id='v1-4-0'>v1.4.0</h1>"+
 "<strong>[FIX]</strong> using the &quot;a&quot; key in two of the options have been fixed<br>"+
 "<strong>[FIX]</strong> program crashing on entering pattern editor on creating a LOT of colors<br>"+
 "<strong>[FIX]</strong> everything getting borderless when entering palette editor<br>"+
-"<strong>[CHANGE]</strong> palette map (or ptm) has been renamed to PATTERN.<br>"+
+"<strong>[CHANGED]</strong> palette map (or ptm) has been renamed to PATTERN.<br>"+
 "<strong>[DELETED]</strong> deleted status bar button since it did NOTHING<br><br>"+
 "<strong>Full Changelog</strong>: <a href='https://github.com/dtplsongithub/ebgg/compare/v1.3.1...v1.4.0'>https://github.com/dtplsongithub/ebgg/compare/v1.3.1...v1.4.0</a></p>"+
 "<h1 id='v1-3-1'>v1.3.1</h1>"+

@@ -1,7 +1,6 @@
 class AwtProgram1 {
   JFrame window2;
   public AwtProgram1() {
-    
     window2 = new JFrame("ebgg");
     window2.setSize(800, 600);
     window2.setLocation(500, 100);
@@ -42,7 +41,7 @@ class AwtProgram1 {
 
 
     JPanel page2 = new JPanel(new BorderLayout());
-    page1.setBorder(BorderFactory.createEmptyBorder());
+    page2.setBorder(BorderFactory.createEmptyBorder());
 
     JTextPane textArea2 = new JTextPane();
     textArea2.setContentType("text/html");
@@ -78,6 +77,26 @@ class AwtProgram1 {
   }
 }
 
+class AwtProgramSettings {
+  JFrame settings;
+  public AwtProgramSettings() {
+    settings = new JFrame("settings");
+    settings.setSize(800, 600);
+    settings.setLocation(500, 100);
+    settings.setResizable(false);
+    settings.setAlwaysOnTop(true);
+    
+    JPanel panel = new JPanel(new BorderLayout());
+    panel.setBorder(BorderFactory.createEmptyBorder());
+    
+    
+    
+    JScrollPane scrollPane2 = new JScrollPane(panel);
+    
+    settings.add(scrollPane2, BorderLayout.CENTER);
+    settings.setVisible(true);
+  }
+}
 
 JFrame errhandler = new JFrame();
 void showError(String error, boolean critical) {

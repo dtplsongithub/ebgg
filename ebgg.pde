@@ -11,14 +11,24 @@ Robot robot;
 
 ChildApplet editor;
 AwtProgram1 awt;
+AwtProgramSettings awt2;
 
 boolean errorIsBeingShown = false;
 boolean warnIsBeingShown = false;
 
 // settings-related things
-byte version = 14;
-byte[] defaultSettings = {14, 0, 30};
+byte version = 15;
+byte[] defaultSettings = {15, 0, 30, 0, 0, 0};
 byte[] config;
+/*
+settings
+- version
+- show a/d tip
+- mouse scroll sensitivity
+- enable beta buttons ? when hovered/selected button will turn gray instead of blue like in beta versions of v1.3.0
+- enable java window look and feel
+- expand color picker
+*/
 
 // variables
 long t = 0;
@@ -122,6 +132,7 @@ void setup() {
   }
   
   awt = new AwtProgram1();
+  awt2 = new AwtProgramSettings();
   errhandler.setLocation(-100, -100);
 
   config = loadBytes("config.dat");
