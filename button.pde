@@ -1,9 +1,9 @@
-TextButton[] buttons = new TextButton[20];
+TextButton[] buttons = new TextButton[21];
 
-class TextButton {
-  String id, text;
-  int x, y, w, h, activeMenu;
-  boolean active = true, toggle = false, toggler = false;
+public class TextButton {
+  public String id, text;
+  private int x, y, w, h, activeMenu;
+  public boolean active = true, toggle = false, toggler = false;
   public TextButton(String _id, int _x, int _y, int _w, int _h, String _text, int _menu) {
     this.id = _id;
     this.x = _x;
@@ -41,11 +41,12 @@ class TextButton {
   }
 }
 
-class ImageButton {
-  String id;
-  PImage img;
-  int x, y, w, h, activeMenu, scale = 1;
-  boolean active = true;
+public class ImageButton {
+  public String id;
+  public PImage img;
+  private int x, y, w, h, scale = 1;
+  public int activeMenu;
+  public boolean active = true;
   public ImageButton(String _id, int _x, int _y, int _menu, String imgLocation) {
     img = loadImage(imgLocation);
     this.id = _id;
@@ -91,7 +92,7 @@ void renderButtons() {
     try {
       i.render();
     } catch (NullPointerException e) {
-      log.error("NullPointerException on renderButtons()", true);
+      log.error(e+" on renderButtons()", true);
     }
   }
 }
@@ -164,6 +165,7 @@ void checkButtons() {
       }
       case "goToLoader": menu=3;break;
       case "goToWindow2": awt.window2.setVisible(true);break;
+      case "goToSettings": awt2.settings.setVisible(true);break;
       case "goToEditor": menu=2;break;
       case "goToTitlescreen": menu=13;break;
       case "applyResize": ptm = new int[menu14tempValues[0]][menu14tempValues[1]]; menu=7;break;
@@ -171,4 +173,20 @@ void checkButtons() {
     }
   }
   toolbox.checkPress();
+}
+
+boolean isButtonHovered() {
+  for (TextButton i: buttons) {
+    if (i.activeMenu != menu || !i.active) continue;
+    if (i.checkIfHovered()) return true;
+  }
+  for (TextButton i: toolbox.b) {
+    if (i.activeMenu != menu || !i.active) continue;
+    if (i.checkIfHovered()) return true;
+  }
+  for (ImageButton i: toolbox.ib) {
+    if (i.activeMenu != menu || !i.active) continue;
+    if (i.checkIfHovered()) return true;
+  }
+  return false;
 }

@@ -1,13 +1,14 @@
 /*
 DJV_EBG
  */
-
+ 
+import java.util.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.io.*;
 import javax.swing.*;
 import javax.swing.event.*;
-import javax.imageio.*;
-Robot robot;
+import javax.swing.text.html.HTMLDocument;
 
 ChildApplet editor;
 AwtProgram1 awt;
@@ -18,17 +19,29 @@ boolean warnIsBeingShown = false;
 
 // settings-related things
 byte version = 15;
-byte[] defaultSettings = {15, 0, 30, 0, 0, 0};
+byte[] defaultSettings = {version, 1, 30, 0, 0, 0, 1};
 byte[] config;
-/*
-settings
-- version
-- show a/d tip
-- mouse scroll sensitivity
-- enable beta buttons ? when hovered/selected button will turn gray instead of blue like in beta versions of v1.3.0
-- enable java window look and feel
-- expand color picker
-*/
+String settingsType = "csccccd";
+String[] settingsDescription = {
+  "show big steps tip",
+  "scroll sensitivity",
+  "enable beta buttons",
+  "enable java default window look and feel (requires restart)",
+  "expand color picker",
+  "enable custom cursors (requires restart if disabling)",
+  "background fps"
+};
+String[] settingsHelp = {
+  "",
+  "",
+  "when hovered/selected button will turn gray instead of blue like in beta versions of v1.3.0",
+  "",
+  "will show 2 rows instead of 1 in the color picker menu.",
+  "",
+  "! anything over 50 fps is not recommended"
+};
+int[] o5 = {5, 255, 30};
+String[] o6 = {"24", "25", "30", "custom"};
 
 // variables
 long t = 0;
@@ -71,22 +84,26 @@ String paletteEditTemp = "";
 void setup() {
   log = new LOGFILE();
   log.created("LOGFILE");
+  
   size(960, 720, P2D);
+  
+  editor = new ChildApplet();
+  progressBar = new ProgressBar(10,500, 380, 24);
+  progressBar.text = "this is just a test... ";
+  
   noStroke();
   frameRate(30);
+  background(0);
+  
   MSGothic32 = loadFont("MS-Gothic-32.vlw");
   log.loaded("font MSGothic32");
   MSGothic20 = loadFont("MS-Gothic-20.vlw");
   log.loaded("font MSGothic20");
   textFont(MSGothic20);
+  
   loadbg();
-  editor = new ChildApplet();
   // this.setSize(960, 720);
   menu = 10;
-
-
-  this.windowMove(600, 200);
-  this.windowResizable(false);
 
   buttons[0] = new TextButton("01_name", 600, 75, 160, 30, "click to edit", 1);
   buttons[1] = new TextButton("01_pal", 600, 105, 160, 30, "click to edit", 1);
@@ -113,8 +130,11 @@ void setup() {
   buttons[17] = new TextButton("goToTitlescreen", 30, 680, 100, 30, "back", 1);
   // buttons[18] = new TextButton("goToSettings", 30, 680, 100, 30, "settings", 10);
   // buttons[19] = new TextButton("goToTitlescreen", 30, 680, 100, 30, "back", 11);
+  
   buttons[18] = new TextButton("applyResize", 30, 680, 80, 30, "resize", 14);
   buttons[19] = new TextButton("cancelResize", 110, 680, 80, 30, "cancel", 14);
+  
+  buttons[20] = new TextButton("goToSettings", 150, 350, 100, 30, "settings", 10);
   
 
   // load assets
@@ -124,22 +144,17 @@ void setup() {
 
   log.loaded("checking save...");
 
-  try {
-    robot = new Robot();
-  } catch (AWTException e) {
-    log.error("system does not support java.awt.robot", true);
-    exit();
-  }
-  
-  awt = new AwtProgram1();
-  awt2 = new AwtProgramSettings();
-  errhandler.setLocation(-100, -100);
-
   config = loadBytes("config.dat");
   
   boolean isnotok = checkSave();
   if (isnotok) log.warn("config.dat problems were found and fixed.");
   log.log(isnotok?"config.dat problems were found and fixed.":"No config.dat problems found.");
+  
+  JFrame.setDefaultLookAndFeelDecorated(boolean(config[4]));
+  
+  awt = new AwtProgram1();
+  awt2 = new AwtProgramSettings();
+  errhandler.setLocation(-100, -100);
 
   log.loaded("finished loading");
 }
@@ -174,24 +189,6 @@ void draw() {
     paloffset = rem(paloffset, pal.length - 1);
   }
   if (!palc) paloffset = 0;
-  switch (menu) {
-    case 0:
-    case 10:
-      if (getWindowPosition()[0]!=600)
-        this.windowMove(600, 200);
-      break;
-    case 1:
-      if (getWindowPosition()[0]!=960)
-        this.windowMove(960, 200);
-      break;
-    case 2:
-      this.windowMove(960, 200);
-      menu = 1;
-      break;
-    case 3:
-    case 13:
-      this.windowMove(600, 200);
-  }
   if (inactive<100) {
     fill(0, (100-Math.max(inactive, 90))*25.5);
     rect(0, 0, textWidth(backgroundName) + 30, 30);
@@ -379,12 +376,4 @@ void optionsCheckKeyPress(int kc) {
       break;
     }
   }
-}
-int[] getWindowPosition() {
-  int[] pos = new int[2];
-  com.jogamp.nativewindow.util.Point p = new com.jogamp.nativewindow.util.Point();
-  ((com.jogamp.newt.opengl.GLWindow) surface.getNative()).getLocationOnScreen(p);
-  pos[0] = p.getX();
-  pos[1] = p.getY();
-  return pos;
 }

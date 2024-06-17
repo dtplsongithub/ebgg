@@ -1,12 +1,12 @@
 float[][] edopset = {
-  {1}, 
-  {2}, 
-  {1, 1, 999}, 
-  {0, 1, 1}, 
-  {0, 1, 1}, 
-  {0, 1, 999}, 
-  {-50, 0.05, 50}, 
-  {-50, 0.05, 50}, 
+  {1},
+  {2},
+  {1, 1, 999},
+  {0, 1, 1},
+  {0, 1, 1},
+  {0, 1, 999},
+  {-50, 0.05, 50},
+  {-50, 0.05, 50},
   {3},
   {1, 1, 16},
   {-400, 0.1, 400},
@@ -53,10 +53,10 @@ class Toolbox {
     ib[5] = new ImageButton("editorFillCircle", 190, 68, 70, "assets/filledCircle.png", 2);
     b[0] = new TextButton("editorGrid", 30, 100, 110, 32, "Show grid", 7);
     b[0].toggler = true;
-    b[1] = new TextButton("editorResizePtm", 140, 100, 130, 32, "resize pattern", 7);
-    b[2] = new TextButton("editorPreviewMode", 270, 100, 200, 32, "Don't use palette", 7);
+    b[1] = new TextButton("editorResizePtm", 140, 100, 170, 32, "resize pattern", 7);
+    b[2] = new TextButton("editorPreviewMode", 310, 100, 200, 32, "Don't use palette", 7);
     b[2].toggler = true;
-    b[3] = new TextButton("editorUsePaloffset", 470, 100, 160, 32, "Use paloffset", 7);
+    b[3] = new TextButton("editorUsePaloffset", 510, 100, 160, 32, "Use paloffset", 7);
     b[3].toggler = true;
     ib[6] = new ImageButton("editorZoomIn", 872, 100, 7, "assets/zoomin.png", 2);
     ib[7] = new ImageButton("editorZoomOut", 904, 100, 7, "assets/zoomout.png", 2);
@@ -83,25 +83,31 @@ class Toolbox {
     editor.fill(0);
     editor.rect(0, 600, 999, 999);
     editor.fill(255);
-    editor.text("Color picker", 30, 620);
-    int rp = 900/pal.length;
-    
+    editor.text("Color picker", 30, 620-32*config[5]);
+    int rp = 900/pal.length*(int(config[5])+1);
+
     if (rp<2) {
       fill(255);
       text("Too many colors!!!!! :(", 660, 30);
     } else {
-      for (int i = 0; i<pal.length; i++) {
-        this.getColor(i);
-        editor.rect(30+i*rp, 648,rp, 32);
+      if (config[5]==1) {
+        
+      } else {
+        for (int i = 0; i<pal.length; i++) {
+          this.getColor(i);
+          editor.rect(30+i*rp, 648, rp, 32);
+          if (i == this.currentColorSelected) {
+            editor.fill(0, 127, 255, 64);
+            editor.rect(30+i*rp, 648-(32*int(boolean(config[5])&&i<pal.length/2)), rp, 32);
+          }
+        }
       }
     }
     editor.fill(0, 127, 255, 64);
-    editor.rect(this.currentColorSelected*rp+30, 648,rp, 32);
-    editor.fill(0, 127, 255, 64);
-    if (editor.mouseX>30 && editor.mouseX<900 && editor.mouseY>650 && editor.mouseY<680) editor.rect(floor((editor.mouseX-30)/rp)*rp+30,648, rp, 32);
+    if (editor.mouseX>30 && editor.mouseX<900 && editor.mouseY>650 && editor.mouseY<680) editor.rect(floor((editor.mouseX-30)/rp)*rp+30, 648, rp, 32);
     editor.stroke(0);
-    for (ImageButton i: ib) i.render();
-    for (TextButton i: b) i.render();
+    for (ImageButton i : ib) i.render();
+    for (TextButton i : b) i.render();
   }
   public void checkPress() {
     for (int i = 0; i<ib.length; i++) {
@@ -111,31 +117,30 @@ class Toolbox {
       if (i < 6) currentToolSelected = i;
       else {
         switch (i) {
-          case 6:
-            this.zoom = 20;
-            for (int j=8;j<12;j++){
-              ib[j].active=true;
-            }
-            break;
-          case 7:
-            this.zoom = 0;
-            for (int j=8;j<12;j++){
-              ib[j].active=false;
-            }
-            scrollX=0;
-            scrollY=0;
-            break;
-          case +9:
-          case 10:
-            scrollY+=300*(int(i==10)*2-1);
-            if (scrollY<0)scrollY=0;
-            break;
-          case +8:
-          case 11:
-            scrollX+=300*(int(i==11)*2-1);
-            if (scrollX<0)scrollX=0;
-            break;
-          default: log.error("Unknown toolbox imagebutton type "+i, false);
+        case 6:
+          this.zoom = 20;
+          for (int j=8; j<12; j++) {
+            ib[j].active=true;
+          }
+          break;
+        case 7:
+          this.zoom = 0;
+          for (int j=8; j<12; j++) {
+            ib[j].active=false;
+          }
+          scrollX=0;
+          scrollY=0;
+          break;
+        case +9:
+        case 10:
+          scrollY+=300*(int(i==10)*2-1);
+          break;
+        case +8:
+        case 11:
+          scrollX+=300*(int(i==11)*2-1);
+          break;
+        default:
+          log.error("Unknown toolbox imagebutton type "+i, false);
         }
       }
     }
@@ -166,7 +171,7 @@ class Toolbox {
       } else {
         editor.fill(pal[rem(i+paloffset, pal.length-palssa)+palssa]);
       }
-    } else if (!b[2].toggle){
+    } else if (!b[2].toggle) {
       editor.fill(pal[i]);
     } else {
       editor.colorMode(HSB, 100);

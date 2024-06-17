@@ -11,10 +11,8 @@ class ChildApplet extends PApplet {
   }
   public void setup() { 
     windowTitle("editor");
-    windowMove(150, 200);
-    windowResizable(false);
     textFont(MSGothic20);
-    ((PGraphicsOpenGL)g).textureSampling(3); // disable antialiasing on images
+    ((PGraphicsOpenGL)g).textureSampling(3); // disable antialiasing on images (magic)
     log.loaded("childapplet");
   }
 
@@ -23,12 +21,13 @@ class ChildApplet extends PApplet {
       try {
         windowTitle(menutitle[menu]);
       } catch (ArrayIndexOutOfBoundsException e) {
-        log.error("ArrayIndexOutOfBoundsException on changing window title", true);
+        log.error(e+" on changing window title", true);
       }
       log.log("switched to menu "+menu);
       oldmenu = menu;
     }
     background(0);
+    
     switch (menu) {
       case 0: {
         for (int i = 0; i<bglist.length; i++){
@@ -109,19 +108,17 @@ class ChildApplet extends PApplet {
             }
           }
         }        
-        if (bigstepsappear) image(bigsteps.image, 717, 148);
+        if (bigstepsappear && boolean(config[1])) image(bigsteps.image, 717, 148);
         break;
       }
       case 2: {
         surface.setSize(960, 720);
-        windowMove(0, 200);
+        menu = 1;
         break;
       }
       case +13:
       case 3: {
         surface.setSize(400, 720);
-        windowMove(150, 200);
-        scrollY=0;
         menu -= 3;
         break;
       }
@@ -193,13 +190,16 @@ class ChildApplet extends PApplet {
     fill(255);
     if (menu>=0) {
       try {
-        text(menutitle[menu], 20, 20, this.width, 999);
+        text(menutitle[menu], 20, 40);
       } catch (ArrayIndexOutOfBoundsException e) {
         log.error("ArrayIndexOutOfBoundsException on rendering title", true);
       }
     }
     textFont(MSGothic20);
     renderButtons();
+    progressBar.render();
+    progressBar.progress++;
+    progressBar.progress %= 100;
   }
   public void keyPressed() {
   if (menu == 5 || menu == 8 ) keyboardDetection(editor.keyCode, editor.key);
@@ -239,7 +239,17 @@ class ChildApplet extends PApplet {
     checkButtons();
     // println(mouseX, mouseY);
   }
-  public void mouseWheel(MouseEvent e) {
-    if (menu == 0 || menu == 6) scrollY -= e.getCount()*config[2];
+  public void mouseWheel(processing.event.MouseEvent e) {
+    if (menu == 0 || menu == 6) scrollY -= e.getCount()*(config[2]&0xFF);
+  }
+  public void mouseMoved() {
+    if (boolean(config[6])) {
+      if (isButtonHovered()) { cursor(HAND); }
+      else if (menu == 5 || menu == 8) { cursor(TEXT); }
+      else { cursor(ARROW); }
+    }
+  }
+  public void mouseReleased() {
+    this.mouseMoved();
   }
 }

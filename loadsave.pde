@@ -102,16 +102,17 @@ boolean checkSave() {
     config[0] = version;
     problem = true;
   }
+  if (config[1] > 1) { config[1] = 0; problem = true; }
   
-  if (config[1] > 1) {
-    config[1] = 0;
-    problem = true;
-  }
-  
-  if (config[2] < 1) {
+  if (config[2] < 5) {
     config[2] = 30;
     problem = true;
   }
+  
+  if (config[3] > 1) { config[3] = 0; problem = true; }
+  if (config[4] > 1) { config[4] = 0; problem = true; }
+  if (config[5] > 1) { config[5] = 0; problem = true; }
+  if (config[6] > 1) { config[6] = 0; problem = true; }
   
   saveBytes("config.dat", config);
   return problem;
