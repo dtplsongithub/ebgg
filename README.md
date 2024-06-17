@@ -2,11 +2,8 @@
 earthbound background generator (processing(aka java) edition™)
 <br><br>
 ### What's this? <br>
-a silly little program in which you can make earthbound-styled backgrounds <br>
+a program in which you can make earthbound-styled backgrounds <br>
 <br>
-### How to make my own background? <br>
-/bghelp.txt<br>
-follow the instructions and then it should work<br>
 if there are any bugs, please make an issue about it, thanks <br>
 I am currently working on an editor, so bghelp might become obsolete in a few days (or weeks... depending on how productive i am).
 ### Read this before downloading!
