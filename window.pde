@@ -158,6 +158,7 @@ class AwtProgramSettings {
           settings.add(o6set);
           JLabel o6label = new JLabel(settingsDescription[6]);
           o6label.setBounds(30, 220, 999, 16);
+          settings.add(o6label);
       }
       i++;
     }

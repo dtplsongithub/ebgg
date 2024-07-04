@@ -99,7 +99,7 @@ void renderButtons() {
 
 void checkButtons() {
   for (TextButton i: buttons) {
-    if (i.activeMenu != menu || !i.active) continue;
+    if (i.activeMenu != menu || !i.active) continue; // god i love continue
     if (!i.checkIfHovered()) continue;
     switch (i.id) {
       case "01_name": menu = 5; break;
