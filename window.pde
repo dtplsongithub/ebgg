@@ -88,7 +88,7 @@ class AwtProgramSettings {
   JSlider[] jsset = new JSlider[2];
   JLabel[] ttset = new JLabel[3];
   JLabel[] olset = new JLabel[1];
-  JComboBox<String> o6set; // initialization is in constructor below
+  JComboBox<Integer> o6set; // initialization is in constructor below
   public AwtProgramSettings() {
     settings = new JFrame("settings");
     settings.setSize(600, 450);
@@ -145,7 +145,7 @@ class AwtProgramSettings {
           yoffset+=50;
           break;
         case 'd':
-          o6set = new JComboBox<String>(o6);
+          o6set = new JComboBox<Integer>(o6);
           o6set.setBounds(300, 40+i*20+yoffset, 100, 16);
           o6set.setVisible(true);
           if (settingsHelp[i]!="") {
@@ -167,6 +167,8 @@ class AwtProgramSettings {
     svset.setBounds(30, 350, 100, 20);
     svset.addActionListener(new ActionListener(){  
       public void actionPerformed(ActionEvent e){
+        config[7] = byte(int(String.valueOf(o6set.getSelectedItem())));
+        frameRate(config[7]);
         saveBytes("config.dat", config);
         settings.setVisible(false); 
       }  

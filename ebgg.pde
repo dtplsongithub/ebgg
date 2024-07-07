@@ -19,25 +19,26 @@ boolean errorIsBeingShown = false, warnIsBeingShown = false;
 // settings-related things
 byte version = 15;
 byte[] defaultSettings = {version, 1, 30, 0, 0, 0, 1}, config;
-String settingsType = "csccccd";
+String settingsType = "cscccc";
 String[] settingsDescription = {
   "show big steps tip",
   "scroll sensitivity",
   "enable beta buttons",
   "enable java default window look and feel (requires restart)",
   "expand color picker",
-  "enable custom cursors (requires restart if disabling)",
-  "background fps"
+  "enable custom cursors (requires restart if disabling)"//,
+  //"background fps (requires restart)"
 }, settingsHelp = {
   "",
   "",
   "when hovered/selected button will turn gray instead of blue like in beta versions of v1.3.0",
   "",
   "will show 2 rows instead of 1 in the color picker menu.",
-  "",
-  "! anything over 50 fps is not recommended"
-}, o6 = {"24", "25", "30", "custom"};
+  ""//,
+  //"! anything over 50 fps is not recommended !"
+};
 int[] o5 = {5, 255, 30};
+Integer[] o6 = {24, 25, 30};
 
 // variables
 long t = 0, realt = 0;
@@ -75,7 +76,6 @@ void setup() {
   editor = new ChildApplet();
   
   noStroke();
-  frameRate(30);
   background(0);
   
   MSGothic32 = loadFont("MS-Gothic-32.vlw");
@@ -128,6 +128,7 @@ void setup() {
   log.log("checking save...");
 
   config = loadBytes("config.dat");
+  frameRate(config[7]);
   
   boolean isnotok = checkSave();
   if (isnotok) log.warn("config.dat problems were found and fixed.");
