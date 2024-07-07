@@ -30,11 +30,17 @@ public class TextButton {
       return;
     }
     if (this.checkIfHovered()) {
-      editor.fill(0, 127, 255, 127);
+      if (config[3] == 1)
+        editor.fill(127, 127);
+      else
+        editor.fill(0, 127, 255, 127);
       editor.rect(this.x, this.y, this.w, this.h);
     }
     if (toggler && toggle) {
-      editor.fill(0, 127, 255, 64);
+      if (config[3] == 1)
+        editor.fill(127, 127);
+      else
+        editor.fill(0, 127, 255, 64);
       editor.rect(this.x, this.y, this.w, this.h);
     }
     editor.fill(255);
@@ -49,13 +55,13 @@ public class ImageButton {
   public boolean active = true;
   public ImageButton(String _id, int _x, int _y, int _menu, String imgLocation) {
     img = loadImage(imgLocation);
+    log.loaded("asset for imageButton "+imgLocation);
     this.id = _id;
     this.x = _x;
     this.y = _y;
     this.w = img.width;
     this.h = img.height;
     this.activeMenu = _menu;
-    log.loaded("asset for imageButton "+imgLocation);
     log.created("imageButton "+id);
   }
   public ImageButton(String _id, int _x, int _y, int _menu, String imgLocation, int imageScale) {
@@ -79,7 +85,10 @@ public class ImageButton {
     editor.scale(this.scale);
     editor.image(this.img, x/scale, y/scale);
     if (this.checkIfHovered()) {
-      editor.fill(0, 127, 255, 127);
+      if (config[3] == 1)
+        editor.fill(127, 127);
+      else
+        editor.fill(0, 127, 255, 127);
       editor.rect(x/scale, y/scale, w, h);
     }
     editor.fill(255);

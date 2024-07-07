@@ -87,6 +87,7 @@ String[] saveBackground() {
 
 boolean checkSave() {
   boolean problem = false;
+  
   if (!fileExists("config.dat")) {
     saveBytes("config.dat", defaultSettings);
     config = defaultSettings;

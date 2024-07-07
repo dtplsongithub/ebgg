@@ -12,6 +12,7 @@ class ChildApplet extends PApplet {
   public void setup() { 
     windowTitle("editor");
     textFont(MSGothic20);
+    editor.background(0);
     ((PGraphicsOpenGL)g).textureSampling(3); // disable antialiasing on images (magic)
     log.loaded("childapplet");
   }
@@ -197,9 +198,6 @@ class ChildApplet extends PApplet {
     }
     textFont(MSGothic20);
     renderButtons();
-    progressBar.render();
-    progressBar.progress++;
-    progressBar.progress %= 100;
   }
   public void keyPressed() {
   if (menu == 5 || menu == 8 ) keyboardDetection(editor.keyCode, editor.key);

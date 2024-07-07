@@ -75,7 +75,7 @@ PFont MSGothic20;
 PFont MSGothic32;
 
 // assets
-// MaskImage assets are defined in MaskImage
+// MaskImage assets are defined in MaskImage file
 
 // other
 int paletteIndexToEdit;
@@ -88,8 +88,6 @@ void setup() {
   size(960, 720, P2D);
   
   editor = new ChildApplet();
-  progressBar = new ProgressBar(10,500, 380, 24);
-  progressBar.text = "this is just a test... ";
   
   noStroke();
   frameRate(30);
@@ -142,7 +140,7 @@ void setup() {
 
   toolbox = new Toolbox();
 
-  log.loaded("checking save...");
+  log.log("checking save...");
 
   config = loadBytes("config.dat");
   

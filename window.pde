@@ -146,7 +146,7 @@ class AwtProgramSettings {
           break;
         case 'd':
           o6set = new JComboBox<String>(o6);
-          o6set.setBounds(300, 220, 100, 16);
+          o6set.setBounds(300, 40+i*20+yoffset, 100, 16);
           o6set.setVisible(true);
           if (settingsHelp[i]!="") {
             ttset[temporder[2]] = new JLabel(settingsHelp[i].indexOf("!") == 0 ? "!" : "?");
@@ -157,7 +157,7 @@ class AwtProgramSettings {
           };
           settings.add(o6set);
           JLabel o6label = new JLabel(settingsDescription[6]);
-          o6label.setBounds(30, 220, 999, 16);
+          o6label.setBounds(30, 40+i*20+yoffset, 999, 16);
           settings.add(o6label);
       }
       i++;
