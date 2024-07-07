@@ -241,7 +241,7 @@ class ChildApplet extends PApplet {
     if (menu == 0 || menu == 6) scrollY -= e.getCount()*(config[2]&0xFF);
   }
   public void mouseMoved() {
-    if (boolean(config[6])) {
+    if (boolean(config[5])) {
       if (isButtonHovered()) { cursor(HAND); }
       else if (menu == 5 || menu == 8) { cursor(TEXT); }
       else { cursor(ARROW); }

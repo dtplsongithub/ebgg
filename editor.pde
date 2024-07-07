@@ -90,32 +90,12 @@ class Toolbox {
       fill(255);
       text("Too many colors!!!!! :(", 660, 30);
     } else {
-      if (config[5]==1) {
-        for (int i = 0; i<pal.length/2; i++) {
-          this.getColor(i);
-          editor.rect(30+i*rp, 616, rp, 32);
-          if (i == this.currentColorSelected) {
-            editor.fill(0, 127, 255, 64);
-            editor.rect(30+i*rp, 616, rp, 32);
-          }
-        }
-        for (int j = round(pal.length/2); j<pal.length; j++) {
-          int i = j-round(pal.length/2);
-          this.getColor(j);
-          editor.rect(30+i*rp, 648, rp, 32);
-          if (i == this.currentColorSelected) {
-            editor.fill(0, 127, 255, 64);
-            editor.rect(30+i*rp, 648, rp, 32);
-          }
-        }
-      } else {
-        for (int i = 0; i<pal.length; i++) {
-          this.getColor(i);
-          editor.rect(30+i*rp, 648, rp, 32);
-          if (i == this.currentColorSelected) {
-            editor.fill(0, 127, 255, 64);
-            editor.rect(30+i*rp, 648-(32*int(boolean(config[5])&&i<pal.length/2)), rp, 32);
-          }
+      for (int i = 0; i<pal.length; i++) {
+        this.getColor(i);
+        editor.rect(30+i*rp, 648, rp, 32);
+        if (i == this.currentColorSelected) {
+          editor.fill(0, 127, 255, 64);
+          editor.rect(30+i*rp, 648-(32*int(boolean(config[5])&&i<pal.length/2)), rp, 32);
         }
       }
     }

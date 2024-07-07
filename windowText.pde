@@ -1,5 +1,5 @@
 String whatsnew = "<html><h1 id='v1-5-0'>v1.5.0</h1>"+
-"<h2 id='2024-june-12'>2024 July 9</h2>"+
+"<h2 id='2024-june-12'>2024 July 7</h2>"+
 "<strong>[NEW]</strong> SETTINGS!!!<br>"+
 "<strong>[FIX]</strong> lots of bug fixes...<br>"+
 "<h1 id='v1-4-0'>v1.4.0</h1>"+

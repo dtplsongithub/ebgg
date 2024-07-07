@@ -145,7 +145,7 @@ class AwtProgramSettings {
           yoffset+=50;
           break;
         case 'd':
-          o6set = new JComboBox<Integer>(o6);
+          o6set = new JComboBox<Integer>(o6OLD);
           o6set.setBounds(300, 40+i*20+yoffset, 100, 16);
           o6set.setVisible(true);
           if (settingsHelp[i]!="") {

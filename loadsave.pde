@@ -94,10 +94,10 @@ boolean checkSave() {
     problem = true;
   }
   
-  if (config.length<defaultSettings.length) {
+  if (config.length!=defaultSettings.length) {
     int originalConfigLength = config.length;
     config = expand(config, defaultSettings.length);
-    arrayCopy(defaultSettings, originalConfigLength, config, originalConfigLength, defaultSettings.length-originalConfigLength);
+    if (config.length<defaultSettings.length) arrayCopy(defaultSettings, originalConfigLength, config, originalConfigLength, defaultSettings.length-originalConfigLength);
     problem = true;
   } else if (config[0] != version) {
     config[0] = version;
@@ -113,7 +113,6 @@ boolean checkSave() {
   if (config[3] > 1) { config[3] = 0; problem = true; }
   if (config[4] > 1) { config[4] = 0; problem = true; }
   if (config[5] > 1) { config[5] = 0; problem = true; }
-  if (config[6] > 1) { config[6] = 0; problem = true; }
   
   saveBytes("config.dat", config);
   return problem;
