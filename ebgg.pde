@@ -14,13 +14,11 @@ ChildApplet editor;
 AwtProgram1 awt;
 AwtProgramSettings awt2;
 
-boolean errorIsBeingShown = false;
-boolean warnIsBeingShown = false;
+boolean errorIsBeingShown = false, warnIsBeingShown = false;
 
 // settings-related things
 byte version = 15;
-byte[] defaultSettings = {version, 1, 30, 0, 0, 0, 1};
-byte[] config;
+byte[] defaultSettings = {version, 1, 30, 0, 0, 0, 1}, config;
 String settingsType = "csccccd";
 String[] settingsDescription = {
   "show big steps tip",
@@ -30,8 +28,7 @@ String[] settingsDescription = {
   "expand color picker",
   "enable custom cursors (requires restart if disabling)",
   "background fps"
-};
-String[] settingsHelp = {
+}, settingsHelp = {
   "",
   "",
   "when hovered/selected button will turn gray instead of blue like in beta versions of v1.3.0",
@@ -39,40 +36,28 @@ String[] settingsHelp = {
   "will show 2 rows instead of 1 in the color picker menu.",
   "",
   "! anything over 50 fps is not recommended"
-};
+}, o6 = {"24", "25", "30", "custom"};
 int[] o5 = {5, 255, 30};
-String[] o6 = {"24", "25", "30", "custom"};
 
 // variables
-long t = 0;
-long realt = 0;
+long t = 0, realt = 0;
 int bgno = 0;
-float Cx, Cy;
+float Cx=0, Cy=0, vCx, vCy, Mxscale, Mxfreq, Myscale, Myfreq;
 int paloffset = 0;
-double Mytemp;
-double Mxtemp;
+double Mxtemp, Mytemp;
 int scrollY = 0;
-int timeUntilMenuChange = 0;
 
 // backgrouns settings
 String backgroundName = "no background loaded...";
-color[] pal;
-int palf;
+color[] pal = new color[2];
+int palf = 1, palssa, scale = 1, Mxinterl, staticx;
 boolean palc, palcreverse;
-int palssa;
-float vCx, vCy;
 int[][] ptm = new int[2][2];
-int scale = 1;
-float Mxscale, Mxfreq;
-int Mxinterl;
-float Myscale, Myfreq;
-int staticx;
 
 int inactive = 0;
 
 // fonts
-PFont MSGothic20;
-PFont MSGothic32;
+PFont MSGothic20, MSGothic32;
 
 // assets
 // MaskImage assets are defined in MaskImage file
