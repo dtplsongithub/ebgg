@@ -1,4 +1,7 @@
-String whatsnew = "<html><h1 id='v1-5-0'>v1.5.0</h1>"+
+String whatsnew = "<html><h1 id='v1-5-1'>v1.5.1</h1>"+
+"<h2 id='2024-june-12'>2024 July 8</h2>"+
+"<p><strong>[FIX]</strong> made editor only 960x720 because of linux <br>"+
+"<html><h1 id='v1-5-0'>v1.5.0</h1>"+
 "<h2 id='2024-june-12'>2024 July 7</h2>"+
 "<p><strong>[NEW]</strong> SETTINGS!!!<br>"+
 "<strong>[FIX]</strong> lots of bug fixes...</p>"+

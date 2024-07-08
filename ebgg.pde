@@ -13,6 +13,7 @@ import javax.swing.text.html.HTMLDocument;
 ChildApplet editor;
 AwtProgram1 awt;
 AwtProgramSettings awt2;
+// AwtMainMenu awt3;
 
 boolean errorIsBeingShown = false, warnIsBeingShown = false;
 
@@ -26,16 +27,18 @@ String[] settingsDescription = {
   "enable beta buttons",
   "enable java default window look and feel (requires restart)",
   //"expand color picker",
-  "enable custom cursors (requires restart if disabling)"//,
+  "enable custom cursors (requires restart if disabling)",
   //"background fps (requires restart)"
+  "fullscreen mode"
 }, settingsHelp = {
   "",
   "",
   "when hovered/selected button will turn gray instead of blue like in beta versions of v1.3.0",
   "",
   //"will show 2 rows instead of 1 in the color picker menu.",
-  ""//,
+  "",
   //"! anything over 50 fps is not recommended !"
+  ""
 };
 int[] o5 = {5, 255, 30};
 Integer[] o6OLD = {24, 25, 30};
@@ -70,8 +73,16 @@ String paletteEditTemp = "";
 void setup() {
   log = new LOGFILE();
   log.created("LOGFILE");
+
+  log.log("checking save...");
+
+  config = loadBytes("config.dat");
+  frameRate(30);
   
-  size(960, 720, P2D);
+  //if (config[7]==1)
+  //  size(displayWidth, displayHeight, P2D);
+  //else
+    size(960, 720, P2D);
   
   editor = new ChildApplet();
   
@@ -106,9 +117,9 @@ void setup() {
   buttons[11] = new TextButton("deletePaletteColor", 600, 650, 260, 30, "delete this palette color", 6);
   buttons[12] = new TextButton("editPaletteColor", 600, 620, 260, 30, "edit this palette color", 6);
   
-  buttons[13] = new TextButton("goToLoader", 105, 200, 190, 30,  "load a background", 10);
-  buttons[14] = new TextButton("goToWindow2", 125, 250, 150, 30, "about & other", 10);
-  buttons[15] = new TextButton("goToEditor", 160, 300, 80, 30,  "editor", 10);
+  buttons[13] = new TextButton("goToLoader", 385, 200, 190, 30,  "load a background", 10);
+  buttons[14] = new TextButton("goToWindow2", 405, 250, 150, 30, "about & other", 10);
+  buttons[15] = new TextButton("goToEditor", 440, 300, 80, 30,  "editor", 10);
   buttons[16] = new TextButton("goToTitlescreen", 30, 680, 100, 30, "back", 0);
   buttons[17] = new TextButton("goToTitlescreen", 30, 680, 100, 30, "back", 1);
   // buttons[18] = new TextButton("goToSettings", 30, 680, 100, 30, "settings", 10);
@@ -117,18 +128,13 @@ void setup() {
   buttons[18] = new TextButton("applyResize", 30, 680, 80, 30, "resize", 14);
   buttons[19] = new TextButton("cancelResize", 110, 680, 80, 30, "cancel", 14);
   
-  buttons[20] = new TextButton("goToSettings", 150, 350, 100, 30, "settings", 10);
+  buttons[20] = new TextButton("goToSettings", 430, 350, 100, 30, "settings", 10);
   
 
   // load assets
   bigsteps = new MaskImage("assets/bigsteps", ".png");
 
   toolbox = new Toolbox();
-
-  log.log("checking save...");
-
-  config = loadBytes("config.dat");
-  frameRate(30);
   
   boolean isnotok = checkSave();
   if (isnotok) log.warn("config.dat problems were found and fixed.");

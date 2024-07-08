@@ -67,8 +67,7 @@ class AwtProgram1 {
           }
         }
       }
-    }
-    );
+    });
 
     JScrollPane scrollPane2 = new JScrollPane(textArea2);
     page2.add(scrollPane2, BorderLayout.CENTER);
@@ -167,8 +166,6 @@ class AwtProgramSettings {
     svset.setBounds(30, 350, 100, 20);
     svset.addActionListener(new ActionListener(){  
       public void actionPerformed(ActionEvent e){
-        config[7] = byte(int(String.valueOf(o6set.getSelectedItem())));
-        frameRate(config[7]);
         saveBytes("config.dat", config);
         settings.setVisible(false); 
       }  
@@ -180,6 +177,17 @@ class AwtProgramSettings {
 
     settings.add(spset, BorderLayout.CENTER);
     settings.setVisible(false);
+  }
+}
+
+class AwtMainMenu {
+  JFrame f;
+  public AwtMainMenu() {
+    f = new JFrame("ebgg");
+    f.setSize(800, 600);
+    f.setLocation(500, 100);
+    f.setResizable(false);
+    f.setVisible(true);
   }
 }
 

@@ -7,7 +7,7 @@ class ChildApplet extends PApplet {
   }
 
   public void settings() {
-    size(400, 720, P3D);
+    size(960, 720, P3D);
   }
   public void setup() { 
     windowTitle("editor");
@@ -113,13 +113,11 @@ class ChildApplet extends PApplet {
         break;
       }
       case 2: {
-        surface.setSize(960, 720);
         menu = 1;
         break;
       }
       case +13:
       case 3: {
-        surface.setSize(400, 720);
         menu -= 3;
         break;
       }
