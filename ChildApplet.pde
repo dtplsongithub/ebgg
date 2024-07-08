@@ -20,6 +20,7 @@ class ChildApplet extends PApplet {
   public void draw() {
     if (oldmenu != menu && menu>=0) {
       try {
+        menuselect=0;
         windowTitle(menutitle[menu]);
       } catch (ArrayIndexOutOfBoundsException e) {
         log.error(e+" on changing window title", true);
@@ -160,6 +161,14 @@ class ChildApplet extends PApplet {
         if ( realt % 60 < 30 ) line(textWidth(paletteEditTemp)+30, 100, textWidth(paletteEditTemp)+30, 80);
         line(0, 101, width, 101);
         popStyle();
+        if(paletteEditTemp.length()==7){
+          fill(unhex(paletteEditTemp.substring(1, paletteEditTemp.length()))|0xFF000000);
+          rect(50,120,50,50);
+        } else {
+          fill(255);
+          noStroke();
+          text("?",70,150);
+        }
         break;
       }
       case 10: {

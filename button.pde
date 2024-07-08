@@ -177,7 +177,7 @@ void checkButtons() {
       case "goToSettings": awt2.settings.setVisible(true);break;
       case "goToEditor": menu=2;break;
       case "goToTitlescreen": menu=13;break;
-      case "applyResize": ptm = new int[menu14tempValues[0]][menu14tempValues[1]]; menu=7;break;
+      case "applyResize": ptm = new int[menu14tempValues[1]][menu14tempValues[0]]; menu=7;break;
       case "cancelResize": menu=7;break;
     }
   }

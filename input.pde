@@ -4,6 +4,9 @@ void keyboardDetection(int kc, char k) {
       if (((kc >= 48 && kc <= 57) || (kc >= 65 && kc <= 90) || kc == 32) && backgroundName.length() < 32) {
         backgroundName += k;
       }
+      if (kc>=128&&kc<=137){
+        backgroundName += str(kc-128);
+      }
       if (kc == BACKSPACE && backgroundName.length() > 0) {
         backgroundName = backgroundName.substring(0, backgroundName.length()-1);
       }
@@ -12,6 +15,9 @@ void keyboardDetection(int kc, char k) {
     case 8: {
       if (((kc >= 48 && kc <= 57)|| (kc >= 65 && kc <= 70)) && paletteEditTemp.length() < 7) {
         paletteEditTemp += k;
+      }
+      if (kc>=128&&kc<=137){
+        paletteEditTemp += str(kc-128);
       }
       if (kc == BACKSPACE && paletteEditTemp.length() > 1) {
         paletteEditTemp = paletteEditTemp.substring(0, paletteEditTemp.length()-1);

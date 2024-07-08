@@ -1,4 +1,12 @@
-String whatsnew = "<html><h1 id='v1-5-1'>v1.5.1</h1>"+
+String whatsnew = "<html><h1 id='v1-5-2'>v1.5.2</h1>"+
+"<h2 id='2024-june-12'>2024 July 8</h2>"+
+"<p><strong>[FIX]</strong> Palette map: made color palette stretch to window proportions so that it doesn't go out of bounds<br>"+
+"<strong>[FIX]</strong> Palette map: made current color pointer in color palette show up everytime<br>"+
+"<strong>[FIX]</strong> Fixed the program confusing the width and height upon resizing the palette map<br>"+
+"<strong>[FIX]</strong> When the menu changes, the selection cursor resets, so that it doesn't go out of bounds until an arrow key gets pressed<br>"+
+"<strong>[CHANGE]</strong> Added numpad support to the color hex editor and name input.<br>"+
+"<strong>[CHANGE]</strong> Added color preview to the color hex editor.</p>"+
+"<h1 id='v1-5-1'>v1.5.1</h1>"+
 "<h2 id='2024-june-12'>2024 July 8</h2>"+
 "<p><strong>[FIX]</strong> made editor only 960x720 because of linux <br>"+
 "<html><h1 id='v1-5-0'>v1.5.0</h1>"+

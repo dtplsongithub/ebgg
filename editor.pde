@@ -84,7 +84,7 @@ class Toolbox {
     editor.rect(0, 600, 999, 999);
     editor.fill(255);
     editor.text("Color picker", 30, 620-32*config[5]);
-    int rp = 900/pal.length*(int(config[5])+1);
+    int rp = (editor.width-60)/pal.length;
 
     if (rp<2) {
       fill(255);
@@ -93,14 +93,15 @@ class Toolbox {
       for (int i = 0; i<pal.length; i++) {
         this.getColor(i);
         editor.rect(30+i*rp, 648, rp, 32);
-        if (i == this.currentColorSelected) {
+        /*if (i == this.currentColorSelected) {
           editor.fill(0, 127, 255, 64);
           editor.rect(30+i*rp, 648-(32*int(boolean(config[5])&&i<pal.length/2)), rp, 32);
-        }
+        }*/
       }
     }
     editor.fill(0, 127, 255, 64);
     if (editor.mouseX>30 && editor.mouseX<900 && editor.mouseY>650 && editor.mouseY<680) editor.rect(floor((editor.mouseX-30)/rp)*rp+30, 648, rp, 32);
+    editor.rect(30+this.currentColorSelected*rp, 648-32/*(32*int(boolean(config[5])&&this.currentColorSelected<pal.length/2))*/, rp, 32);
     editor.stroke(0);
     for (ImageButton i : ib) i.render();
     for (TextButton i : b) i.render();
@@ -150,13 +151,15 @@ class Toolbox {
   }
   public void checkDraw() {
     int rs = floor(min(900/ptm[0].length, 400/ptm.length))+zoom;
-    int rp = 900/pal.length;
+    int rp = (editor.width-60)/pal.length;
     if (rp<2) return;
     if (editor.mousePressed) {
-      if (editor.mouseX >30+scrollX && editor.mouseX < ptm[0].length*rs+30+scrollX && editor.mouseY > 150+scrollY && editor.mouseY < ptm.length*rs+150+scrollY && CANDRAW) {
-        ptm[(editor.mouseY-150-scrollY)/rs][(editor.mouseX-30-scrollX)/rs] = this.currentColorSelected;
-      } else if (editor.mouseX>30 && editor.mouseX<900 && editor.mouseY>650 && editor.mouseY<680 && CANDRAW) {
-        this.currentColorSelected = (editor.mouseX-30)/rp;
+      if(CANDRAW){
+        if (editor.mouseX >30+scrollX && editor.mouseX < ptm[0].length*rs+30+scrollX && editor.mouseY > 150+scrollY && editor.mouseY < ptm.length*rs+150+scrollY) {
+          ptm[(editor.mouseY-150-scrollY)/rs][(editor.mouseX-30-scrollX)/rs] = this.currentColorSelected;
+        } else if (editor.mouseX>30 && editor.mouseX<900 && editor.mouseY>650 && editor.mouseY<680) {
+          this.currentColorSelected = (editor.mouseX-30)/rp;
+        }
       }
     } else CANDRAW = true;
   }
