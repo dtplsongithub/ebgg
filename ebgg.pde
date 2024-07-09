@@ -18,7 +18,7 @@ AwtProgramSettings awt2;
 boolean errorIsBeingShown = false, warnIsBeingShown = false;
 
 // settings-related things
-byte version = 15;
+byte version = (byte)152;
 byte[] defaultSettings = {version, 1, 30, 0, 0, 1}, config;
 String settingsType = "csccc";
 String[] settingsDescription = {
