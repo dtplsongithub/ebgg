@@ -14,7 +14,6 @@ float[][] edopset = {
   {0, 1, 1},
   {-300, 0.1, 300},
   {-400, 0.1, 400},
-  {-30, 0.1, 30},
   {0, 1, 100}
 };
 final String[] edopname = {
@@ -76,7 +75,7 @@ class Toolbox {
     editor.noStroke();
     for (int y = 0; y<ptm.length; y++) {
       for (int x = 0; x<ptm[0].length; x++) {
-        this.getColor(ptm[y][x]);
+        this.getColor(ptm[y][x], pal.length);
         editor.rect(x*rs+30+scrollX, y*rs+150+scrollY, rs-int(b[0].toggle), rs-int(b[0].toggle));
       }
     }
@@ -92,7 +91,7 @@ class Toolbox {
     } else {
       for (int i = 0; i<pal.length; i++) {
         try {
-        this.getColor(i);
+        this.getColor(i, pal.length);
         } catch (ArrayIndexOutOfBoundsException e) {log.error(e+" on this.getColor(i)", false);}
         editor.rect(30+i*rp, 648, rp, 32);
         /*if (i == this.currentColorSelected) {
@@ -171,7 +170,7 @@ class Toolbox {
       }
     } else CANDRAW = true;
   }
-  private void getColor(int i) {
+  private void getColor(int i, int len) {
     if (b[3].toggle) {
       if (i < palssa) {
         editor.fill(pal[i%pal.length]);
@@ -182,7 +181,7 @@ class Toolbox {
       editor.fill(pal[i%pal.length]);
     } else {
       editor.colorMode(HSB, 100);
-      editor.fill(i*4%100, 100, 70);
+      editor.fill((float)i/len*80%100, 100, 70);
       editor.colorMode(RGB, 255);
     }
   }

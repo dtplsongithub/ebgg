@@ -215,6 +215,7 @@ class ChildApplet extends PApplet {
     if (key == ESC) logexit();
   }
   void option(float what, int i, int y) {
+    if( what == -0 ) what = 0;
     if (!(what <= edopset[i][0])) text("<", 600, y);
     String[] bool = {"no", "yes"};
     if (edopset[i][0] == 0 && edopset[i][2] == 1) {
@@ -225,6 +226,7 @@ class ChildApplet extends PApplet {
     if (!(what >= edopset[i][2])) text(">", 700, y);
   }
   void option(float what, int i, int y, boolean hasBigSteps) { // hasBigSteps isnt actually used. only the number of arguments count.
+    if( what == -0 ) what = 0;
     fill(255, 255, 0);
     if (!(what <= edopset[i][0]) && hasBigSteps) text("<<", 570, y);
     fill(255);
