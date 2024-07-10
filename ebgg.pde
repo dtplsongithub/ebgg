@@ -18,9 +18,10 @@ AwtProgramSettings awt2;
 boolean errorIsBeingShown = false, warnIsBeingShown = false;
 
 // settings-related things
-byte version = (byte)152;
-byte[] defaultSettings = {version, 1, 30, 0, 0, 1}, config;
-String settingsType = "csccc";
+byte version = (byte)16;
+String versionString = "v1.6";
+byte[] defaultSettings = {version, 1, 30, 0, 0, 1, 0}, config;
+String settingsType = "cscccc";
 String[] settingsDescription = {
   "show big steps tip",
   "scroll sensitivity",
@@ -75,14 +76,16 @@ void setup() {
   log.created("LOGFILE");
 
   log.log("checking save...");
-
   config = loadBytes("config.dat");
-  frameRate(30);
+  boolean isnotok = checkSave(); // hoo
   
-  //if (config[7]==1)
-  //  size(displayWidth, displayHeight, P2D);
-  //else
-    size(960, 720, P2D);
+  if (isnotok) log.warn("config.dat problems were found and fixed.");
+  log.log(isnotok?"config.dat problems were found and fixed.":"No config.dat problems found.");
+
+  size(960, 720, P2D);
+  widthf = config[6]==1?displayWidth:960; heightf=config[6]==1?displayHeight:720;
+  updateSize();
+  frameRate(30);
   
   editor = new ChildApplet();
   
@@ -96,7 +99,6 @@ void setup() {
   textFont(MSGothic20);
   
   loadbg();
-  // this.setSize(960, 720);
   menu = 10;
 
   buttons[0] = new TextButton("01_name", 600, 75, 160, 30, "click to edit", 1);
@@ -118,7 +120,7 @@ void setup() {
   buttons[12] = new TextButton("editPaletteColor", 600, 620, 260, 30, "edit this palette color", 6);
   
   buttons[13] = new TextButton("goToLoader", 385, 200, 190, 30,  "load a background", 10);
-  buttons[14] = new TextButton("goToWindow2", 405, 250, 150, 30, "about & other", 10);
+  buttons[14] = new TextButton("goToWindow2", 410, 250, 140, 30, "help & other", 10);
   buttons[15] = new TextButton("goToEditor", 440, 300, 80, 30,  "editor", 10);
   buttons[16] = new TextButton("goToTitlescreen", 30, 680, 100, 30, "back", 0);
   buttons[17] = new TextButton("goToTitlescreen", 30, 680, 100, 30, "back", 1);
@@ -135,10 +137,6 @@ void setup() {
   bigsteps = new MaskImage("assets/bigsteps", ".png");
 
   toolbox = new Toolbox();
-  
-  boolean isnotok = checkSave();
-  if (isnotok) log.warn("config.dat problems were found and fixed.");
-  log.log(isnotok?"config.dat problems were found and fixed.":"No config.dat problems found.");
   
   JFrame.setDefaultLookAndFeelDecorated(boolean(config[4]));
   
@@ -178,12 +176,13 @@ void draw() {
     paloffset += ( int(!palcreverse)*2-1 )*palcmult;
     paloffset = rem(paloffset, pal.length - 1);
   }
-  if (!palc) paloffset = 0;
   if (inactive<100) {
     fill(0, (100-Math.max(inactive, 90))*25.5);
     rect(0, 0, textWidth(backgroundName) + 30, 30);
+    if (config[6]==1) rect(0, 30, textWidth("press backspace to exit fullscreen mode") + 30, 30);
     fill(255, (100-Math.max(inactive, 90))*25.5);
     text(backgroundName, 10, 25);
+    if (config[6]==1) text("press enter to exit fullscreen mode", 10, 50);
   }
 }
 
@@ -194,6 +193,7 @@ void keyPressed() {
   if (key == ENTER && menu == 0) {
     loadbg();
   }
+  if (key == BACKSPACE) config[6] = 0;
   inactive = 0;
   optionsCheckKeyPress(keyCode);
   if (menu == 5 || menu == 8 ) keyboardDetection(keyCode, key);
@@ -371,4 +371,13 @@ void optionsCheckKeyPress(int kc) {
       break;
     }
   }
+}
+void updateSize() {
+  this.windowResize(widthf, heightf);
+}
+void saveConfig() {
+  widthf = config[6]==1?displayWidth:960; heightf = config[6]==1?displayHeight:720;
+  updateSize();
+  if (config[6]==1) surface.setLocation(0, 0);
+  saveBytes("config.dat", config);
 }

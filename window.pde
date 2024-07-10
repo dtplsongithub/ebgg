@@ -16,11 +16,12 @@ class AwtProgram1 {
     textArea.setContentType("text/html");
     textArea.setText(whatsnew);
     textArea.setEditable(false);
-    String cssRules = "body { font-family: "+ textArea.getFont().getFamily() +"; font-size: "+textArea.getFont().getSize()+"; background-color: #FFFFCC} "+
+    String cssRules = "body { font-family: "+ textArea.getFont().getFamily() +"; font-size: "+textArea.getFont().getSize()+";} "+
   "h1 {color: #440099}"+
   "strong {color: #330000}"+
   "a {color: #000077}";
     ((HTMLDocument)textArea.getDocument()).getStyleSheet().addRule(cssRules);
+    textArea.setBackground(new Color(#EEFFFF));
 
     textArea.addHyperlinkListener(new HyperlinkListener() {
       @Override
@@ -43,7 +44,7 @@ class AwtProgram1 {
 
 
 
-
+    /*
     JPanel page2 = new JPanel(new BorderLayout());
     page2.setBorder(BorderFactory.createEmptyBorder());
 
@@ -71,9 +72,39 @@ class AwtProgram1 {
 
     JScrollPane scrollPane2 = new JScrollPane(textArea2);
     page2.add(scrollPane2, BorderLayout.CENTER);
+    */
+    
+    JPanel page3 = new JPanel(new BorderLayout());
+    page3.setBorder(BorderFactory.createEmptyBorder());
+
+    JTextPane textArea3 = new JTextPane();
+    textArea3.setContentType("text/html");
+    ((HTMLDocument)textArea3.getDocument()).getStyleSheet().addRule(cssRules);
+    textArea3.setText(help);
+    textArea3.setEditable(false);
+    textArea3.setBackground(new Color(#EEFFEE));
+
+    textArea3.addHyperlinkListener(new HyperlinkListener() {
+      @Override
+        public void hyperlinkUpdate(HyperlinkEvent hle) {
+        if (HyperlinkEvent.EventType.ACTIVATED.equals(hle.getEventType())) {
+          Desktop desktop = Desktop.getDesktop();
+          try {
+            desktop.browse(hle.getURL().toURI());
+          }
+          catch (Exception e) {
+            showError(e+"", true);
+          }
+        }
+      }
+    });
+
+    JScrollPane scrollPane3 = new JScrollPane(textArea3);
+    page3.add(scrollPane3, BorderLayout.CENTER);
 
     tabPanel.addTab("What's new", page1);
-    tabPanel.addTab("About", page2);
+    // tabPanel.addTab("About", page2);
+    tabPanel.addTab("Help", page3);
     window2.add(tabPanel);
 
 
@@ -166,7 +197,7 @@ class AwtProgramSettings {
     svset.setBounds(30, 350, 100, 20);
     svset.addActionListener(new ActionListener(){  
       public void actionPerformed(ActionEvent e){
-        saveBytes("config.dat", config);
+        saveConfig();
         settings.setVisible(false); 
       }  
     });  
