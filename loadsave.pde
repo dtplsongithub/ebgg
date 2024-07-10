@@ -33,6 +33,7 @@ void loadbg(String which){
     Myscale = float(values[13+ptmheight]);
     Myfreq = float(values[14+ptmheight]);
     staticx = int(values[15+ptmheight]);
+    palcmult = int(values[16+ptmheight]);
   } catch (ArrayIndexOutOfBoundsException e) {
     log.warn(e+". Failed to fully load background. Potential wrong background format.");
   } catch (NumberFormatException e) {
@@ -40,10 +41,6 @@ void loadbg(String which){
   } catch (Error e) {
     log.warn(e+". Failed to fully load background. Potential wrong background format.");
   }
-}
-
-void savebg() {
-  
 }
 
 String[] bglist;
@@ -58,7 +55,7 @@ boolean fileExists(String filename) {
 }
 
 String[] saveBackground() {
-  String[] backgroundTemp = new String[15+ptm.length+1];
+  String[] backgroundTemp = new String[16+ptm.length+1];
   backgroundTemp[0] = backgroundName;
   String[] paltemp = new String[0];
   for (int i = 0; i<pal.length; i++) {
@@ -82,6 +79,7 @@ String[] saveBackground() {
   backgroundTemp[13+ptm.length] = Myscale+"";
   backgroundTemp[14+ptm.length] = Myfreq+"";
   backgroundTemp[15+ptm.length] = staticx+"";
+  backgroundTemp[16+ptm.length] = palcmult+"";
   return backgroundTemp;
 }
 

@@ -104,6 +104,9 @@ class ChildApplet extends PApplet {
               case 15: 
                 option(staticx, i, y);
                 break;
+              case 16:
+                option(palcmult, i, y);
+                break;
               default: {
                 log.warn("unknown editor option "+i);
               }

@@ -55,12 +55,11 @@ int scrollY = 0;
 // backgrouns settings
 String backgroundName = "no background loaded...";
 color[] pal = new color[2];
-int palf = 1, palssa, scale = 1, Mxinterl, staticx;
+int palf = 1, palssa, scale = 1, Mxinterl, staticx, palcmult = 1;
 boolean palc, palcreverse;
 int[][] ptm = new int[2][2];
 
 int inactive = 0;
-int widthf, heightf;
 
 // fonts
 PFont MSGothic20, MSGothic32;
@@ -174,10 +173,9 @@ void draw() {
   Cy += vCy;
   t++;
   if (t%palf == 0 && palc) {
-    paloffset += int(!palcreverse)*2-1;
+    paloffset += ( int(!palcreverse)*2-1 )*palcmult;
     paloffset = rem(paloffset, pal.length - 1);
   }
-  if (!palc) paloffset = 0;
   if (inactive<100) {
     fill(0, (100-Math.max(inactive, 90))*25.5);
     rect(0, 0, textWidth(backgroundName) + 30, 30);
@@ -231,7 +229,8 @@ void loadbg() {
 
 void optionsCheckKeyPress(int kc) {
   switch (kc) {
-  case UP: {
+  case UP:
+    {
       menuselect--;
       switch (menu) {
       case 0:
@@ -250,7 +249,8 @@ void optionsCheckKeyPress(int kc) {
       }
       break;
     }
-  case DOWN: {
+  case DOWN:
+    {
       menuselect++;
       switch (menu) {
       case 0:
@@ -272,7 +272,8 @@ void optionsCheckKeyPress(int kc) {
   case +RIGHT:
   case +65:
   case +68:
-  case LEFT: {
+  case LEFT:
+    {
       if (menu == 1) {
         if (kc>60)bigstepsappear=false;
         switch (menuselect) {
@@ -345,6 +346,11 @@ void optionsCheckKeyPress(int kc) {
           if ((staticx<=edopset[menuselect][0] && kc==LEFT) || (staticx>=edopset[menuselect][2] && kc==RIGHT)) return;
           staticx += edopset[menuselect][1]*((kc==LEFT)?-1 :1);
           break;
+        case 16:
+          if (kc>60)return;
+          if ((palcmult<=edopset[menuselect][0] && kc==LEFT) || (palcmult>=edopset[menuselect][2] && kc==RIGHT)) return;
+          palcmult += edopset[menuselect][1]*((kc==LEFT)?-1 :1);
+          break;
         default:
           menuselect = 0;
         }
@@ -355,7 +361,8 @@ void optionsCheckKeyPress(int kc) {
       }
       break;
     }
-  case ENTER: {
+  case ENTER:
+    {
       if (menu == 6) {
         menu = 8;
         paletteIndexToEdit = menuselect;
