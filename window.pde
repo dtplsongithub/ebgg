@@ -14,7 +14,7 @@ class AwtProgram1 {
 
     JEditorPane textArea = new JEditorPane();
     textArea.setContentType("text/html");
-    textArea.setText(whatsnew);
+    textArea.setText(whatsnewText);
     textArea.setEditable(false);
     String cssRules = "body { font-family: "+ textArea.getFont().getFamily() +"; font-size: "+textArea.getFont().getSize()+";} "+
   "h1 {color: #440099}"+
@@ -80,7 +80,7 @@ class AwtProgram1 {
     JTextPane textArea3 = new JTextPane();
     textArea3.setContentType("text/html");
     ((HTMLDocument)textArea3.getDocument()).getStyleSheet().addRule(cssRules);
-    textArea3.setText(help);
+    textArea3.setText(helpText);
     textArea3.setEditable(false);
     textArea3.setBackground(new Color(#EEFFEE));
 
@@ -208,17 +208,6 @@ class AwtProgramSettings {
 
     settings.add(spset, BorderLayout.CENTER);
     settings.setVisible(false);
-  }
-}
-
-class AwtMainMenu {
-  JFrame f;
-  public AwtMainMenu() {
-    f = new JFrame("ebgg");
-    f.setSize(800, 600);
-    f.setLocation(500, 100);
-    f.setResizable(false);
-    f.setVisible(true);
   }
 }
 
