@@ -76,10 +76,13 @@ void setup() {
   log.created("LOGFILE");
 
   log.log("checking save...");
+  boolean isNotNew = fileExists("config.dat");
   config = loadBytes("config.dat");
   boolean isnotok = checkSave(); // hoo
   
-  if (isnotok) log.warn("config.dat problems were found and fixed.");
+  if (isnotok){
+    if(isNotNew) log.warn("config.dat problems were found and fixed.");
+  }
   log.log(isnotok?"config.dat problems were found and fixed.":"No config.dat problems found.");
 
   size(960, 720, P2D);
