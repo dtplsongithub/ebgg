@@ -72,3 +72,4 @@ String whatsnew = "<html><h1 id='v1-5-2'>v1.5.2</h1>"+
 String about = "<html><p>Created by dtpls and Ponali<br>"+
 "dtpls' website: <a href='https://dtplsongithub.github.io/aboutme/'>https://dtplsongithub.github.io/aboutme/</a><br>"+
 "and Ponali's website: <a href='https://ponali.github.io/'>https://ponali.github.io/</a></p></html>";
+String help = "<html>raccoon emoji</html>";
