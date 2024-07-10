@@ -1,4 +1,4 @@
-String whatsnew = "<html><h1 id='v1-5-2'>v1.5.2</h1>"+
+String whatsnewText = "<html><h1 id='v1-5-2'>v1.5.2</h1>"+
 "<h2 id='2024-june-12'>2024 July 9</h2>"+
 "<p><strong>[FIX]</strong> Palette map: made color palette stretch to window proportions so that it doesn't go out of bounds<br>"+
 "<strong>[FIX]</strong> Palette map: made current color pointer in color palette show up everytime<br>"+
@@ -69,7 +69,7 @@ String whatsnew = "<html><h1 id='v1-5-2'>v1.5.2</h1>"+
 "<p>First public release of ebgg.</p>"+
 "<p><strong>Full Changelog</strong>: <a href='https://github.com/dtplsongithub/ebgg/commits/v1.0.0'>https://github.com/dtplsongithub/ebgg/commits/v1.0.0</a></p>"+
 "</html>";
-String about = "<html><p>Created by dtpls and Ponali<br>"+
-"dtpls' website: <a href='https://dtplsongithub.github.io/aboutme/'>https://dtplsongithub.github.io/aboutme/</a><br>"+
-"and Ponali's website: <a href='https://ponali.github.io/'>https://ponali.github.io/</a></p></html>";
-String help = "<html>raccoon emoji</html>";
+//String aboutText = "<html><p>Created by dtpls and Ponali<br>"+
+//"dtpls' website: <a href='https://dtplsongithub.github.io/aboutme/'>https://dtplsongithub.github.io/aboutme/</a><br>"+
+//"and Ponali's website: <a href='https://ponali.github.io/'>https://ponali.github.io/</a></p></html>";
+String helpText = "<html></html>";

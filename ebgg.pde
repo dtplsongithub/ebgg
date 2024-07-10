@@ -2,18 +2,21 @@
 DJV_EBG
  */
  
-import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.*;
 import java.io.*;
+import java.net.*;
+import java.util.*;
+import java.util.logging.*;
+import javax.imageio.*;
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.text.html.HTMLDocument;
 
-ChildApplet editor;
+ChildAppletEditor editor;
 AwtProgram1 awt;
 AwtProgramSettings awt2;
-// AwtMainMenu awt3;
 
 boolean errorIsBeingShown = false, warnIsBeingShown = false;
 
@@ -87,7 +90,7 @@ void setup() {
   updateSize();
   frameRate(30);
   
-  editor = new ChildApplet();
+  editor = new ChildAppletEditor();
   
   noStroke();
   background(0);
@@ -120,7 +123,7 @@ void setup() {
   buttons[12] = new TextButton("editPaletteColor", 600, 620, 260, 30, "edit this palette color", 6);
   
   buttons[13] = new TextButton("goToLoader", 385, 200, 190, 30,  "load a background", 10);
-  buttons[14] = new TextButton("goToWindow2", 410, 250, 140, 30, "help & other", 10);
+  buttons[14] = new TextButton("goToWindow2", 405, 250, 60, 30, "help", 10);
   buttons[15] = new TextButton("goToEditor", 440, 300, 80, 30,  "editor", 10);
   buttons[16] = new TextButton("goToTitlescreen", 30, 680, 100, 30, "back", 0);
   buttons[17] = new TextButton("goToTitlescreen", 30, 680, 100, 30, "back", 1);
@@ -131,6 +134,8 @@ void setup() {
   buttons[19] = new TextButton("cancelResize", 110, 680, 80, 30, "cancel", 14);
   
   buttons[20] = new TextButton("goToSettings", 430, 350, 100, 30, "settings", 10);
+  
+  buttons[21] = new TextButton("goToAbout", 485, 250, 70, 30, "about", 10);
   
 
   // load assets
@@ -193,7 +198,8 @@ void keyPressed() {
   if (key == ENTER && menu == 0) {
     loadbg();
   }
-  if (key == BACKSPACE) config[6] = 0;
+  if (key == BACKSPACE) config[6] = (byte)(config[6]==(byte)1?0:1);
+  updateSize();
   inactive = 0;
   optionsCheckKeyPress(keyCode);
   if (menu == 5 || menu == 8 ) keyboardDetection(keyCode, key);
@@ -373,10 +379,10 @@ void optionsCheckKeyPress(int kc) {
   }
 }
 void updateSize() {
+  widthf = config[6]==1?displayWidth:960; heightf = config[6]==1?displayHeight:720;
   this.windowResize(widthf, heightf);
 }
 void saveConfig() {
-  widthf = config[6]==1?displayWidth:960; heightf = config[6]==1?displayHeight:720;
   updateSize();
   if (config[6]==1) surface.setLocation(0, 0);
   saveBytes("config.dat", config);

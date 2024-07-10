@@ -111,6 +111,7 @@ boolean checkSave() {
   if (config[3] > 1) { config[3] = 0; problem = true; }
   if (config[4] > 1) { config[4] = 0; problem = true; }
   if (config[5] > 1) { config[5] = 0; problem = true; }
+  if (config[6] > 1) { config[5] = 0; problem = true; }
   
   saveBytes("config.dat", config);
   return problem;

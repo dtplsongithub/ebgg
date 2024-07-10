@@ -1,6 +1,6 @@
 int oldmenu = -1;
-class ChildApplet extends PApplet {
-  public ChildApplet() {
+class ChildAppletEditor extends PApplet {
+  public ChildAppletEditor() {
     super();
     PApplet.runSketch(new String[]{this.getClass().getName()}, this);
     log.created("childapplet");
@@ -261,5 +261,9 @@ class ChildApplet extends PApplet {
   }
   public void mouseReleased() {
     this.mouseMoved();
+  }
+  @Override
+  public void exitActual() {
+    
   }
 }
