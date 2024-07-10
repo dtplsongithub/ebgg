@@ -55,7 +55,7 @@ int scrollY = 0;
 // backgrouns settings
 String backgroundName = "no background loaded...";
 color[] pal = new color[2];
-int palf = 1, palssa, scale = 1, Mxinterl, staticx, palcmult = 1;
+int palf = 1, palssa, scale = 1, Mxinterl, staticx, palcmult = 1, widthf, heightf;
 boolean palc, palcreverse;
 int[][] ptm = new int[2][2];
 
