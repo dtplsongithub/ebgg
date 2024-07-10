@@ -65,47 +65,47 @@ class ChildApplet extends PApplet {
           fill(255);
           if (edopset[i].length != 1) {
             switch (i) {
-              case 2:
+              case 3:
                 option(int(palf), i, y);
                 break;
-              case 3: 
+              case 4: 
                 option(int(palc), i, y);
                 break;
-              case 4: 
+              case 5: 
                 option(int(palcreverse), i, y);
                 break;
-              case 5: 
+              case 6: 
                 option(palssa, i, y);
                 break;
-              case 6: 
+              case 7:
+                option(palcmult, i, y);
+                break;
+              case 8: 
                 option(vCx, i, y, true);
                 break;
-              case 7: 
+              case 9: 
                 option(vCy, i, y, true);
                 break;
-              case 9: 
+              case 10: 
                 option(scale, i, y);
                 break;
-              case 10: 
+              case 11: 
                 option(Mxscale, i, y, true);
                 break;
-              case 11: 
+              case 12: 
                 option(Mxfreq, i, y, true);
                 break;
-              case 12: 
+              case 13: 
                 option(Mxinterl, i, y);
                 break;
-              case 13: 
+              case 14: 
                 option(Myscale, i, y, true);
                 break;
-              case 14: 
+              case 15: 
                 option(Myfreq, i, y, true);
                 break;
-              case 15: 
+              case 16: 
                 option(staticx, i, y);
-                break;
-              case 16:
-                option(palcmult, i, y);
                 break;
               default: {
                 log.warn("unknown editor option "+i);
@@ -113,7 +113,7 @@ class ChildApplet extends PApplet {
             }
           }
         }        
-        if (bigstepsappear && boolean(config[1])) image(bigsteps.image, 717, 148);
+        if (bigstepsappear && boolean(config[1])) image(bigsteps.image, 717, 178);
         break;
       }
       case 2: {

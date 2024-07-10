@@ -106,7 +106,7 @@ void setup() {
 
   buttons[0] = new TextButton("01_name", 600, 75, 160, 30, "click to edit", 1);
   buttons[1] = new TextButton("01_pal", 600, 105, 160, 30, "click to edit", 1);
-  buttons[2] = new TextButton("01_ptm", 600, 315, 160, 30, "click to edit", 1);
+  buttons[2] = new TextButton("01_ptm", 600, 135, 160, 30, "click to edit", 1);
   buttons[3] = new TextButton("goToEditor", 30, 680, 100, 30, "go back", 5);
   buttons[4] = new TextButton("goToEditor", 30, 680, 100, 30, "go back", 6);
   buttons[5] = new TextButton("goToEditor", 30, 680, 100, 30, "go back", 7);
@@ -280,79 +280,79 @@ void optionsCheckKeyPress(int kc) {
       if (menu == 1) {
         if (kc>60)bigstepsappear=false;
         switch (menuselect) {
-        case 2:
-          if (kc>60)return;
-          if ((palf<=edopset[menuselect][0] && kc==LEFT) || (palf>=edopset[menuselect][2] && kc==RIGHT)) return;
-          palf += edopset[2][1]*((kc==LEFT)?-1 :1);
-          break;
         case 3:
           if (kc>60)return;
-          palc = kc==RIGHT;
+          if ((palf<=edopset[menuselect][0] && kc==LEFT) || (palf>=edopset[menuselect][2] && kc==RIGHT)) return;
+          palf += edopset[3][1]*((kc==LEFT)?-1 :1);
           break;
         case 4:
           if (kc>60)return;
-          palcreverse = kc==RIGHT;
+          palc = kc==RIGHT;
           break;
         case 5:
+          if (kc>60)return;
+          palcreverse = kc==RIGHT;
+          break;
+        case 6:
           if (kc>60)return;
           if ((palssa<=edopset[menuselect][0] && kc==LEFT) || (palssa>=edopset[menuselect][2] && kc==RIGHT)) return;
           palssa += edopset[menuselect][1]*((kc==LEFT)?-1 :1);
           break;
-        case 6:
+        case 7:
+          if (kc>60)return;
+          if ((palcmult<=edopset[menuselect][0] && kc==LEFT) || (palcmult>=edopset[menuselect][2] && kc==RIGHT)) return;
+          palcmult += edopset[menuselect][1]*((kc==LEFT)?-1 :1);
+          break;
+        case 8:
           if ((vCx<=edopset[menuselect][0] && (kc==LEFT || kc==65)) || (vCx>=edopset[menuselect][2] && (kc==RIGHT || kc==68))) return;
           vCx += edopset[menuselect][1]*(kc>60?10:1)*((kc==LEFT||kc==65)?-1 :1);
           if (vCx<=edopset[menuselect][0]) vCx=(edopset[menuselect][0]);
           if (vCx>=edopset[menuselect][2]) vCx=(edopset[menuselect][2]);
           break;
-        case 7:
+        case 9:
           if ((vCy<=edopset[menuselect][0] && (kc==LEFT || kc==65)) || (vCy>=edopset[menuselect][2] && (kc==RIGHT || kc==68))) return;
           vCy += edopset[menuselect][1]*(kc>60?10:1)*((kc==LEFT||kc==65)?-1 :1);
           if (vCy<=edopset[menuselect][0]) vCy=(edopset[menuselect][0]);
           if (vCy>=edopset[menuselect][2]) vCy=(edopset[menuselect][2]);
           break;
-        case 9:
+        case 10:
           if (kc>60)return;
           if ((scale<=edopset[menuselect][0] && kc==LEFT) || (scale>=edopset[menuselect][2] && kc==RIGHT)) return;
           scale += edopset[menuselect][1]*((kc==LEFT)?-1 :1);
           break;
-        case 10:
+        case 11:
           if ((Mxscale<=edopset[menuselect][0] && (kc==LEFT || kc==65)) || (Mxscale>=edopset[menuselect][2] && (kc==RIGHT || kc==68))) return;
           Mxscale += edopset[menuselect][1]*(kc>60?10:1)*((kc==LEFT||kc==65)?-1 :1);
           if (Mxscale<=edopset[menuselect][0]) Mxscale=(edopset[menuselect][0]);
           if (Mxscale>=edopset[menuselect][2]) Mxscale=(edopset[menuselect][2]);
           break;
-        case 11:
+        case 12:
           if ((Mxfreq<=edopset[menuselect][0] && (kc==LEFT || kc==65)) || (Mxfreq>=edopset[menuselect][2] && (kc==RIGHT || kc==68))) return;
           Mxfreq += edopset[menuselect][1]*(kc>60?10:1)*((kc==LEFT||kc==65)?-1 :1);
           if (Mxscale<=edopset[menuselect][0]) Mxscale=(edopset[menuselect][0]);
           if (Mxscale>=edopset[menuselect][2]) Mxscale=(edopset[menuselect][2]);
           break;
-        case 12:
+        case 13:
           if (kc>60)return;
           if ((Mxinterl<=edopset[menuselect][0] && kc==LEFT) || (Mxinterl>=edopset[menuselect][2] && kc==RIGHT)) return;
           Mxinterl += edopset[menuselect][1]*((kc==LEFT)?-1 :1);
           break;
-        case 13:
+        case 14:
           if ((Myscale<=edopset[menuselect][0] && (kc==LEFT || kc==65)) || (Myscale>=edopset[menuselect][2] && (kc==RIGHT || kc==68))) return;
           Myscale += edopset[menuselect][1]*(kc>60?10:1)*((kc==LEFT||kc==65)?-1 :1);
           if (Myscale<=edopset[menuselect][0]) Myscale=(edopset[menuselect][0]);
           if (Myscale>=edopset[menuselect][2]) Myscale=(edopset[menuselect][2]);
           break;
-        case 14:
+        case 15:
           if ((Myfreq<=edopset[menuselect][0] && (kc==LEFT || kc==65)) || (Myfreq>=edopset[menuselect][2] && (kc==RIGHT || kc==68))) return;
           Myfreq += edopset[menuselect][1]*(kc>60?10:1)*((kc==LEFT||kc==65)?-1 :1);
           if (Myfreq<=edopset[menuselect][0]) Myfreq=(edopset[menuselect][0]);
           if (Myfreq>=edopset[menuselect][2]) Myfreq=(edopset[menuselect][2]);
           break;
-        case 15:
+        case 16:
           if (kc>60)return;
           if ((staticx<=edopset[menuselect][0] && kc==LEFT) || (staticx>=edopset[menuselect][2] && kc==RIGHT)) return;
           staticx += edopset[menuselect][1]*((kc==LEFT)?-1 :1);
-          break;
-        case 16:
-          if (kc>60)return;
-          if ((palcmult<=edopset[menuselect][0] && kc==LEFT) || (palcmult>=edopset[menuselect][2] && kc==RIGHT)) return;
-          palcmult += edopset[menuselect][1]*((kc==LEFT)?-1 :1);
           break;
         default:
           menuselect = 0;

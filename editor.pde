@@ -1,40 +1,40 @@
 float[][] edopset = {
   {1},
   {2},
+  {3},
   {1, 1, 999},
   {0, 1, 1},
   {0, 1, 1},
   {0, 1, 999},
+  {1, 1, 100},
   {-50, 0.05, 50},
   {-50, 0.05, 50},
-  {3},
   {1, 1, 16},
   {-400, 0.1, 400},
   {-400, 0.1, 400},
   {0, 1, 1},
   {-300, 0.1, 300},
   {-400, 0.1, 400},
-  {0, 1, 100},
-  {1, 1, 100}
+  {0, 1, 100}
 };
 final String[] edopname = {
   "name",
   "palette",
+  "palette map",
   "switch pal colors every n frames",
   "switch pal colors?",
   "switch pal colors in reverse?",
   "dont switch the first n items",
+  "palette switch multiplier",
   "camera x velocity",
   "camera y velocity",
-  "pattern",
   "scale",
   "x wavyness scale",
   "x wavyness frequency",
   "interleaved x wavyness?",
   "y wavyness scale",
   "y wavyness frequency",
-  "x static effect",
-  "palette switch multiplier"
+  "x static effect"
 };
 Toolbox toolbox;
 
