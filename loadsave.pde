@@ -1,6 +1,6 @@
 void loadbg(String which){
   try {
-    String[] values = loadStrings(which);
+    String[] values = loadStrings("../backgrounds/"+which);
     backgroundName = values[0];
     pal = new color[values[1].split(",").length];
     for (int i = 0; i<pal.length; i++){
@@ -45,7 +45,7 @@ void loadbg(String which){
 
 String[] bglist;
 void loadbglist(){
-  bglist = loadFilenames(sketchPath("")+"data/", "deb");
+  bglist = loadFilenames(sketchPath("")+"backgrounds/", "deb");
   log.log("succesfully loaded background list");
 }
 
