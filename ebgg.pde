@@ -54,7 +54,7 @@ int scrollY = 0;
 // backgrouns settings
 String backgroundName = "no background loaded...";
 color[] pal = new color[2];
-int palf = 1, palssa, scale = 1, Mxinterl, staticx;
+int palf = 1, palssa, scale = 1, Mxinterl, staticx, palcmult = 1;
 boolean palc, palcreverse;
 int[][] ptm = new int[2][2];
 
@@ -175,7 +175,7 @@ void draw() {
   Cy += vCy;
   t++;
   if (t%palf == 0 && palc) {
-    paloffset += int(!palcreverse)*2-1;
+    paloffset += ( int(!palcreverse)*2-1 )*palcmult;
     paloffset = rem(paloffset, pal.length - 1);
   }
   if (!palc) paloffset = 0;
@@ -345,6 +345,11 @@ void optionsCheckKeyPress(int kc) {
           if (kc>60)return;
           if ((staticx<=edopset[menuselect][0] && kc==LEFT) || (staticx>=edopset[menuselect][2] && kc==RIGHT)) return;
           staticx += edopset[menuselect][1]*((kc==LEFT)?-1 :1);
+          break;
+        case 16:
+          if (kc>60)return;
+          if ((palcmult<=edopset[menuselect][0] && kc==LEFT) || (palcmult>=edopset[menuselect][2] && kc==RIGHT)) return;
+          palcmult += edopset[menuselect][1]*((kc==LEFT)?-1 :1);
           break;
         default:
           menuselect = 0;

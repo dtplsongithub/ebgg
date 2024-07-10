@@ -14,7 +14,8 @@ float[][] edopset = {
   {0, 1, 1},
   {-300, 0.1, 300},
   {-400, 0.1, 400},
-  {0, 1, 100}
+  {0, 1, 100},
+  {1, 1, 100}
 };
 final String[] edopname = {
   "name",
@@ -32,7 +33,8 @@ final String[] edopname = {
   "interleaved x wavyness?",
   "y wavyness scale",
   "y wavyness frequency",
-  "x static effect"
+  "x static effect",
+  "palette switch multiplier"
 };
 Toolbox toolbox;
 
