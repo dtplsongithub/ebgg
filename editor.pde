@@ -139,11 +139,11 @@ class Toolbox {
           break;
         case +9:
         case 10:
-          scrollY+=300*(int(i==10)*2-1);
+          scrollY+=300*(int(i!=10)*2-1);
           break;
         case +8:
         case 11:
-          scrollX+=300*(int(i==11)*2-1);
+          scrollX+=300*(int(i!=11)*2-1);
           break;
         default:
           log.error("Unknown toolbox imagebutton type "+i, false);
