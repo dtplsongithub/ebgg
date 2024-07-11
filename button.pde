@@ -173,7 +173,8 @@ void checkButtons() {
         break;
       }
       case "goToLoader": menu=3;break;
-      case "goToWindow2": awt.window2.setVisible(true);break;
+      case "goToHelp": awt.window2.setVisible(true);awt.tabPanel.setSelectedIndex(0);break;
+      case "goToChangelog": awt.window2.setVisible(true);awt.tabPanel.setSelectedIndex(2);break;
       case "goToSettings": awt2.settings.setVisible(true);break;
       case "goToEditor": menu=2;break;
       case "goToTitlescreen": menu=13;break;

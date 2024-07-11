@@ -1,5 +1,6 @@
 class AwtProgram1 {
   JFrame window2;
+  JTabbedPane tabPanel;
   public AwtProgram1() {
     window2 = new JFrame("ebgg");
     window2.setSize(800, 600);
@@ -7,7 +8,7 @@ class AwtProgram1 {
     window2.setResizable(false);
     window2.setAlwaysOnTop(true);
 
-    JTabbedPane tabPanel = new JTabbedPane();
+    tabPanel = new JTabbedPane();
 
     JPanel page1 = new JPanel(new BorderLayout());
     page1.setBorder(BorderFactory.createEmptyBorder());

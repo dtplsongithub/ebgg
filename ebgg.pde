@@ -126,7 +126,8 @@ void setup() {
   buttons[12] = new TextButton("editPaletteColor", 600, 620, 260, 30, "edit this palette color", 6);
   
   buttons[13] = new TextButton("goToLoader", 385, 200, 190, 30,  "load a background", 10);
-  buttons[14] = new TextButton("goToWindow2", 405, 250, 60, 30, "help", 10);
+  buttons[14] = new TextButton("goToHelp", 380, 250, 60, 30, "help", 10);
+  buttons[21] = new TextButton("goToChangelog", 460, 250, 120, 30, "what's new", 10);
   buttons[15] = new TextButton("goToEditor", 440, 300, 80, 30,  "editor", 10);
   buttons[16] = new TextButton("goToTitlescreen", 30, 680, 100, 30, "back", 0);
   buttons[17] = new TextButton("goToTitlescreen", 30, 680, 100, 30, "back", 1);
@@ -137,7 +138,6 @@ void setup() {
   buttons[19] = new TextButton("cancelResize", 110, 680, 80, 30, "cancel", 14);
   
   buttons[20] = new TextButton("goToSettings", 430, 350, 100, 30, "settings", 10);
-  buttons[21] = new TextButton("goToAbout", 485, 250, 70, 30, "about", 10);
 
   // load assets
   bigsteps = new MaskImage("assets/bigsteps", ".png");
