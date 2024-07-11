@@ -111,10 +111,9 @@ void checkButtons() {
     if (i.activeMenu != menu || !i.active) continue; // god i love continue
     if (!i.checkIfHovered()) continue;
     switch (i.id) {
-      case "01_name": menu = 5; break;
-      case "01_pal": menu = 6; break;
-      case "01_ptm": menu = 7; break;
-      case "save": menu = 1; break;
+      case "editName": menu = 5; break;
+      case "editPalette": menu = 6; break;
+      case "editPaletteMap": menu = 7; break;
       case "saveBackground": {
         if (fileExists(backgroundName+".deb")) {
           buttons[6].id = "confirmOverwrite";

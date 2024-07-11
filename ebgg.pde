@@ -121,9 +121,10 @@ void setup() {
   loadbg();
   menu = 10;
 
-  buttons[0] = new TextButton("01_name", 600, 75, 150, 30, "click to edit", 1);
-  buttons[1] = new TextButton("01_pal", 600, 105, 150, 30, "click to edit", 1);
-  buttons[2] = new TextButton("01_ptm", 600, 135, 150, 30, "click to edit", 1);
+  buttons[0] = new TextButton("editName", 600, 75, 150, 30, "click to edit", 1);
+  buttons[1] = new TextButton("editPalette", 600, 105, 150, 30, "click to edit", 1);
+  buttons[2] = new TextButton("editPaletteMap", 600, 135, 150, 30, "click to edit", 1);
+  
   buttons[3] = new TextButton("goToEditor", 30, 680, 60, 30, "back", 5);
   buttons[4] = new TextButton("goToEditor", 30, 680, 60, 30, "back", 6);
   buttons[5] = new TextButton("goToEditor", 30, 680, 60, 30, "back", 7);

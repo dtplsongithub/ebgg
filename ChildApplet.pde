@@ -113,15 +113,6 @@ class ChildAppletEditor extends PApplet {
         if (bigstepsappear && boolean(config[1])) image(bigsteps.image, 717, 178);
         break;
       }
-      case 2: {
-        menu = 1;
-        break;
-      }
-      case +13:
-      case 3: {
-        menu -= 3;
-        break;
-      }
       case 5: {
         pushStyle();
         text(backgroundName, 30, 100);
@@ -204,7 +195,7 @@ class ChildAppletEditor extends PApplet {
       }
       default: {
         log.error("Unknown menu: " + menu + " or missing break", false);
-        menu = 10;
+        menu = 5;
       }
     }
     textFont(MSGothic32);

@@ -3,8 +3,8 @@ int menu = 10;
 String[] menutitle = {
   "load a background",
   "editor",
-  "loading...",
-  "loading...",
+  "",
+  "",
   "",
   "edit name",
   "edit palette",
@@ -12,11 +12,11 @@ String[] menutitle = {
   "edit palette color",
   "",
   "ebgg",
-  "settings",
-  "loading...",
-  "loading...",
+  "",
+  "",
+  "",
   "resize pattern",
-  ""
+  "" // about
 };
 String[] menu14 = {
   "new width", "new height"
