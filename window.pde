@@ -146,7 +146,6 @@ class AwtProgramSettings {
   JSlider[] jsset = new JSlider[2];
   JLabel[] ttset = new JLabel[3];
   JLabel[] olset = new JLabel[1];
-  JComboBox<Integer> o6set; // initialization is in constructor below
   public AwtProgramSettings() {
     settings = new JFrame("settings");
     settings.setSize(600, 450);
@@ -202,21 +201,6 @@ class AwtProgramSettings {
           temporder[1]++;
           yoffset+=50;
           break;
-        case 'd':
-          o6set = new JComboBox<Integer>(o6OLD);
-          o6set.setBounds(300, 40+i*20+yoffset, 100, 16);
-          o6set.setVisible(true);
-          if (settingsHelp[i]!="") {
-            ttset[temporder[2]] = new JLabel(settingsHelp[i].indexOf("!") == 0 ? "!" : "?");
-            ttset[temporder[2]].setBounds(10, 40+i*20+yoffset, 200, 20);
-            ttset[temporder[2]].setToolTipText(settingsHelp[i]);
-            settings.add(ttset[temporder[2]]);
-            temporder[2]++;
-          };
-          settings.add(o6set);
-          JLabel o6label = new JLabel(settingsDescription[6]);
-          o6label.setBounds(30, 40+i*20+yoffset, 999, 16);
-          settings.add(o6label);
       }
       i++;
     }

@@ -1,17 +1,31 @@
 /*
 DJV_EBG
  */
- 
-import java.awt.*;
-import java.awt.event.*;
-import java.awt.image.*;
-import java.io.*;
-import java.net.*;
-import java.util.*;
-import java.util.logging.*;
-import javax.imageio.*;
-import javax.swing.*;
-import javax.swing.event.*;
+
+import java.awt.BorderLayout;
+import java.awt.Checkbox;
+import java.awt.Color;
+import java.awt.Desktop;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JEditorPane;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSlider;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.HyperlinkEvent;
+import javax.swing.event.HyperlinkListener;
 import javax.swing.text.html.HTMLDocument;
 
 
@@ -46,7 +60,6 @@ String[] settingsDescription = {
   ""
 };
 int[] o5 = {5, 255, 30};
-Integer[] o6OLD = {24, 25, 30};
 
 // variables
 long t = 0, realt = 0;
@@ -70,6 +83,7 @@ PFont MSGothic20, MSGothic32;
 
 // assets
 // MaskImage assets are defined in MaskImage file
+PImage tile;
 
 // other
 int paletteIndexToEdit;
@@ -107,17 +121,17 @@ void setup() {
   loadbg();
   menu = 10;
 
-  buttons[0] = new TextButton("01_name", 600, 75, 160, 30, "click to edit", 1);
-  buttons[1] = new TextButton("01_pal", 600, 105, 160, 30, "click to edit", 1);
-  buttons[2] = new TextButton("01_ptm", 600, 135, 160, 30, "click to edit", 1);
-  buttons[3] = new TextButton("goToEditor", 30, 680, 100, 30, "go back", 5);
-  buttons[4] = new TextButton("goToEditor", 30, 680, 100, 30, "go back", 6);
-  buttons[5] = new TextButton("goToEditor", 30, 680, 100, 30, "go back", 7);
+  buttons[0] = new TextButton("01_name", 600, 75, 150, 30, "click to edit", 1);
+  buttons[1] = new TextButton("01_pal", 600, 105, 150, 30, "click to edit", 1);
+  buttons[2] = new TextButton("01_ptm", 600, 135, 150, 30, "click to edit", 1);
+  buttons[3] = new TextButton("goToEditor", 30, 680, 60, 30, "back", 5);
+  buttons[4] = new TextButton("goToEditor", 30, 680, 60, 30, "back", 6);
+  buttons[5] = new TextButton("goToEditor", 30, 680, 60, 30, "back", 7);
   
-  buttons[6] = new TextButton("saveBackground", 30, 650, 100, 30, "save", 1);
-  buttons[7] = new TextButton("cancelOverwrite", 600, 650, 100, 30, "cancel", 1);
+  buttons[6] = new TextButton("saveBackground", 30, 650, 60, 30, "save", 1);
+  buttons[7] = new TextButton("cancelOverwrite", 600, 650, 80, 30, "cancel", 1);
   buttons[7].active = false;
-  buttons[8] = new TextButton("cancelExit", 600, 650, 100, 30, "cancel", 1);
+  buttons[8] = new TextButton("cancelExit", 600, 650, 80, 30, "cancel", 1);
   buttons[8].active = false;
   
   buttons[9] = new TextButton("createPaletteColor", 600, 680, 260, 30, "create new palette color", 6);
@@ -126,21 +140,22 @@ void setup() {
   buttons[12] = new TextButton("editPaletteColor", 600, 620, 260, 30, "edit this palette color", 6);
   
   buttons[13] = new TextButton("goToLoader", 385, 200, 190, 30,  "load a background", 10);
-  buttons[14] = new TextButton("goToHelp", 380, 250, 60, 30, "help", 10);
-  buttons[21] = new TextButton("goToChangelog", 460, 250, 120, 30, "what's new", 10);
-  buttons[15] = new TextButton("goToEditor", 440, 300, 80, 30,  "editor", 10);
-  buttons[16] = new TextButton("goToTitlescreen", 30, 680, 100, 30, "back", 0);
-  buttons[17] = new TextButton("goToTitlescreen", 30, 680, 100, 30, "back", 1);
-  // buttons[18] = new TextButton("goToSettings", 30, 680, 100, 30, "settings", 10);
-  // buttons[19] = new TextButton("goToTitlescreen", 30, 680, 100, 30, "back", 11);
+  buttons[14] = new TextButton("goToEditor", 440, 250, 80, 30,  "editor", 10);
+  buttons[15] = new TextButton("goToHelp", 450, 300, 60, 30, "help", 10);
+  buttons[16] = new TextButton("goToSettings", 430, 350, 100, 30, "settings", 10);
+  buttons[17] = new TextButton("goToAbout", 445, 400, 70, 30, "about", 10);
+  buttons[18] = new TextButton("goToChangelog", 425, 450, 110, 30, "changelog", 10);
   
-  buttons[18] = new TextButton("applyResize", 30, 680, 80, 30, "resize", 14);
-  buttons[19] = new TextButton("cancelResize", 110, 680, 80, 30, "cancel", 14);
+  buttons[19] = new TextButton("goToTitlescreen", 30, 680, 60, 30, "back", 0);
+  buttons[20] = new TextButton("goToTitlescreen", 30, 680, 60, 30, "back", 1);
+  buttons[21] = new TextButton("goToTitlescreen", 50, 640, 60, 30, "back", 15);
   
-  buttons[20] = new TextButton("goToSettings", 430, 350, 100, 30, "settings", 10);
+  buttons[22] = new TextButton("applyResize", 30, 680, 80, 30, "resize", 14);
+  buttons[23] = new TextButton("cancelResize", 110, 680, 80, 30, "cancel", 14);
 
   // load assets
   bigsteps = new MaskImage("assets/bigsteps", ".png");
+  tile = loadImage("assets/tile.png");
 
   toolbox = new Toolbox();
   
@@ -185,10 +200,10 @@ void draw() {
   if (inactive<100) {
     fill(0, (100-Math.max(inactive, 90))*25.5);
     rect(0, 0, textWidth(backgroundName) + 30, 30);
-    if (config[6]==1) rect(0, 30, textWidth("press backspace to exit fullscreen mode") + 30, 30);
+    rect(0, 30, textWidth("press backspace to toggle fullscreen mode") + 30, 30);
     fill(255, (100-Math.max(inactive, 90))*25.5);
     text(backgroundName, 10, 25);
-    if (config[6]==1) text("press enter to exit fullscreen mode", 10, 50);
+    text("press backspace to toggle fullscreen mode", 10, 50);
   }
 }
 
@@ -199,7 +214,10 @@ void keyPressed() {
   if (key == ENTER && menu == 0) {
     loadbg();
   }
-  if (key == BACKSPACE) config[6] = 0;
+  if (key == BACKSPACE)  {
+    config[6] = (byte)(config[6]==(byte)1?0:1);
+    saveConfig(); // also calls updateSize() and remembers for when program is being started again.
+  }
   inactive = 0;
   optionsCheckKeyPress(keyCode);
   if (menu == 5 || menu == 8 ) keyboardDetection(keyCode, key);
@@ -379,11 +397,11 @@ void optionsCheckKeyPress(int kc) {
   }
 }
 void updateSize() {
+  widthf = config[6]==1?displayWidth:960; heightf = config[6]==1?displayHeight:720;
+  // if (config[6]==1) surface.setLocation(0, 0); // causes it to randomly lag
   this.windowResize(widthf, heightf);
 }
 void saveConfig() {
-  widthf = config[6]==1?displayWidth:960; heightf = config[6]==1?displayHeight:720;
   updateSize();
-  if (config[6]==1) surface.setLocation(0, 0);
   saveBytes("config.dat", config);
 }

@@ -107,9 +107,6 @@ class ChildAppletEditor extends PApplet {
               case 16: 
                 option(staticx, i, y);
                 break;
-              default: {
-                log.warn("unknown editor option "+i);
-              }
             }
           }
         }        
@@ -186,19 +183,33 @@ class ChildAppletEditor extends PApplet {
             fill(255);
           }
           text(menu14[i], 30, i*30+100, 380, 999);
-          this.option(menu14tempValues[i], 2, i*30+100);
+          this.option(menu14tempValues[i], 3, i*30+100);
         }
         fill(255);
         text("!!NOTICE!! changing size will clear ptm!", 30, 400);
         break;
       }
+      case 15: {
+        for (int y = -2; y<ceil(this.height/tile.height)+2; y++) {
+          for (int x = -2; x<ceil(this.width/tile.width)+2; x++) {
+            image(tile, x*tile.width-int((float)realt/5)%tile.width, y*tile.height-int((float)realt/5)%tile.height);
+          }
+        }
+        stroke(255, 127);
+        noFill();
+        rect(30, 30, 900, 660);
+        fill(255);
+        noStroke();
+        break;
+      }
       default: {
-        log.error("Unknown menu: " + menu + " or missing break", true);
+        log.error("Unknown menu: " + menu + " or missing break", false);
+        menu = 10;
       }
     }
     textFont(MSGothic32);
     fill(0);
-    rect(0, 0, 999, 50);
+    if (menutitle[menu] != "") rect(0, 0, 999, 50);
     fill(255);
     if (menu>=0) {
       try {

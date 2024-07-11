@@ -1,4 +1,4 @@
-TextButton[] buttons = new TextButton[22];
+TextButton[] buttons = new TextButton[24];
 
 public class TextButton {
   public String id, text;
@@ -172,14 +172,15 @@ void checkButtons() {
         if (menuselect>0)menuselect--;
         break;
       }
-      case "goToLoader": menu=3;break;
-      case "goToHelp": awt.window2.setVisible(true);awt.tabPanel.setSelectedIndex(0);break;
-      case "goToChangelog": awt.window2.setVisible(true);awt.tabPanel.setSelectedIndex(2);break;
+      case "goToLoader": menu=0;break;
+      case "goToHelp": awt.window2.setVisible(true);awt.tabPanel.setSelectedIndex(1);break;
+      case "goToChangelog": awt.window2.setVisible(true);awt.tabPanel.setSelectedIndex(0);break;
       case "goToSettings": awt2.settings.setVisible(true);break;
-      case "goToEditor": menu=2;break;
-      case "goToTitlescreen": menu=13;break;
+      case "goToEditor": menu=1;break;
+      case "goToTitlescreen": menu=10;break;
       case "applyResize": ptm = new int[menu14tempValues[1]][menu14tempValues[0]]; menu=7;break;
       case "cancelResize": menu=7;break;
+      case "goToAbout": menu=15;break;
     }
   }
   toolbox.checkPress();
