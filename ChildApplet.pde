@@ -175,6 +175,7 @@ class ChildAppletEditor extends PApplet {
         break;
       }
       case 10: {
+        text(versionString, 30, 700);
         break;
       }
       case 14: { // RESIZE PTM

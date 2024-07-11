@@ -15,7 +15,8 @@ String[] menutitle = {
   "settings",
   "loading...",
   "loading...",
-  "resize pattern"
+  "resize pattern",
+  ""
 };
 String[] menu14 = {
   "new width", "new height"

@@ -30,9 +30,8 @@ class AwtProgram1 {
           Desktop desktop = Desktop.getDesktop();
           try {
             desktop.browse(hle.getURL().toURI());
-          }
-          catch (Exception e) {
-            showError(e+"", true);
+          } catch (Exception e) {
+            showError(e+"", false);
           }
         }
       }
@@ -80,7 +79,7 @@ class AwtProgram1 {
     JTextPane textArea3 = new JTextPane();
     textArea3.setContentType("text/html");
     ((HTMLDocument)textArea3.getDocument()).getStyleSheet().addRule(cssRules);
-    textArea3.setText(helpText);
+    textArea3.setText(TFAQText);
     textArea3.setEditable(false);
     textArea3.setBackground(new Color(#EEFFEE));
 
@@ -91,9 +90,8 @@ class AwtProgram1 {
           Desktop desktop = Desktop.getDesktop();
           try {
             desktop.browse(hle.getURL().toURI());
-          }
-          catch (Exception e) {
-            showError(e+"", true);
+          } catch (Exception e) {
+            showError(e+"", false);
           }
         }
       }
@@ -101,10 +99,39 @@ class AwtProgram1 {
 
     JScrollPane scrollPane3 = new JScrollPane(textArea3);
     page3.add(scrollPane3, BorderLayout.CENTER);
+    
+    
+    JPanel page4 = new JPanel(new BorderLayout());
+    page4.setBorder(BorderFactory.createEmptyBorder());
+
+    JTextPane textArea4 = new JTextPane();
+    textArea4.setContentType("text/html");
+    ((HTMLDocument)textArea4.getDocument()).getStyleSheet().addRule(cssRules);
+    textArea4.setText(helpText);
+    textArea4.setEditable(false);
+    textArea4.setBackground(new Color(#FFEEFF));
+
+    textArea4.addHyperlinkListener(new HyperlinkListener() {
+      @Override
+        public void hyperlinkUpdate(HyperlinkEvent hle) {
+        if (HyperlinkEvent.EventType.ACTIVATED.equals(hle.getEventType())) {
+          Desktop desktop = Desktop.getDesktop();
+          try {
+            desktop.browse(hle.getURL().toURI());
+          } catch (Exception e) {
+            showError(e+"", false);
+          }
+        }
+      }
+    });
+
+    JScrollPane scrollPane4 = new JScrollPane(textArea4);
+    page4.add(scrollPane4, BorderLayout.CENTER);
 
     tabPanel.addTab("What's new", page1);
     // tabPanel.addTab("About", page2);
-    tabPanel.addTab("Help", page3);
+    tabPanel.addTab("Troubleshooting FAQ", page3);
+    tabPanel.addTab("Help", page4);
     window2.add(tabPanel);
 
 
