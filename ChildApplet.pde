@@ -49,10 +49,6 @@ class ChildAppletEditor extends PApplet {
       case 1: {
         
         // EDITOR MENU
-        if (this.width !=960) {
-          surface.setSize(960, 720);
-          windowMove(0, 200);
-        }
         fill(255);
         for (int i = 0; i<edopname.length; i++) {
           int y = 100+i*30;
@@ -191,11 +187,14 @@ class ChildAppletEditor extends PApplet {
         rect(30, 30, 900, 660);
         fill(255);
         noStroke();
+        textFont(MSGothic32);
+        wavytext("ebgg "+versionString, int((960-textWidth("ebgg "+versionString))/2), 66, 5, 5, 0.1, 0.1, 0, HALF_PI, 16, 0, 3);
+        textFont(MSGothic20);
         break;
       }
       default: {
         log.error("Unknown menu: " + menu + " or missing break", false);
-        menu = 5;
+        menu = 10;
       }
     }
     textFont(MSGothic32);
@@ -231,7 +230,7 @@ class ChildAppletEditor extends PApplet {
     }
     if (!(what >= edopset[i][2])) text(">", 700, y);
   }
-  void option(float what, int i, int y, boolean hasBigSteps) { // hasBigSteps isnt actually used. only the number of arguments count.
+  void option(float what, int i, int y, boolean hasBigSteps) {
     if( what == -0 ) what = 0;
     fill(255, 255, 0);
     if (!(what <= edopset[i][0]) && hasBigSteps) text("<<", 570, y);
@@ -250,7 +249,6 @@ class ChildAppletEditor extends PApplet {
   }
   public void mousePressed() {
     checkButtons();
-    // println(mouseX, mouseY);
   }
   public void mouseWheel(processing.event.MouseEvent e) {
     if (menu == 0 || menu == 6) scrollY -= e.getCount()*(config[2]&0xFF);
@@ -264,5 +262,16 @@ class ChildAppletEditor extends PApplet {
   }
   public void mouseReleased() {
     this.mouseMoved();
+  }
+  // xm/ym - x/y modifier (how much it moves)
+  // xf/yf - x/y frequency (how fast it moves)
+  // xo/yo - x/o offset (you can probably figure it out by yourself idk how to explain it)
+  // xs/ys - x/y spacing (isnt it obvious?)
+  public void wavytext(String text, int x, int y, float xm, float ym, float xf, float yf, float xo, float yo, int xs, int ys, float sm) {
+    for (int i = 0; i < text.length(); i++) text(text.charAt(i), x+sin((realt+sm*i)*xf+xo)*xm+i*xs, y+sin((realt+sm*i)*yf+yo)*ym+i*ys);
+  }
+  // dw both versions will be used
+  public void wavytext(String text, int x, int y, float xm, float xf, float xo, int xs, float sm) {
+    for (int i = 0; i < text.length(); i++) text(text.charAt(i), x+sin((realt+sm*i)*xf+xo)*xm+i*xs, y);
   }
 }

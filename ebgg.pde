@@ -142,10 +142,10 @@ void setup() {
   
   buttons[13] = new TextButton("goToLoader", 385, 200, 190, 30,  "load a background", 10);
   buttons[14] = new TextButton("goToEditor", 440, 250, 80, 30,  "editor", 10);
-  buttons[15] = new TextButton("goToHelp", 450, 300, 60, 30, "help", 10);
-  buttons[16] = new TextButton("goToSettings", 430, 350, 100, 30, "settings", 10);
+  buttons[15] = new TextButton("goToSettings", 430, 300, 100, 30, "settings", 10);
+  buttons[16] = new TextButton("goToChangelog", 425, 350, 110, 30, "changelog", 10);
   buttons[17] = new TextButton("goToAbout", 445, 400, 70, 30, "about", 10);
-  buttons[18] = new TextButton("goToChangelog", 425, 450, 110, 30, "changelog", 10);
+  buttons[18] = new TextButton("goToHelp", 450, 450, 60, 30, "help", 10);
   
   buttons[19] = new TextButton("goToTitlescreen", 30, 680, 60, 30, "back", 0);
   buttons[20] = new TextButton("goToTitlescreen", 30, 680, 60, 30, "back", 1);
