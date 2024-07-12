@@ -1,4 +1,5 @@
 int oldmenu = -1;
+float menuselectAnim = 0;
 class ChildAppletEditor extends PApplet {
   public ChildAppletEditor() {
     super();
@@ -30,6 +31,8 @@ class ChildAppletEditor extends PApplet {
     }
     background(0);
     
+    menuselectAnim+=(((float)menuselect)-menuselectAnim)/5;
+    
     String[] menulist={};
     switch (menu) {
       case 0: menulist=bglist;break;
@@ -42,12 +45,9 @@ class ChildAppletEditor extends PApplet {
       case 1:
       case 14: {
         for (int i = 0; i<menulist.length; i++){
-          if (i==menuselect) {
-            fill(0, 255, 0);
-          } else {
-            fill(255);
-          }
-          text(menulist[i], 30, i*30+100+scrollY, 380, 999);
+          float chance = max(1-abs((min(menuselectAnim-(float)i,1)+1)%2-1),0);
+          fill((1-chance)*255, 255, (1-chance)*255);
+          text(menulist[i], (int)(30+chance*6), i*30+100+scrollY, 380, 999);
         }
         break;
       }
