@@ -127,7 +127,7 @@ void checkButtons() {
         break;
       }
       case "confirmOverwrite": {
-        saveStrings("data/"+backgroundName+".deb", saveBackground());
+        saveStrings("background/"+backgroundName+".deb", saveBackground());
         buttons[6].id = "saveBackground";
         buttons[6].text = "save";
         buttons[6].w = 100;
