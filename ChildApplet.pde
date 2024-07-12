@@ -30,18 +30,35 @@ class ChildAppletEditor extends PApplet {
     }
     background(0);
     
+    String[] menulist={};
     switch (menu) {
-      case 0: {
-        for (int i = 0; i<bglist.length; i++){
+      case 0: menulist=bglist;break;
+      case 1: menulist=edopname;break;
+      case 14: menulist=menu14;break;
+    };
+    
+    switch(menu) {
+      case 0:
+      case 1:
+      case 14: {
+        for (int i = 0; i<menulist.length; i++){
           if (i==menuselect) {
             fill(0, 255, 0);
           } else {
             fill(255);
           }
+          text(menulist[i], 30, i*30+100+scrollY, 380, 999);
+        }
+        break;
+      }
+    }
+    
+    switch (menu) {
+      case 0: {
+        for (int i = 0; i<menulist.length; i++){
           if (i == bgno) {
             text(">", 10, i*30+100+scrollY, 380, 999);
           }
-          text(bglist[i], 30, i*30+100+scrollY, 380, 999);
         }
         fill(255);
         break;
@@ -56,13 +73,6 @@ class ChildAppletEditor extends PApplet {
         fill(255);
         for (int i = 0; i<edopname.length; i++) {
           int y = 100+i*30;
-          if (i==menuselect) {
-            fill(0, 255, 0);
-          } else {
-            fill(255);
-          }
-          text(edopname[i], 30, y);
-          fill(255);
           if (edopset[i].length != 1) {
             switch (i) {
               case 3:
@@ -168,12 +178,6 @@ class ChildAppletEditor extends PApplet {
       }
       case 14: { // RESIZE PTM
         for (int i = 0; i<menu14.length; i++){
-          if (i==menuselect) {
-            fill(0, 255, 0);
-          } else {
-            fill(255);
-          }
-          text(menu14[i], 30, i*30+100, 380, 999);
           this.option(menu14tempValues[i], 3, i*30+100);
         }
         fill(255);
