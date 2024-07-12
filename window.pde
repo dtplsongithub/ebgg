@@ -42,37 +42,7 @@ class AwtProgram1 {
     JScrollPane scrollPane = new JScrollPane(textArea);
     page1.add(scrollPane, BorderLayout.CENTER);
 
-
-
-    /*
-    JPanel page2 = new JPanel(new BorderLayout());
-    page2.setBorder(BorderFactory.createEmptyBorder());
-
-    JTextPane textArea2 = new JTextPane();
-    textArea2.setContentType("text/html");
-    ((HTMLDocument)textArea2.getDocument()).getStyleSheet().addRule("body { font-family: "+ textArea.getFont().getFamily() +"; font-size: "+textArea.getFont().getSize()+"}");
-    textArea2.setText(about);
-    textArea2.setEditable(false);
-    textArea2.setBackground(new Color(#FFEEFF));
-
-    textArea2.addHyperlinkListener(new HyperlinkListener() {
-      @Override
-        public void hyperlinkUpdate(HyperlinkEvent hle) {
-        if (HyperlinkEvent.EventType.ACTIVATED.equals(hle.getEventType())) {
-          Desktop desktop = Desktop.getDesktop();
-          try {
-            desktop.browse(hle.getURL().toURI());
-          }
-          catch (Exception e) {
-            showError(e+"", true);
-          }
-        }
-      }
-    });
-
-    JScrollPane scrollPane2 = new JScrollPane(textArea2);
-    page2.add(scrollPane2, BorderLayout.CENTER);
-    */
+    // page 2 was about
     
     JPanel page3 = new JPanel(new BorderLayout());
     page3.setBorder(BorderFactory.createEmptyBorder());
