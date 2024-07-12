@@ -1,4 +1,5 @@
 int oldmenu = -1;
+float menuselectAnim = 0;
 class ChildAppletEditor extends PApplet {
   public ChildAppletEditor() {
     super();
@@ -30,18 +31,34 @@ class ChildAppletEditor extends PApplet {
     }
     background(0);
     
+    menuselectAnim+=(((float)menuselect)-menuselectAnim)/5;
+    
+    String[] menulist={};
+    switch (menu) {
+      case 0: menulist=bglist;break;
+      case 1: menulist=edopname;break;
+      case 14: menulist=menu14;break;
+    };
+    
+    switch(menu) {
+      case 0:
+      case 1:
+      case 14: {
+        for (int i = 0; i<menulist.length; i++){
+          float chance = max(1-abs((min(menuselectAnim-(float)i,1)+1)%2-1),0);
+          fill((1-chance)*255, 255, (1-chance)*255);
+          text(menulist[i], (int)(30+chance*6), i*30+100+scrollY, 380, 999);
+        }
+        break;
+      }
+    }
+    
     switch (menu) {
       case 0: {
-        for (int i = 0; i<bglist.length; i++){
-          if (i==menuselect) {
-            fill(0, 255, 0);
-          } else {
-            fill(255);
-          }
+        for (int i = 0; i<menulist.length; i++){
           if (i == bgno) {
             text(">", 10, i*30+100+scrollY, 380, 999);
           }
-          text(bglist[i], 30, i*30+100+scrollY, 380, 999);
         }
         fill(255);
         break;
@@ -49,16 +66,13 @@ class ChildAppletEditor extends PApplet {
       case 1: {
         
         // EDITOR MENU
+        if (this.width !=960) {
+          surface.setSize(960, 720);
+          windowMove(0, 200);
+        }
         fill(255);
         for (int i = 0; i<edopname.length; i++) {
           int y = 100+i*30;
-          if (i==menuselect) {
-            fill(0, 255, 0);
-          } else {
-            fill(255);
-          }
-          text(edopname[i], 30, y);
-          fill(255);
           if (edopset[i].length != 1) {
             switch (i) {
               case 3:
@@ -164,12 +178,6 @@ class ChildAppletEditor extends PApplet {
       }
       case 14: { // RESIZE PTM
         for (int i = 0; i<menu14.length; i++){
-          if (i==menuselect) {
-            fill(0, 255, 0);
-          } else {
-            fill(255);
-          }
-          text(menu14[i], 30, i*30+100, 380, 999);
           this.option(menu14tempValues[i], 3, i*30+100);
         }
         fill(255);
