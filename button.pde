@@ -121,7 +121,7 @@ void checkButtons() {
           buttons[6].w = ceil(textWidth(backgroundName+".deb already exists. overwrite?"))+30;
           buttons[7].active = true;
         } else {
-          saveStrings("data/"+backgroundName+".deb", saveBackground());
+          saveStrings("backgrounds/"+backgroundName+".deb", saveBackground());
           loadbglist();
         }
         break;
