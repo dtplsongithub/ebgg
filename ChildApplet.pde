@@ -205,7 +205,7 @@ class ChildAppletEditor extends PApplet {
         wavyText("dtpls", 130, 218, 0, 3, 0.14, 0.12, 0, 0, 10, 0, 2);
         boldText("special thanks to:", 50, 400);
         wavyText("hexahedron1, slinx92 , Restart, tom1212 (aka potato camputerr), ", 240, 400, 2, 4, 0.11, 0.02, 0, 0, 10, 0, 2);
-        wavyText("laf9769, ", 240, 425, 2, 4, 0.11, 0.02, 0, 0, 10, 0, 2);
+        wavyText("laf9769, Shigesato Itoi, ", 240, 425, 2, 4, 0.11, 0.02, 0, 0, 10, 0, 2);
         boldText("and you for using ebgg! :D", 240, 450);
         wavyText("Written in Processing 4.3", 355, 660, 3, 5, 0.11, 0.02, 0, 0, 10, 0, 2); //<>//
         break;

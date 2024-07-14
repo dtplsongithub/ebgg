@@ -9,7 +9,7 @@ public class TextButton {
     this.id = _id;
     this.x = _x;
     this.y = _y;
-    this.w = ceil(textWidth(_text)+20);
+    this.w = _w==0?ceil(textWidth(_text)+20):_w;
     this.h = _h;
     this.text = _text;
     this.activeMenu = _menu;
