@@ -3,47 +3,41 @@ TextButton[] buttons = new TextButton[24];
 public class TextButton {
   public String id, text;
   private int x, y, w, h, activeMenu;
+  private float anim=0;
   public boolean active = true, toggle = false, toggler = false;
   public TextButton(String _id, int _x, int _y, int _w, int _h, String _text, int _menu) {
     this.id = _id;
     this.x = _x;
     this.y = _y;
-    this.w = _w;
+    this.w = ceil(textWidth(_text)+20);
     this.h = _h;
     this.text = _text;
     this.activeMenu = _menu;
     log.created("button "+id);
   }
   public boolean checkIfHovered() {
-    return editor.mouseX > this.x && editor.mouseX < this.x + this.w && editor.mouseY > this.y && editor.mouseY < this.y + this.h;
+    return editor.mouseX > this.x && editor.mouseX < this.x + this.w + anim && editor.mouseY > this.y - anim && editor.mouseY < this.y + this.h;
   }
   public void render() {
+    float animTarget=0;
     if (this.activeMenu != menu || !this.active) return;
-    editor.fill(255);
+    editor.fill(196,64);
+    editor.noStroke();
     editor.rect(this.x, this.y, this.w, this.h);
-    editor.fill(0);
-    editor.text(this.text, this.x+10, this.y+20);
-    if (id == "editorPreviewMode" && toolbox.b[3].toggle) {
-      editor.fill(0, 127);
-      editor.rect(this.x, this.y, this.w, this.h);
-      editor.fill(255);
-      return;
-    }
-    if (this.checkIfHovered()) {
-      if (config[3] == 1)
-        editor.fill(127, 127);
-      else
-        editor.fill(0, 127, 255, 127);
-      editor.rect(this.x, this.y, this.w, this.h);
-    }
-    if (toggler && toggle) {
-      if (config[3] == 1)
-        editor.fill(127, 127);
-      else
-        editor.fill(0, 127, 255, 64);
-      editor.rect(this.x, this.y, this.w, this.h);
-    }
     editor.fill(255);
+    if (this.checkIfHovered()) {
+      animTarget=8;
+      if (config[3] == 1)
+        editor.fill(192);
+      else
+        editor.fill(128, 192, 255);
+    }
+    editor.rect(this.x+anim, this.y-anim, this.w, this.h);
+    editor.fill(0);
+    editor.text(this.text, this.x+10+anim, this.y+20-anim);
+    editor.fill(255);
+    
+    anim+=(animTarget-anim)/5;
   }
 }
 
@@ -110,6 +104,7 @@ void checkButtons() {
   for (TextButton i: buttons) {
     if (i.activeMenu != menu || !i.active) continue; // god i love continue
     if (!i.checkIfHovered()) continue;
+    
     switch (i.id) {
       case "editName": menu = 5; break;
       case "editPalette": menu = 6; break;
