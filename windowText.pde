@@ -73,4 +73,4 @@ String whatsnewText = "<html><h1 id='v1-5-2'>v1.5.2</h1>"+
 //"dtpls' website: <a href='https://dtplsongithub.github.io/aboutme/'>https://dtplsongithub.github.io/aboutme/</a><br>"+
 //"and Ponali's website: <a href='https://ponali.github.io/'>https://ponali.github.io/</a></p></html>";
 String TFAQText = "<html><b> - IF YOU ENCOUNTER A BUG THAT'S NOT MENTIONED HERE, MAKE A GITHUB ISSUE <a href=\"https://github.com/dtplsongithub/ebgg/issues\">HERE</a></b></html>";
-String helpText = "<html>git gud</html>";
+String helpText = "<html><a href='https://dtplsongithub.github.io/ebgghelpwebsite/'>go to ebgg misc help website</a></html>";
