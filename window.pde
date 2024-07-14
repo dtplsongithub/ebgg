@@ -18,8 +18,9 @@ class AwtProgram1 {
     textArea.setText(whatsnewText);
     textArea.setEditable(false);
     String cssRules = "body { font-family: "+ textArea.getFont().getFamily() +"; font-size: "+textArea.getFont().getSize()+";} "+
-  "h1 {color: #440099}"+
-  "strong {color: #330000}"+
+  "h1, h2 {color: #3300aa;}"+
+  "h3 {color: #aa0000;}"+
+  "strong, b {color: #330000}"+
   "a {color: #000077}";
     ((HTMLDocument)textArea.getDocument()).getStyleSheet().addRule(cssRules);
     textArea.setBackground(new Color(#EEFFFF));
@@ -42,7 +43,7 @@ class AwtProgram1 {
     JScrollPane scrollPane = new JScrollPane(textArea);
     page1.add(scrollPane, BorderLayout.CENTER);
 
-    // page 2 was about
+    // page 2 was about but has been moved to menu 15
     
     JPanel page3 = new JPanel(new BorderLayout());
     page3.setBorder(BorderFactory.createEmptyBorder());
