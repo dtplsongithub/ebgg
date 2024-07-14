@@ -55,12 +55,8 @@ class ChildAppletEditor extends PApplet {
     
     switch (menu) {
       case 0: {
-        for (int i = 0; i<menulist.length; i++){
-          if (i == bgno) {
-            text(">", 10, i*30+100+scrollY, 380, 999);
-          }
-        }
         fill(255);
+        text(">", 10, bgno*30+100+scrollY, 380, 999);
         break;
       }
       case 1: {
@@ -196,8 +192,22 @@ class ChildAppletEditor extends PApplet {
         fill(255);
         noStroke();
         textFont(MSGothic32);
-        wavytext("ebgg "+versionString, int((960-textWidth("ebgg "+versionString))/2), 66, 5, 5, 0.1, 0.1, 0, HALF_PI, 16, 0, 3);
+        wavyText("ebgg "+versionString, 408, 66, 5, 5, 0.1, 0.1, 0, HALF_PI, 16, 0, 3);
         textFont(MSGothic20);
+        wavyText("by dtpls and Ponali", 385, 94, 3, 0, 0.15, 0, 0, 0, 10, 0, 2);
+        boldText("coders:", 50, 125);
+        wavyText("dtpls, Ponali", 130, 125, 0, 3, 0.14, 0.13, 0, 0, 10, 0, 2);
+        boldText("bug fixers:", 50, 156);
+        wavyText("dtpls, Ponali", 170, 156, 0, 3, 0.14, 0.14, 0, 0, 10, 0, 2);
+        boldText("backgrounds:", 50, 187);
+        wavyText("dtpls, Ponali, slinx92", 180, 187, 0, 3, 0.14, 0.134, 0, 0, 10, 0, 2);
+        boldText("assets:", 50, 218);
+        wavyText("dtpls", 130, 218, 0, 3, 0.14, 0.12, 0, 0, 10, 0, 2);
+        boldText("special thanks to:", 50, 400);
+        wavyText("hexahedron1, slinx92 , Restart, tom1212 (aka potato camputerr), ", 240, 400, 2, 4, 0.11, 0.02, 0, 0, 10, 0, 2);
+        wavyText("laf9769, ", 240, 425, 2, 4, 0.11, 0.02, 0, 0, 10, 0, 2);
+        boldText("and you for using ebgg! :D", 240, 450);
+        wavyText("Written in Processing 4.3", 355, 660, 3, 5, 0.11, 0.02, 0, 0, 10, 0, 2); //<>//
         break;
       }
       default: {
@@ -275,11 +285,16 @@ class ChildAppletEditor extends PApplet {
   // xf/yf - x/y frequency (how fast it moves)
   // xo/yo - x/o offset (you can probably figure it out by yourself idk how to explain it)
   // xs/ys - x/y spacing (isnt it obvious?)
-  public void wavytext(String text, int x, int y, float xm, float ym, float xf, float yf, float xo, float yo, int xs, int ys, float sm) {
-    for (int i = 0; i < text.length(); i++) text(text.charAt(i), x+sin((realt+sm*i)*xf+xo)*xm+i*xs, y+sin((realt+sm*i)*yf+yo)*ym+i*ys);
+  public void wavyText(String text, int x, int y, float xm, float ym, float xf, float yf, float xo, float yo, int xs, int ys, float sm) {
+    for (int i = 0; i < text.length(); i++) text(text.charAt(i), (int)(x+sin((realt+sm*i)*xf+xo)*xm+i*xs), (int)(y+sin((realt+sm*i)*yf+yo)*ym+i*ys));
   }
-  // dw both versions will be used
-  public void wavytext(String text, int x, int y, float xm, float xf, float xo, int xs, float sm) {
-    for (int i = 0; i < text.length(); i++) text(text.charAt(i), x+sin((realt+sm*i)*xf+xo)*xm+i*xs, y);
+  public void boldText(String text, int x, int y) {
+    text(text, x, y);
+    fill(255, 127);
+    text(text, x, y+1);
+    text(text, x, y-1);
+    text(text, x+1, y);
+    text(text, x-1, y);
+    fill(255);
   }
 }
