@@ -19,7 +19,6 @@ public class TextButton {
   }
   public void render() {
     if (this.activeMenu != menu || !this.active) return;
-    editor.stroke(0);
     editor.fill(255);
     editor.rect(this.x, this.y, this.w, this.h);
     editor.fill(0);
@@ -128,7 +127,7 @@ void checkButtons() {
         break;
       }
       case "confirmOverwrite": {
-        saveStrings("backgrounds/"+backgroundName+".deb", saveBackground());
+        saveStrings("background/"+backgroundName+".deb", saveBackground());
         buttons[6].id = "saveBackground";
         buttons[6].text = "save";
         buttons[6].w = 100;
