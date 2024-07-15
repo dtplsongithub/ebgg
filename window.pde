@@ -37,8 +37,7 @@ class AwtProgram1 {
           }
         }
       }
-    }
-    );
+    });
 
     JScrollPane scrollPane = new JScrollPane(textArea);
     page1.add(scrollPane, BorderLayout.CENTER);

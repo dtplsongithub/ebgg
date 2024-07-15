@@ -1,5 +1,6 @@
 int oldmenu = -1;
 float menuselectAnim = 0;
+float menuAnim = 0;
 class ChildAppletEditor extends PApplet {
   public ChildAppletEditor() {
     super();
@@ -8,7 +9,7 @@ class ChildAppletEditor extends PApplet {
   }
 
   public void settings() {
-    size(960, 720, P3D);
+    size(960, 720, P2D);
   }
   public void setup() { 
     windowTitle("editor");
