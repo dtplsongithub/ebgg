@@ -72,5 +72,13 @@ String whatsnewText = "<html><h1 id='v1-5-2'>v1.5.2</h1>"+
 //String aboutText = "<html><p>Created by dtpls and Ponali<br>"+
 //"dtpls' website: <a href='https://dtplsongithub.github.io/aboutme/'>https://dtplsongithub.github.io/aboutme/</a><br>"+
 //"and Ponali's website: <a href='https://ponali.github.io/'>https://ponali.github.io/</a></p></html>";
-String TFAQText = "<html><b> - IF YOU ENCOUNTER A BUG THAT'S NOT MENTIONED HERE, MAKE A GITHUB ISSUE <a href=\"https://github.com/dtplsongithub/ebgg/issues\">HERE</a></b></html>";
-String helpText = "<html>git gud</html>";
+String TFAQText = "<html><h3> - IF YOU STILL DO NOT FIND A WAY TO FIX YOUR PROBLEM...</h3>"+
+" - check <a href=\"https://github.com/dtplsongithub/ebgg/releases\">here</a> for new updates. <br>"+
+" - make an issue on github <a href=\"https://github.com/dtplsongithub/ebgg/issues\">here</a>"+
+" <h2>STARTUP PROBLEMS</h2>"+
+" <h3>- \"could not load background. The application will now close.\"</h3>"+
+" - in the new v1.6 release, backgrounds are stored in a folder called \"backgrounds\". if you updated from v1.5.2 or below, if you find any, move all .deb files from the data folder to the new backgrounds folder. if you do NOT fold any, redownloading ebgg would fix the problem."+
+" <h2>OTHER FAQ</h2>"+
+"<h3> - what does \"config.dat problems were found and fixed.\" mean?</h3>"+
+" - either you ran a new version of ebgg for the first time, or the save file data got corrupted. when this happens, the save data is automatically updated/restored. if you are on v1.5.2 and below, it could also mean the save file was missing.</html>";
+String helpText = "<html><a href='https://dtplsongithub.github.io/ebgghelpwebsite/'>go to ebgg misc help website</a></html>";
