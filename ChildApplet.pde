@@ -47,7 +47,7 @@ class ChildAppletEditor extends PApplet {
         for (int i = 0; i<menulist.length; i++){
           float chance = max(1-abs((min(menuselectAnim-(float)i,1)+1)%2-1),0);
           fill((1-chance)*255, 255, (1-chance)*255);
-          text(menulist[i], (int)(30+chance*6), i*30+100+scrollY, 380, 999);
+          text(menulist[i], (int)(30+chance*6), i*30+100+scrollY);
         }
         break;
       }
@@ -56,19 +56,13 @@ class ChildAppletEditor extends PApplet {
     switch (menu) {
       case 0: {
         fill(255);
-        text(">", 10, bgno*30+100+scrollY, 380, 999);
+        text(">", 10, bgno*30+100+scrollY);
         break;
       }
       case 1: {
-        
-        // EDITOR MENU
-        if (this.width !=960) {
-          surface.setSize(960, 720);
-          windowMove(0, 200);
-        }
         fill(255);
         for (int i = 0; i<edopname.length; i++) {
-          int y = 100+i*30;
+          int y = 100+i*30+scrollY;
           if (edopset[i].length != 1) {
             switch (i) {
               case 3:
@@ -236,6 +230,12 @@ class ChildAppletEditor extends PApplet {
     }
     optionsCheckKeyPress(editor.keyCode);
     if (key == ESC) logexit();
+    /**/
+    if (key == 's') {
+      image(cursor.image, this.mouseX, this.mouseY);
+      saveFrame("screenshot.png");
+    }
+    /**/
   }
   void option(float what, int i, int y) {
     if( what == -0 ) what = 0;

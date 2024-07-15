@@ -156,6 +156,7 @@ void setup() {
 
   // load assets
   bigsteps = new MaskImage("assets/bigsteps", ".png");
+  cursor = new MaskImage("assets/arrow_r", ".png");
   tile = loadImage("assets/tile.png");
 
   toolbox = new Toolbox();
