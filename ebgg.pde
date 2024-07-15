@@ -135,24 +135,23 @@ void setup() {
   buttons[8] = new TextButton("cancelExit", 600, 650, 80, 30, "cancel", 1);
   buttons[8].active = false;
   
-  buttons[9] = new TextButton("createPaletteColor", 600, 680, 0, 30, "create new palette color", 6);
-  buttons[10] = new TextButton("savePaletteColor", 600, 680, 0, 30, "save palette color", 8);
-  buttons[11] = new TextButton("deletePaletteColor", 600, 650, 0, 30, "delete this palette color", 6);
-  buttons[12] = new TextButton("editPaletteColor", 600, 620, 0, 30, "edit this palette color", 6);
+  buttons[9] = new TextButton("editPaletteColor", 600, 620, 0, 30, "edit this palette color", 6);
+  buttons[10] = new TextButton("deletePaletteColor", 600, 650, 0, 30, "delete this palette color", 6);
+  buttons[11] = new TextButton("createPaletteColor", 600, 680, 0, 30, "create new palette color", 6);
   
-  buttons[13] = new TextButton("goToLoader", 385, 200, 0, 30,  "load a background", 10);
-  buttons[14] = new TextButton("goToEditor", 440, 250, 0, 30,  "editor", 10);
-  buttons[15] = new TextButton("goToSettings", 430, 300, 0, 30, "settings", 10);
-  buttons[16] = new TextButton("goToChangelog", 425, 350, 0, 30, "changelog", 10);
-  buttons[17] = new TextButton("goToAbout", 445, 400, 0, 30, "about", 10);
-  buttons[18] = new TextButton("goToHelp", 450, 450, 0, 30, "help", 10);
+  buttons[12] = new TextButton("goToLoader", 385, 200, 0, 30,  "load a background", 10);
+  buttons[13] = new TextButton("goToEditor", 440, 250, 0, 30,  "editor", 10);
+  buttons[14] = new TextButton("goToSettings", 430, 300, 0, 30, "settings", 10);
+  buttons[15] = new TextButton("goToChangelog", 425, 350, 0, 30, "changelog", 10);
+  buttons[16] = new TextButton("goToAbout", 445, 400, 0, 30, "about", 10);
+  buttons[17] = new TextButton("goToHelp", 450, 450, 0, 30, "help", 10);
   
-  buttons[19] = new TextButton("goToTitlescreen", 30, 680, 0, 30, "back", 0);
-  buttons[20] = new TextButton("goToTitlescreen", 30, 680, 0, 30, "back", 1);
-  buttons[21] = new TextButton("goToTitlescreen", 50, 640, 0, 30, "back", 15);
+  buttons[18] = new TextButton("goToTitlescreen", 30, 680, 0, 30, "back", 0);
+  buttons[19] = new TextButton("goToTitlescreen", 30, 680, 0, 30, "back", 1);
+  buttons[20] = new TextButton("goToTitlescreen", 50, 640, 0, 30, "back", 15);
   
-  buttons[22] = new TextButton("applyResize", 30, 680, 0, 30, "resize", 14);
-  buttons[23] = new TextButton("cancelResize", 110, 680, 0, 30, "cancel", 14);
+  buttons[21] = new TextButton("applyResize", 30, 680, 0, 30, "resize", 14);
+  buttons[22] = new TextButton("cancelResize", 110, 680, 0, 30, "cancel", 14);
 
   // load assets
   bigsteps = new MaskImage("assets/bigsteps", ".png");

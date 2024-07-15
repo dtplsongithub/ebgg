@@ -1,4 +1,4 @@
-TextButton[] buttons = new TextButton[24];
+TextButton[] buttons = new TextButton[23];
 
 public class TextButton {
   public String id, text;
