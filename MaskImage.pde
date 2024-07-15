@@ -14,5 +14,5 @@ class MaskImage {
   }
 }
 
-MaskImage bigsteps;
+MaskImage bigsteps, cursor;
 boolean bigstepsappear = true;
