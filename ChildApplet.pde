@@ -20,7 +20,6 @@ class ChildAppletEditor extends PApplet {
 
   public void draw() {
     if (oldmenu != menu && menu>=0) {
-      oldmenu = menu;
       try {
         menuselect=0; //<>//
         windowTitle(menutitle[menu]);

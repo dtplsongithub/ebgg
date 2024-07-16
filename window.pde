@@ -1,3 +1,20 @@
+void addLinkBehaviour(JEditorPane element){
+  element.addHyperlinkListener(new HyperlinkListener() {
+    @Override
+      public void hyperlinkUpdate(HyperlinkEvent hle) {
+      if (HyperlinkEvent.EventType.ACTIVATED.equals(hle.getEventType())) {
+        Desktop desktop = Desktop.getDesktop();
+        try {
+          desktop.browse(hle.getURL().toURI());
+        } catch (Exception e) {
+          showError("Whoops! An error has occured while trying to redirect you to a webpage.\nLinux may not be entirely supported by Java and may be the cause of this issue.\nIf you are on a non-Linux operating system, check if your internet connection is working properly.\n\nTechnical information:\nLink: "+hle.getURL().toString()+"\nError: "+e+"", false);
+        }
+      }
+    }
+  });
+}
+
+
 class AwtProgram1 {
   JFrame window2;
   JTabbedPane tabPanel;
@@ -24,20 +41,7 @@ class AwtProgram1 {
   "a {color: #000077}";
     ((HTMLDocument)textArea.getDocument()).getStyleSheet().addRule(cssRules);
     textArea.setBackground(new Color(#EEFFFF));
-
-    textArea.addHyperlinkListener(new HyperlinkListener() {
-      @Override
-        public void hyperlinkUpdate(HyperlinkEvent hle) {
-        if (HyperlinkEvent.EventType.ACTIVATED.equals(hle.getEventType())) {
-          Desktop desktop = Desktop.getDesktop();
-          try {
-            desktop.browse(hle.getURL().toURI());
-          } catch (Exception e) {
-            showError(e+"", false);
-          }
-        }
-      }
-    });
+    addLinkBehaviour(textArea);
 
     JScrollPane scrollPane = new JScrollPane(textArea);
     page1.add(scrollPane, BorderLayout.CENTER);
@@ -54,19 +58,7 @@ class AwtProgram1 {
     textArea3.setEditable(false);
     textArea3.setBackground(new Color(#EEFFEE));
 
-    textArea3.addHyperlinkListener(new HyperlinkListener() {
-      @Override
-        public void hyperlinkUpdate(HyperlinkEvent hle) {
-        if (HyperlinkEvent.EventType.ACTIVATED.equals(hle.getEventType())) {
-          Desktop desktop = Desktop.getDesktop();
-          try {
-            desktop.browse(hle.getURL().toURI());
-          } catch (Exception e) {
-            showError(e+"", false);
-          }
-        }
-      }
-    });
+    addLinkBehaviour(textArea3);
 
     JScrollPane scrollPane3 = new JScrollPane(textArea3);
     page3.add(scrollPane3, BorderLayout.CENTER);
@@ -82,19 +74,7 @@ class AwtProgram1 {
     textArea4.setEditable(false);
     textArea4.setBackground(new Color(#FFEEFF));
 
-    textArea4.addHyperlinkListener(new HyperlinkListener() {
-      @Override
-        public void hyperlinkUpdate(HyperlinkEvent hle) {
-        if (HyperlinkEvent.EventType.ACTIVATED.equals(hle.getEventType())) {
-          Desktop desktop = Desktop.getDesktop();
-          try {
-            desktop.browse(hle.getURL().toURI());
-          } catch (Exception e) {
-            showError(e+"", false);
-          }
-        }
-      }
-    });
+    addLinkBehaviour(textArea4);
 
     JScrollPane scrollPane4 = new JScrollPane(textArea4);
     page4.add(scrollPane4, BorderLayout.CENTER);
