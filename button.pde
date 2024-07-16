@@ -1,4 +1,5 @@
-TextButton[] buttons = new TextButton[23];
+
+TextButton[] buttons = new TextButton[22];
 
 public class TextButton {
   public String id, text;
@@ -110,17 +111,10 @@ void checkButtons() {
       case "editPalette": menu = 6; break;
       case "editPaletteMap": menu = 7; break;
       case "saveBackground": {
-        if (fileExists(backgroundName+".deb")) {
-          buttons[6].id = "confirmOverwrite";
-          buttons[6].text = backgroundName+".deb already exists. overwrite?";
-          buttons[6].w = ceil(textWidth(backgroundName+".deb already exists. overwrite?"))+30;
-          buttons[7].active = true;
-        } else {
-          saveStrings("backgrounds/"+backgroundName+".deb", saveBackground());
-          loadbglist();
-        }
+        println("Please select output file... (must be .deb!)");
+        selectOutput("Please select output file... (must be .deb!)", "saveBackgroundFile");
         break;
-      }
+      }/*
       case "confirmOverwrite": {
         saveStrings("background/"+backgroundName+".deb", saveBackground());
         buttons[6].id = "saveBackground";
@@ -136,7 +130,7 @@ void checkButtons() {
         buttons[6].w = 100;
         buttons[7].active = false;
         break;
-      }
+      }*/
       case "createPaletteColor": {
         menuselect = pal.length;
         pal = append(pal, 0xFFFFFFFF);
@@ -166,7 +160,7 @@ void checkButtons() {
         if (menuselect>0)menuselect--;
         break;
       }
-      case "goToLoader": menu=0;break;
+      case "goToLoader": selectInput("Select a file...", "loadbg");break;
       case "goToHelp": awt.window2.setVisible(true);awt.tabPanel.setSelectedIndex(1);break;
       case "goToChangelog": awt.window2.setVisible(true);awt.tabPanel.setSelectedIndex(0);break;
       case "goToSettings": awt2.settings.setVisible(true);break;
@@ -194,4 +188,12 @@ boolean isButtonHovered() {
     if (i.checkIfHovered()) return true;
   }
   return false;
+}
+void saveBackgroundFile(File selection) {
+  if (selection == null) {
+    println("Window was closed or the user hit cancel.");
+  } else {
+    saveStrings(selection.getAbsolutePath(), getBackground());
+    loadbglist();
+  }
 }

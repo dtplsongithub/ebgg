@@ -1,73 +1,90 @@
-String whatsnewText = "<html><h1 id='v1-5-2'>v1.5.2</h1>"+
-"<h2 id='2024-june-12'>2024 July 9</h2>"+
-"<p><strong>[FIX]</strong> Palette map: made color palette stretch to window proportions so that it doesn't go out of bounds<br>"+
-"<strong>[FIX]</strong> Palette map: made current color pointer in color palette show up everytime<br>"+
-"<strong>[FIX]</strong> Fixed the program confusing the width and height upon resizing the palette map<br>"+
-"<strong>[FIX]</strong> When the menu changes, the selection cursor resets, so that it doesn't go out of bounds until an arrow key gets pressed<br>"+
-"<strong>[CHANGE]</strong> Added numpad support to the color hex editor and name input.<br>"+
-"<strong>[CHANGE]</strong> Added color preview to the color hex editor.</p>"+
-"<h1 id='v1-5-1'>v1.5.1</h1>"+
-"<h2 id='2024-june-12'>2024 July 8</h2>"+
-"<p><strong>[FIX]</strong> made editor only 960x720 because of linux <br>"+
+String whatsnewText = "<html><h1>v1.6.0</h1>"+ // you dont need to use the id anymore
+"<h2>2024 July something</h2>"+ // also just so you know cool means new and important thing added, awesome means not *as* important
+"<b>[COOL]</b> New Troubleshooting FAQ and misc help tab!<br>"+
+"<b>[COOL]</b> Updated about screen!<br>"+
+"<b>[AWESOME]</b> Fancy button and menu selection transitions<br>"+
+"<b>[NEW]</b> Version display so you know on what version you are<br>"+
+"<b>[NEW]</b> palc multiplier (explained in misc help)<br>"+
+"<b>[NEW]</b> New backgrounds by Ponali! console, diamonds, jigsaw buttons, ladders<br>"+
+"<b>[NEW]</b> Fullscreen mode! (might not work in linux... sorry ._.)<br>"+
+"<b>[NEW]</b> New loading and saving background menu<br>"+
+"<b>[FIX]</b> Fixed some values in the editor being -0 instead of 0<br>"+
+"<b>[FIX]</b> Fixed an issue where the X static effect option doesn't change.<br>"+
+"<b>[CHANGE]</b> buttons have now no borders<br>"+
+"<b>[CHANGE]</b> When the palette isn't used, most available colors get used, so that no colors can be humanly indifferenciable<br>"+
+"<b>[CHANGE]</b> Recolored headers<br>"+
+"<b>[CHANGE]</b> No more \"config.dat problems were found and fixed.\" warning when config.dat couldn't be found<br>"+
+"<b>[CHANGE]</b> Some of the buttons now have different width<br>"+
+"<h1 id='v1-5-2'>v1.5.2</h1>"+
+"<h2>2024 July 9</h2>"+
+"<p><b>[FIX]</b> Palette map: made color palette stretch to window proportions so that it doesn't go out of bounds<br>"+
+"<b>[FIX]</b> Palette map: made current color pointer in color palette show up everytime<br>"+
+"<b>[FIX]</b> Fixed the program confusing the width and height upon resizing the palette map<br>"+
+"<b>[FIX]</b> When the menu changes, the selection cursor resets, so that it doesn't go out of bounds until an arrow key gets pressed<br>"+
+"<b>[CHANGE]</b> Added numpad support to the color hex editor and name input.<br>"+
+"<b>[CHANGE]</b> Added color preview to the color hex editor.</p>"+
+"<h1>v1.5.1</h1>"+
+"<h2>2024 July 8</h2>"+
+"<p><b>[FIX]</b> made editor only 960x720 because of linux <br>"+
 "<html><h1 id='v1-5-0'>v1.5.0</h1>"+
-"<h2 id='2024-june-12'>2024 July 7</h2>"+
-"<p><strong>[NEW]</strong> SETTINGS!!!<br>"+
-"<strong>[FIX]</strong> lots of bug fixes...</p>"+
-"<p><strong>Full Changelog</strong>: <a href='https://github.com/dtplsongithub/ebgg/compare/v1.4.0...v1.5.0'>https://github.com/dtplsongithub/ebgg/compare/v1.4.0...v1.5.0</a></p>"+
+"<h2 id='2024-july-7'>2024 July 7</h2>"+
+"<p><b>[NEW]</b> SETTINGS!!!<br>"+
+"<b>[FIX]</b> lots of bug fixes...</p>"+
+"<p><b>Full Changelog</b>: <a href='https://github.com/dtplsongithub/ebgg/compare/v1.4.0...v1.5.0'>https://github.com/dtplsongithub/ebgg/compare/v1.4.0...v1.5.0</a></p>"+
 "<h1 id='v1-4-0'>v1.4.0</h1>"+
 "<h2 id='2024-june-12'>2024 June 12</h2>"+
-"<p><strong>[COOL]</strong> new &quot;What&#39;s new&quot; menu and &quot;About&quot; menu :)<br>"+
-"<strong>[NEW]</strong> rezise tool for editing pattern<br>"+
-"<strong>[NEW]</strong> title screen! ;)<br>"+
-"<strong>[NEW]</strong> buttons to change menu instead of pressing a key<br>"+
-"<strong>[NEW]</strong> current palette color is now finally shown<br>"+
-"<strong>[NEW]</strong> error handler to prevent random crashes and to understand what went wrong<br>"+
-"<strong>[NEW]</strong> scroll in background loader menu<br>"+
-"<strong>[FIX]</strong> options going off limits<br>"+
-"<strong>[FIX]</strong> scrolling in ptm editor has been partially fixed<br>"+
-"<strong>[FIX]</strong> using the &quot;a&quot; key in two of the options have been fixed<br>"+
-"<strong>[FIX]</strong> program crashing on entering pattern editor on creating a LOT of colors<br>"+
-"<strong>[FIX]</strong> everything getting borderless when entering palette editor<br>"+
-"<strong>[CHANGED]</strong> palette map (or ptm) has been renamed to PATTERN.<br>"+
-"<strong>[DELETED]</strong> deleted status bar button since it did NOTHING<br><br>"+
-"<strong>Full Changelog</strong>: <a href='https://github.com/dtplsongithub/ebgg/compare/v1.3.1...v1.4.0'>https://github.com/dtplsongithub/ebgg/compare/v1.3.1...v1.4.0</a></p>"+
+"<p><b>[COOL]</b> new &quot;What&#39;s new&quot; menu and &quot;About&quot; menu :)<br>"+
+"<b>[NEW]</b> rezise tool for editing pattern<br>"+
+"<b>[NEW]</b> title screen! ;)<br>"+
+"<b>[NEW]</b> buttons to change menu instead of pressing a key<br>"+
+"<b>[NEW]</b> current palette color is now finally shown<br>"+
+"<b>[NEW]</b> error handler to prevent random crashes and to understand what went wrong<br>"+
+"<b>[NEW]</b> scroll in background loader menu<br>"+
+"<b>[FIX]</b> options going off limits<br>"+
+"<b>[FIX]</b> scrolling in ptm editor has been partially fixed<br>"+
+"<b>[FIX]</b> using the &quot;a&quot; key in two of the options have been fixed<br>"+
+"<b>[FIX]</b> program crashing on entering pattern editor on creating a LOT of colors<br>"+
+"<b>[FIX]</b> everything getting borderless when entering palette editor<br>"+
+"<b>[CHANGE]</b> palette map (or ptm) has been renamed to PATTERN.<br>"+
+"<b>[DELETED]</b> deleted status bar button since it did NOTHING<br><br>"+
+"<b>Full Changelog</b>: <a href='https://github.com/dtplsongithub/ebgg/compare/v1.3.1...v1.4.0'>https://github.com/dtplsongithub/ebgg/compare/v1.3.1...v1.4.0</a></p>"+
 "<h1 id='v1-3-1'>v1.3.1</h1>"+
 "<h2 id='2024-june-10'>2024 June 10</h2>"+
-"<p><strong>[FIX]</strong> editor is now usable... sorry...<br></p>"+
-"<p><strong>Full Changelog</strong>: <a href='https://github.com/dtplsongithub/ebgg/compare/v1.3.0...v1.3.1'>https://github.com/dtplsongithub/ebgg/compare/v1.3.0...v1.3.1</a></p>"+
+"<p><b>[FIX]</b> editor is now usable... sorry...<br></p>"+
+"<p><b>Full Changelog</b>: <a href='https://github.com/dtplsongithub/ebgg/compare/v1.3.0...v1.3.1'>https://github.com/dtplsongithub/ebgg/compare/v1.3.0...v1.3.1</a></p>"+
 "<h1 id='v1-3-0'>v1.3.0</h1>"+
 "<h2 id='2024-june-9'>2024 June 9</h2>"+
 "<h4 id='the-biggest-update-so-far-'>THE BIGGEST UPDATE (so far)</h4>"+
-"<p><strong>[NEW]</strong> you can now make backgrounds inside of ebgg!<br>"+
-"<strong>[NEW]</strong> you can get the latest version with the new batch updater! (powershell 5.0 and above; windows only)<br>"+
-"<strong>[FIX]</strong> titles now use a higher resolution font.<br>"+
-"<strong>[FIX]</strong> pallete can now reverse switching or stop switching colors entirely now. (did not notice until now ;-;)<br>"+
-"<strong>[CHANGE]</strong> &quot;choose a background&quot; has been changed to &quot;load a background&quot;<br></p>"+
-"<p><strong>!!NOTICE!!</strong> please ignore the new config.dat file that is being created when you launch the program. it will make sense in later "+
+"<p><b>[NEW]</b> you can now make backgrounds inside of ebgg!<br>"+
+"<b>[NEW]</b> you can get the latest version with the new batch updater! (powershell 5.0 and above; windows only)<br>"+
+"<b>[FIX]</b> titles now use a higher resolution font.<br>"+
+"<b>[FIX]</b> pallete can now reverse switching or stop switching colors entirely now. (did not notice until now ;-;)<br>"+
+"<b>[CHANGE]</b> &quot;choose a background&quot; has been changed to &quot;load a background&quot;<br></p>"+
+"<p><b>!!NOTICE!!</b> please ignore the new config.dat file that is being created when you launch the program. it will make sense in later "+
 "versions, trust me.<br>"+
-"<strong>!!NOTICE!!</strong> if you want to get the source code, please get it from <a href='https://github.com/dtplsongithub/ebgg/archive/dfd267b2770e60cf83f9abc952c0a11d6f8b1dd6.zip'>here</a>. i accidentally released v1.3 before commiting ;-;</p>"+
-"<p><strong>Full Changelog</strong>: <a href='https://github.com/dtplsongithub/ebgg/compare/v1.2.1...v1.3.0'>https://github.com/dtplsongithub/ebgg/compare/v1.2.1...v1.3.0</a></p>"+
+"<b>!!NOTICE!!</b> if you want to get the source code, please get it from <a href='https://github.com/dtplsongithub/ebgg/archive/dfd267b2770e60cf83f9abc952c0a11d6f8b1dd6.zip'>here</a>. i accidentally released v1.3 before commiting ;-;</p>"+
+"<p><b>Full Changelog</b>: <a href='https://github.com/dtplsongithub/ebgg/compare/v1.2.1...v1.3.0'>https://github.com/dtplsongithub/ebgg/compare/v1.2.1...v1.3.0</a></p>"+
 "<h1 id='v1-2-1'>v1.2.1</h1>"+
 "<h2 id='2024-march-9'>2024 March 9</h2>"+
-"<p><strong>[FIX]</strong> Fixed child window&#39;s title not updating at all</p>"+
-"<p><strong>Full Changelog</strong>: <a href='https://github.com/dtplsongithub/ebgg/compare/v1.2.0...v1.2.1'>https://github.com/dtplsongithub/ebgg/compare/v1.2.0...v1.2.1</a></p>"+
+"<p><b>[FIX]</b> Fixed child window&#39;s title not updating at all</p>"+
+"<p><b>Full Changelog</b>: <a href='https://github.com/dtplsongithub/ebgg/compare/v1.2.0...v1.2.1'>https://github.com/dtplsongithub/ebgg/compare/v1.2.0...v1.2.1</a></p>"+
 "<h1 id='v1-2-0'>v1.2.0</h1>"+
 "<h2 id='2024-march-9'>2024 March 9</h2>"+
-"<p><strong>[COOL]</strong> ebgg is now split screen (background on the right, menu on the left<br>"+
-"<strong>[COOL]</strong> In the menu it now shows what background is currently being displayed</p>"+
-"<p><strong>Full Changelog</strong>: <a href='https://github.com/dtplsongithub/ebgg/compare/v1.1.0...v1.2.0'>https://github.com/dtplsongithub/ebgg/compare/v1.1.0...v1.2.0</a></p>"+
+"<p><b>[COOL]</b> ebgg is now split screen (background on the right, menu on the left<br>"+
+"<b>[COOL]</b> In the menu it now shows what background is currently being displayed</p>"+
+"<p><b>Full Changelog</b>: <a href='https://github.com/dtplsongithub/ebgg/compare/v1.1.0...v1.2.0'>https://github.com/dtplsongithub/ebgg/compare/v1.1.0...v1.2.0</a></p>"+
 "<h1 id='v1-1-0'>v1.1.0</h1>"+
 "<h2 id='2024-march-8'>2024 March 8</h2>"+
-"<p><strong>[NEW]</strong> Added background list<br>"+
-"<strong>[COOL]</strong> bglist is now removed, it will just scan the /data/ folder<br>"+
-"<strong>[CHANGED]</strong> bghelp because of change above ^^^^<br>"+
-"<strong>[NEW]</strong> Added templates from webebgg<br></p>"+
+"<p><b>[NEW]</b> Added background list<br>"+
+"<b>[COOL]</b> bglist is now removed, it will just scan the /data/ folder<br>"+
+"<b>[CHANGE]</b> bghelp because of change above ^^^^<br>"+
+"<b>[NEW]</b> Added templates from webebgg<br></p>"+
 "<h3 id='first-linux-release'>FIRST LINUX RELEASE</h3>"+
-"<p><strong>Full Changelog</strong>: <a href='https://github.com/dtplsongithub/ebgg/compare/v1.0.0...v1.1.0'>https://github.com/dtplsongithub/ebgg/compare/v1.0.0...v1.1.0</a></p>"+
+"<p><b>Full Changelog</b>: <a href='https://github.com/dtplsongithub/ebgg/compare/v1.0.0...v1.1.0'>https://github.com/dtplsongithub/ebgg/compare/v1.0.0...v1.1.0</a></p>"+
 "<h1 id='v1-0-0'>v1.0.0</h1>"+
 "<h2 id='2024-march-8'>2024 March 8</h2>"+
 "<p>First public release of ebgg.</p>"+
-"<p><strong>Full Changelog</strong>: <a href='https://github.com/dtplsongithub/ebgg/commits/v1.0.0'>https://github.com/dtplsongithub/ebgg/commits/v1.0.0</a></p>"+
+"<p><b>Full Changelog</b>: <a href='https://github.com/dtplsongithub/ebgg/commits/v1.0.0'>https://github.com/dtplsongithub/ebgg/commits/v1.0.0</a></p>"+
 "</html>";
 //String aboutText = "<html><p>Created by dtpls and Ponali<br>"+
 //"dtpls' website: <a href='https://dtplsongithub.github.io/aboutme/'>https://dtplsongithub.github.io/aboutme/</a><br>"+

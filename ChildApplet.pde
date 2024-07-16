@@ -8,7 +8,7 @@ class ChildAppletEditor extends PApplet {
   }
 
   public void settings() {
-    size(960, 720, P3D);
+    size(960, 720, P2D);
   }
   public void setup() { 
     windowTitle("editor");
@@ -21,7 +21,7 @@ class ChildAppletEditor extends PApplet {
   public void draw() {
     if (oldmenu != menu && menu>=0) {
       try {
-        menuselect=0;
+        menuselect=0; //<>//
         windowTitle(menutitle[menu]);
       } catch (ArrayIndexOutOfBoundsException e) {
         log.error(e+" on changing window title", true);
@@ -225,9 +225,6 @@ class ChildAppletEditor extends PApplet {
   }
   public void keyPressed() {
   if (menu == 5 || menu == 8 ) keyboardDetection(editor.keyCode, editor.key);
-    if (key == ENTER && menu == 0) {
-      loadbg();
-    }
     optionsCheckKeyPress(editor.keyCode);
     if (key == ESC) logexit();
     /**/
