@@ -38,8 +38,8 @@ boolean errorIsBeingShown = false, warnIsBeingShown = false;
 // settings-related things
 byte version = (byte)16;
 String versionString = "v1.6";
-byte[] defaultSettings = {version, 1, 30, 0, 0, 1, 0}, config;
-String settingsType = "cscccc";
+byte[] defaultSettings = {version, 1, 30, 0, 0, 1, 0, 0}, config;
+String settingsType = "csccccc";
 String[] settingsDescription = {
   "show big steps tip",
   "scroll sensitivity",
@@ -48,7 +48,8 @@ String[] settingsDescription = {
   //"expand color picker",
   "enable custom cursors (requires restart if disabling)",
   //"background fps (requires restart)"
-  "fullscreen mode"
+  "fullscreen mode",
+  "render when window is not active"
 }, settingsHelp = {
   "",
   "",
@@ -57,7 +58,8 @@ String[] settingsDescription = {
   //"will show 2 rows instead of 1 in the color picker menu.",
   "",
   //"! anything over 50 fps is not recommended !"
-  ""
+  "",
+  "if all windows are not active, the window will still render. if this option is disabled, the background window will not render when all ebgg windows are inactive and performance will be gained."
 };
 int[] o5 = {5, 255, 30};
 
@@ -172,7 +174,13 @@ void setup() {
 void draw() {
   inactive++;
   realt++;
+  
   background(0);
+  if((config[7]==0)&&(!(focused||editor.focused))){
+    fill(255);
+    text("Please click on this window to resume.", 0, 380);
+    return;
+  }
   try {
     for (int y = 0; y < height/scale; y++) {
       Mxtemp = Math.sin(Math.toRadians((y+t))*Mxfreq)*Mxscale*((int(y%2==0)*-Mxinterl*2+1));
