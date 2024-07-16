@@ -118,7 +118,7 @@ void setup() {
   log.loaded("font MSGothic20");
   textFont(MSGothic20);
   
-  loadbg();
+  //loadbg();
   menu = 10;
 
   buttons[0] = new TextButton("editName", 600, 75, 150, 30, "click to edit", 1);
@@ -130,29 +130,29 @@ void setup() {
   buttons[5] = new TextButton("goToEditor", 30, 680, 60, 30, "back", 7);
   
   buttons[6] = new TextButton("saveBackground", 30, 650, 60, 30, "save", 1);
-  buttons[7] = new TextButton("cancelOverwrite", 600, 650, 80, 30, "cancel", 1);
-  buttons[7].active = false;
-  buttons[8] = new TextButton("cancelExit", 600, 650, 80, 30, "cancel", 1);
-  buttons[8].active = false;
+  //buttons[7] = new TextButton("cancelOverwrite", 600, 650, 80, 30, "cancel", 1);
+  //buttons[7].active = false;
+  //buttons[8] = new TextButton("cancelExit", 600, 650, 80, 30, "cancel", 1);
+  //buttons[8].active = false;
   
-  buttons[9] = new TextButton("createPaletteColor", 600, 680, 0, 30, "create new palette color", 6);
-  buttons[10] = new TextButton("savePaletteColor", 600, 680, 0, 30, "save palette color", 8);
-  buttons[11] = new TextButton("deletePaletteColor", 600, 650, 0, 30, "delete this palette color", 6);
-  buttons[12] = new TextButton("editPaletteColor", 600, 620, 0, 30, "edit this palette color", 6);
+  buttons[7] = new TextButton("createPaletteColor", 600, 680, 0, 30, "create new palette color", 6);
+  buttons[8] = new TextButton("savePaletteColor", 600, 680, 0, 30, "save palette color", 8);
+  buttons[9] = new TextButton("deletePaletteColor", 600, 650, 0, 30, "delete this palette color", 6);
+  buttons[10] = new TextButton("editPaletteColor", 600, 620, 0, 30, "edit this palette color", 6);
   
-  buttons[13] = new TextButton("goToLoader", 385, 200, 0, 30,  "load a background", 10);
-  buttons[14] = new TextButton("goToEditor", 440, 250, 0, 30,  "editor", 10);
-  buttons[15] = new TextButton("goToSettings", 430, 300, 0, 30, "settings", 10);
-  buttons[16] = new TextButton("goToChangelog", 425, 350, 0, 30, "changelog", 10);
-  buttons[17] = new TextButton("goToAbout", 445, 400, 0, 30, "about", 10);
-  buttons[18] = new TextButton("goToHelp", 450, 450, 0, 30, "help", 10);
+  buttons[11] = new TextButton("goToLoader", 385, 200, 0, 30,  "load a background", 10);
+  buttons[12] = new TextButton("goToEditor", 440, 250, 0, 30,  "editor", 10);
+  buttons[13] = new TextButton("goToSettings", 430, 300, 0, 30, "settings", 10);
+  buttons[14] = new TextButton("goToChangelog", 425, 350, 0, 30, "changelog", 10);
+  buttons[15] = new TextButton("goToAbout", 445, 400, 0, 30, "about", 10);
+  buttons[16] = new TextButton("goToHelp", 450, 450, 0, 30, "help", 10);
   
-  buttons[19] = new TextButton("goToTitlescreen", 30, 680, 0, 30, "back", 0);
-  buttons[20] = new TextButton("goToTitlescreen", 30, 680, 0, 30, "back", 1);
-  buttons[21] = new TextButton("goToTitlescreen", 50, 640, 0, 30, "back", 15);
+  buttons[17] = new TextButton("goToTitlescreen", 30, 680, 0, 30, "back", 0);
+  buttons[18] = new TextButton("goToTitlescreen", 30, 680, 0, 30, "back", 1);
+  buttons[19] = new TextButton("goToTitlescreen", 50, 640, 0, 30, "back", 15);
   
-  buttons[22] = new TextButton("applyResize", 30, 680, 0, 30, "resize", 14);
-  buttons[23] = new TextButton("cancelResize", 110, 680, 0, 30, "cancel", 14);
+  buttons[20] = new TextButton("applyResize", 30, 680, 0, 30, "resize", 14);
+  buttons[21] = new TextButton("cancelResize", 110, 680, 0, 30, "cancel", 14);
 
   // load assets
   bigsteps = new MaskImage("assets/bigsteps", ".png");
@@ -174,30 +174,32 @@ void draw() {
   inactive++;
   realt++;
   background(0);
-  try {
-    for (int y = 0; y < height/scale; y++) {
-      Mxtemp = Math.sin(Math.toRadians((y+t))*Mxfreq)*Mxscale*((int(y%2==0)*-Mxinterl*2+1));
-      Mytemp = Math.sin(Math.toRadians((y+t))*Myfreq)*Myscale;
-      for (int x = 0; x < width/scale; x++) {
-        int ptmy = rem(Math.round(y+Cy+(int)(Math.round(Mytemp))), ptm.length);
-        int ptmx = rem(Math.round(x+Cx+(int)(Math.round(Mxtemp))+random(0, staticx)), ptm[0].length);
-        if (ptm[ptmy][ptmx] < palssa) {
-          fill(pal[ptm[ptmy][ptmx]]);
-        } else {
-          fill(pal[rem(ptm[ptmy][ptmx]+paloffset, pal.length-palssa)+palssa]);
+  if (backgroundName != "no background loaded...") {
+    try {
+      for (int y = 0; y < height/scale; y++) {
+        Mxtemp = Math.sin(Math.toRadians((y+t))*Mxfreq)*Mxscale*((int(y%2==0)*-Mxinterl*2+1));
+        Mytemp = Math.sin(Math.toRadians((y+t))*Myfreq)*Myscale;
+        for (int x = 0; x < width/scale; x++) {
+          int ptmy = rem(Math.round(y+Cy+(int)(Math.round(Mytemp))), ptm.length);
+          int ptmx = rem(Math.round(x+Cx+(int)(Math.round(Mxtemp))+random(0, staticx)), ptm[0].length);
+          if (ptm[ptmy][ptmx] < palssa) {
+            fill(pal[ptm[ptmy][ptmx]]);
+          } else {
+            fill(pal[rem(ptm[ptmy][ptmx]+paloffset, pal.length-palssa)+palssa]);
+          }
+          rect(x*scale, y*scale, scale, scale);
         }
-        rect(x*scale, y*scale, scale, scale);
       }
+    } catch (ArithmeticException e) {
+      log.error(e+"", true);
     }
-  } catch (ArithmeticException e) {
-    log.error(e+"", true);
-  }
-  Cx += vCx;
-  Cy += vCy;
-  t++;
-  if (t%palf == 0 && palc) {
-    paloffset += ( int(!palcreverse)*2-1 )*palcmult;
-    paloffset = rem(paloffset, pal.length - 1);
+    Cx += vCx;
+    Cy += vCy;
+    t++;
+    if (t%palf == 0 && palc) {
+      paloffset += ( int(!palcreverse)*2-1 )*palcmult;
+      paloffset = rem(paloffset, pal.length - 1);
+    }
   }
   if (inactive<100) {
     fill(0, (100-Math.max(inactive, 90))*25.5);
@@ -213,9 +215,6 @@ void mouseMoved() {
   inactive = 0;
 }
 void keyPressed() {
-  if (key == ENTER && menu == 0) {
-    loadbg();
-  }
   if (key == BACKSPACE)  {
     config[6] = (byte)(config[6]==(byte)1?0:1);
     saveConfig(); // also calls updateSize() and remembers for when program is being started again.
@@ -233,14 +232,13 @@ int rem(int x, int n) {
 
 String[] loadFilenames(String path, String filename) {
   File folder = new File(path);
-  String[] files = folder.list();
+  String[] files = new String[1];
+  files = folder.list();
   String[] filteredfiles = {};
-  for (int i = 0; i<files.length; i++) {
-    if (files[i].toLowerCase().endsWith("."+filename)) filteredfiles = append(filteredfiles, files[i]);
-  }
+  for (int i = 0; i<files.length; i++) if (files[i].toLowerCase().endsWith("."+filename)) filteredfiles = append(filteredfiles, files[i]);
   return filteredfiles;
 }
-
+/*
 void loadbg() {
   menu = 0;
   t = 0;
@@ -252,7 +250,7 @@ void loadbg() {
   inactive = 0;
   bgno = menuselect;
 }
-
+*/
 void optionsCheckKeyPress(int kc) {
   switch (kc) {
   case UP:

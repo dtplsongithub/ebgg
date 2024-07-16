@@ -1,6 +1,5 @@
 int oldmenu = -1;
 float menuselectAnim = 0;
-float menuAnim = 0;
 class ChildAppletEditor extends PApplet {
   public ChildAppletEditor() {
     super();
@@ -21,8 +20,9 @@ class ChildAppletEditor extends PApplet {
 
   public void draw() {
     if (oldmenu != menu && menu>=0) {
+      oldmenu = menu;
       try {
-        menuselect=0;
+        menuselect=0; //<>//
         windowTitle(menutitle[menu]);
       } catch (ArrayIndexOutOfBoundsException e) {
         log.error(e+" on changing window title", true);
@@ -226,9 +226,6 @@ class ChildAppletEditor extends PApplet {
   }
   public void keyPressed() {
   if (menu == 5 || menu == 8 ) keyboardDetection(editor.keyCode, editor.key);
-    if (key == ENTER && menu == 0) {
-      loadbg();
-    }
     optionsCheckKeyPress(editor.keyCode);
     if (key == ESC) logexit();
     /**/
