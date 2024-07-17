@@ -46,9 +46,7 @@ void loadbg(File selection){
 
 String[] bglist;
 void loadbglist(){
-  println(sketchPath("")+"backgrounds\\");
   bglist = loadFilenames(sketchPath("")+"backgrounds", "deb");
-  
   log.log("succesfully loaded background list");
 }
 
