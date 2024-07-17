@@ -1,5 +1,6 @@
 int oldmenu = -1;
 float menuselectAnim = 0;
+boolean mouseHold = false;
 class ChildAppletEditor extends PApplet {
   public ChildAppletEditor() {
     super();
@@ -222,6 +223,7 @@ class ChildAppletEditor extends PApplet {
     }
     textFont(MSGothic20);
     renderButtons();
+    mouseHold = editor.mousePressed;
   }
   public void keyPressed() {
   if (menu == 5 || menu == 8 ) keyboardDetection(editor.keyCode, editor.key);
