@@ -1,4 +1,3 @@
-
 TextButton[] buttons = new TextButton[22];
 
 public class TextButton {
