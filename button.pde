@@ -1,4 +1,3 @@
-
 TextButton[] buttons = new TextButton[22];
 
 public class TextButton {
@@ -102,6 +101,7 @@ void renderButtons() {
 }
 
 void checkButtons() {
+  if(mouseHold) return;
   for (TextButton i: buttons) {
     if (i.activeMenu != menu || !i.active) continue; // god i love continue
     if (!i.checkIfHovered()) continue;
@@ -169,7 +169,8 @@ void checkButtons() {
       case "applyResize": ptm = new int[menu14tempValues[1]][menu14tempValues[0]]; menu=7;break;
       case "cancelResize": menu=7;break;
       case "goToAbout": menu=15;break;
-    }
+    };
+    break;
   }
   toolbox.checkPress();
 }

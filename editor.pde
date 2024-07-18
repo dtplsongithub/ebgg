@@ -52,13 +52,13 @@ class Toolbox {
     ib[3] = new ImageButton("editorFillRect", 126, 68, 70, "assets/filledRectangle.png", 2);
     ib[4] = new ImageButton("editorCircle", 158, 68, 70, "assets/circle.png", 2);
     ib[5] = new ImageButton("editorFillCircle", 190, 68, 70, "assets/filledCircle.png", 2);
-    b[3] = new TextButton("editorGrid", 30, 100, 110, 32, "Show grid", 7);
-    b[3].toggler = true;
-    b[2] = new TextButton("editorResizePtm", 140, 100, 170, 32, "resize pattern", 7);
-    b[1] = new TextButton("editorPreviewMode", 310, 100, 200, 32, "Don't use palette", 7);
-    b[1].toggler = true;
-    b[0] = new TextButton("editorUsePaloffset", 510, 100, 160, 32, "Use paloffset", 7);
+    b[0] = new TextButton("editorGrid", 30, 100, 110, 32, "Show grid", 7);
     b[0].toggler = true;
+    b[1] = new TextButton("editorResizePtm", 140, 100, 170, 32, "resize pattern", 7);
+    b[2] = new TextButton("editorPreviewMode", 310, 100, 200, 32, "Don't use palette", 7);
+    b[2].toggler = true;
+    b[3] = new TextButton("editorUsePaloffset", 510, 100, 160, 32, "Use paloffset", 7);
+    b[3].toggler = true;
     ib[6] = new ImageButton("editorZoomIn", 872, 100, 7, "assets/zoomin.png", 2);
     ib[7] = new ImageButton("editorZoomOut", 904, 100, 7, "assets/zoomout.png", 2);
     ib[8] = new ImageButton("editorMoveL", 750, 100, 7, "assets/left.png", 2);
@@ -113,7 +113,7 @@ class Toolbox {
     editor.popMatrix();
     editor.stroke(0);
     for (ImageButton i : ib) i.render();
-    for (TextButton i : b) i.render();
+    for (int i=0;i<b.length;i++) b[(b.length-1)-i].render();
   }
   public void checkPress() {
     for (int i = 0; i<ib.length; i++) {
