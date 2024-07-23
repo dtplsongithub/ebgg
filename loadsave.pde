@@ -35,12 +35,9 @@ void loadbg(File selection){
     Myfreq = float(values[14+ptmheight]);
     staticx = int(values[15+ptmheight]);
     palcmult = int(values[16+ptmheight]);
-  } catch (ArrayIndexOutOfBoundsException e) {
+  } catch (ArrayIndexOutOfBoundsException | NumberFormatException | Error e) {
     log.warn(e+". Failed to fully load background. Potential wrong background format.");
-  } catch (NumberFormatException e) {
-    log.warn(e+". Failed to fully load background. Potential wrong background format.");
-  } catch (Error e) {
-    log.warn(e+". Failed to fully load background. Potential wrong background format.");
+    restoreDefaults();
   }
 }
 

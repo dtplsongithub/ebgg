@@ -192,6 +192,7 @@ boolean isButtonHovered() {
 }
 void saveBackgroundFile(File selection) {
   if (selection == null) {
+    restoreDefaults();
     println("Window was closed or the user hit cancel.");
   } else {
     saveStrings(selection.getAbsolutePath(), getBackground());

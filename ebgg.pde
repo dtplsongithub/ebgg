@@ -36,8 +36,8 @@ AwtProgramSettings awt2;
 boolean errorIsBeingShown = false, warnIsBeingShown = false;
 
 // settings-related things
-byte version = (byte)16;
-String versionString = "v1.6";
+byte version = (byte)161;
+String versionString = "v1.61";
 byte[] defaultSettings = {version, 1, 30, 0, 0, 1, 0, 0}, config;
 String settingsType = "csccccc";
 String[] settingsDescription = {
@@ -65,16 +65,15 @@ int[] o5 = {5, 255, 30};
 
 // variables
 long t = 0, realt = 0;
-int bgno = 0;
-float Cx=0, Cy=0, vCx, vCy, Mxscale, Mxfreq, Myscale, Myfreq;
+int bgno = 0, widthf, heightf;
+float Cx=0, Cy=0;
 int paloffset = 0;
-double Mxtemp, Mytemp;
-int scrollY = 0;
 
 // backgrouns settings
-String backgroundName = "no background loaded...";
+String backgroundName;
 color[] pal = new color[2];
-int palf = 1, palssa, scale = 1, Mxinterl, staticx, palcmult = 1, widthf, heightf;
+int palf, palssa, scale, Mxinterl, staticx, palcmult;
+float vCx, vCy, Mxscale, Mxfreq, Myscale, Myfreq;
 boolean palc, palcreverse;
 int[][] ptm = new int[2][2];
 
@@ -90,6 +89,8 @@ PImage tile;
 // other
 int paletteIndexToEdit;
 String paletteEditTemp = "";
+double Mxtemp, Mytemp;
+int scrollY = 0;
 
 void setup() {
   log = new LOGFILE();
@@ -169,6 +170,8 @@ void setup() {
   awt2 = new AwtProgramSettings();
   errhandler.setLocation(-100, -100);
 
+  restoreDefaults();
+  
   log.loaded("finished loading");
 }
 
@@ -179,7 +182,7 @@ void draw() {
   if (backgroundName != "no background loaded...") {
     if((config[7]==0)&&(!(focused||editor.focused))){
       fill(255);
-      text("Please click on this window to resume.", 0, 380);
+      text("Please click on any ebgg window to resume.", 0, 380);
       return;
     }
     try {
@@ -204,7 +207,7 @@ void draw() {
     Cy += vCy;
     t++;
     if (t%palf == 0 && palc) {
-      paloffset += ( int(!palcreverse)*2-1 )*palcmult;
+      paloffset += palcreverse ? -palcmult : palcmult;
       paloffset = rem(paloffset, pal.length - 1);
     }
   }
@@ -260,8 +263,7 @@ void loadbg() {
 */
 void optionsCheckKeyPress(int kc) {
   switch (kc) {
-  case UP:
-    {
+  case UP: {
       menuselect--;
       switch (menu) {
       case 0:
@@ -280,8 +282,7 @@ void optionsCheckKeyPress(int kc) {
       }
       break;
     }
-  case DOWN:
-    {
+  case DOWN: {
       menuselect++;
       switch (menu) {
       case 0:
@@ -300,11 +301,10 @@ void optionsCheckKeyPress(int kc) {
       }
       break;
     }
-  case +RIGHT:
-  case +65:
-  case +68:
-  case LEFT:
-    {
+  case RIGHT:
+  case 65:
+  case 68:
+  case LEFT: {
       if (menu == 1) {
         if (kc>60)bigstepsappear=false;
         switch (menuselect) {
@@ -392,8 +392,7 @@ void optionsCheckKeyPress(int kc) {
       }
       break;
     }
-  case ENTER:
-    {
+  case ENTER: {
       if (menu == 6) {
         menu = 8;
         paletteIndexToEdit = menuselect;
@@ -411,4 +410,12 @@ void updateSize() {
 void saveConfig() {
   updateSize();
   saveBytes("config.dat", config);
+}
+void restoreDefaults() {
+  backgroundName = "no background loaded...";
+  pal = new color[2];
+  palf = 1; palssa = 0; scale = 1; Mxinterl = 0; staticx = 0; palcmult = 1;
+  vCx = 0; vCy = 0; Mxscale = 0; Mxfreq = 0; Myscale = 0; Myfreq = 0;
+  palc = false; palcreverse = false;
+  ptm = new int[2][2];
 }
