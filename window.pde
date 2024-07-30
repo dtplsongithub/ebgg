@@ -82,7 +82,7 @@ class AwtProgram1 {
     tabPanel.addTab("What's new", page1);
     // tabPanel.addTab("About", page2);
     tabPanel.addTab("Troubleshooting FAQ", page3);
-    tabPanel.addTab("Help", page4);
+    tabPanel.addTab("Miscellaneous help", page4);
     window2.add(tabPanel);
 
 

@@ -1,7 +1,7 @@
-void loadbg(File selection){
+void loadbg(String selection){
   if (selection == null) return;
   try {
-    String[] values = loadStrings(selection.getAbsolutePath());
+    String[] values = loadStrings(selection);
     backgroundName = values[0];
     pal = new color[values[1].split(",").length];
     for (int i = 0; i<pal.length; i++){

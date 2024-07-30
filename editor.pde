@@ -71,8 +71,6 @@ class Toolbox {
     ib[11].active = false;
   }
   public void render() {
-    // editor.fill(0, 127, 255, 64);
-    // editor.rect(this.currentToolSelected*32+30, 68, 32, 32);
     int rs = floor(min(900/ptm[0].length, 400/ptm.length))+zoom;
     editor.noStroke();
     for (int y = 0; y<ptm.length; y++) {

@@ -32,32 +32,20 @@ public class TextButton {
       else
         editor.fill(128, 192, 255);
     }
+    anim+=(animTarget-anim)/5;
     editor.rect(this.x+anim, this.y-anim, this.w, this.h);
     editor.fill(0);
     editor.text(this.text, this.x+10+anim, this.y+20-anim);
     editor.fill(255);
     
-    anim+=(animTarget-anim)/5;
   }
 }
-
 public class ImageButton {
   public String id;
   public PImage img;
   private int x, y, w, h, scale = 1;
   public int activeMenu;
   public boolean active = true;
-  public ImageButton(String _id, int _x, int _y, int _menu, String imgLocation) {
-    img = loadImage(imgLocation);
-    log.loaded("asset for imageButton "+imgLocation);
-    this.id = _id;
-    this.x = _x;
-    this.y = _y;
-    this.w = img.width;
-    this.h = img.height;
-    this.activeMenu = _menu;
-    log.created("imageButton "+id);
-  }
   public ImageButton(String _id, int _x, int _y, int _menu, String imgLocation, int imageScale) {
     img = loadImage(imgLocation);
     log.loaded("asset for imageButton "+imgLocation);
@@ -91,9 +79,12 @@ public class ImageButton {
 }
 
 void renderButtons() {
+  int idx = 0;
   for (TextButton i: buttons) {
     try {
+      if ((idx>=12&&idx<=16)&&fullscreenModeEnabled) continue;
       i.render();
+      idx++;
     } catch (NullPointerException e) {
       log.error(e+" on renderButtons()", true);
     }
@@ -111,26 +102,21 @@ void checkButtons() {
       case "editPalette": menu = 6; break;
       case "editPaletteMap": menu = 7; break;
       case "saveBackground": {
-        println("Please select output file... (must be .deb!)");
-        selectOutput("Please select output file... (must be .deb!)", "saveBackgroundFile");
-        break;
-      }/*
-      case "confirmOverwrite": {
-        saveStrings("background/"+backgroundName+".deb", saveBackground());
-        buttons[6].id = "saveBackground";
-        buttons[6].text = "save";
-        buttons[6].w = 100;
-        buttons[7].active = false;
-        loadbglist();
+        fileselector.setVisible(true);
+        fileselector.setDialogTitle("Please select output file...");
+        EventQueue.invokeLater(new Runnable() {
+          @Override
+          public void run() {
+            int returnValue = fileselector.showSaveDialog(null);
+            if (returnValue == JFileChooser.APPROVE_OPTION) {
+              saveStrings(fileselector.getSelectedFile().getPath()+".deb", getBackground());
+            }/*else {
+              println("ok bro");
+            }*/
+          }
+        });
         break;
       }
-      case "cancelOverwrite": {
-        buttons[6].id = "saveBackground";
-        buttons[6].text = "save";
-        buttons[6].w = 100;
-        buttons[7].active = false;
-        break;
-      }*/
       case "createPaletteColor": {
         menuselect = pal.length;
         pal = append(pal, 0xFFFFFFFF);
@@ -160,7 +146,23 @@ void checkButtons() {
         if (menuselect>0)menuselect--;
         break;
       }
-      case "goToLoader": selectInput("Select a file...", "loadbg");break;
+      case "goToLoader": {
+        fileselector.setVisible(true);
+        fileselector.setDialogTitle("Please select file...");
+        EventQueue.invokeLater(new Runnable() {
+          @Override
+          public void run() {
+            int returnValue = fileselector.showOpenDialog(null);
+            if (returnValue == JFileChooser.APPROVE_OPTION) {
+              restoreDefaults();
+              loadbg(fileselector.getSelectedFile().getPath());
+            }/*else {
+              println("ok bro");
+            }*/
+          }
+        });
+        break;
+      }
       case "goToHelp": awt.window2.setVisible(true);awt.tabPanel.setSelectedIndex(1);break;
       case "goToChangelog": awt.window2.setVisible(true);awt.tabPanel.setSelectedIndex(0);break;
       case "goToSettings": awt2.settings.setVisible(true);break;
@@ -189,13 +191,4 @@ boolean isButtonHovered() {
     if (i.checkIfHovered()) return true;
   }
   return false;
-}
-void saveBackgroundFile(File selection) {
-  if (selection == null) {
-    restoreDefaults();
-    println("Window was closed or the user hit cancel.");
-  } else {
-    saveStrings(selection.getAbsolutePath(), getBackground());
-    loadbglist();
-  }
 }

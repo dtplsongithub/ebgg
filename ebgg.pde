@@ -14,6 +14,7 @@ import java.awt.event.ItemListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -27,17 +28,20 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
 import javax.swing.text.html.HTMLDocument;
-
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
 
 ChildAppletEditor editor;
 AwtProgram1 awt;
 AwtProgramSettings awt2;
 
+JFileChooser fileselector; // am i inconsistent with where i define things?
+
 boolean errorIsBeingShown = false, warnIsBeingShown = false;
 
 // settings-related things
 byte version = (byte)161;
-String versionString = "v1.61";
+String versionString = "v1.6.1";
 byte[] defaultSettings = {version, 1, 30, 0, 0, 1, 0, 0}, config;
 String settingsType = "csccccc";
 String[] settingsDescription = {
@@ -45,9 +49,7 @@ String[] settingsDescription = {
   "scroll sensitivity",
   "enable beta buttons",
   "enable java default window look and feel (requires restart)",
-  //"expand color picker",
   "enable custom cursors (requires restart if disabling)",
-  //"background fps (requires restart)"
   "fullscreen mode",
   "render when window is not active"
 }, settingsHelp = {
@@ -55,9 +57,7 @@ String[] settingsDescription = {
   "",
   "when hovered/selected button will turn gray instead of blue like in beta versions of v1.3.0",
   "",
-  //"will show 2 rows instead of 1 in the color picker menu.",
   "",
-  //"! anything over 50 fps is not recommended !"
   "",
   "if all windows are not active, the window will still render. if this option is disabled, the background window will not render when all ebgg windows are inactive and performance will be gained."
 };
@@ -82,8 +82,6 @@ int inactive = 0;
 // fonts
 PFont MSGothic20, MSGothic32;
 
-// assets
-// MaskImage assets are defined in MaskImage file
 PImage tile;
 
 // other
@@ -91,6 +89,7 @@ int paletteIndexToEdit;
 String paletteEditTemp = "";
 double Mxtemp, Mytemp;
 int scrollY = 0;
+boolean fullscreenModeEnabled;
 
 void setup() {
   log = new LOGFILE();
@@ -106,22 +105,25 @@ void setup() {
   }
   log.log(isnotok?"config.dat problems were found and fixed.":"No config.dat problems found.");
   size(960, 720, P2D);
-  widthf = config[6]==1?displayWidth:960; heightf=config[6]==1?displayHeight:720;
-  updateSize();
-  frameRate(30);
-  
+  fullscreenModeEnabled = args!=null&&((String)args[0]).startsWith("--fullscreen");
+  if (fullscreenModeEnabled) {
+    this.windowResize(displayWidth, displayHeight);
+  } else {
+    widthf = config[6]==1?displayWidth:960; heightf=config[6]==1?displayHeight:720;
+    updateSize();
+  }
   editor = new ChildAppletEditor();
+  frameRate(30);
   
   noStroke();
   background(0);
   
-  MSGothic32 = loadFont("MS-Gothic-32.vlw");
-  log.loaded("font MSGothic32");
   MSGothic20 = loadFont("MS-Gothic-20.vlw");
   log.loaded("font MSGothic20");
+  MSGothic32 = loadFont("MS-Gothic-32.vlw");
+  log.loaded("font MSGothic32");
   textFont(MSGothic20);
   
-  //loadbg();
   menu = 10;
 
   buttons[0] = new TextButton("editName", 600, 75, 150, 30, "click to edit", 1);
@@ -133,10 +135,6 @@ void setup() {
   buttons[5] = new TextButton("goToEditor", 30, 680, 60, 30, "back", 7);
   
   buttons[6] = new TextButton("saveBackground", 30, 650, 60, 30, "save", 1);
-  //buttons[7] = new TextButton("cancelOverwrite", 600, 650, 80, 30, "cancel", 1);
-  //buttons[7].active = false;
-  //buttons[8] = new TextButton("cancelExit", 600, 650, 80, 30, "cancel", 1);
-  //buttons[8].active = false;
   
   buttons[7] = new TextButton("createPaletteColor", 600, 680, 0, 30, "create new palette color", 6);
   buttons[8] = new TextButton("savePaletteColor", 600, 680, 0, 30, "save palette color", 8);
@@ -169,6 +167,11 @@ void setup() {
   awt = new AwtProgram1();
   awt2 = new AwtProgramSettings();
   errhandler.setLocation(-100, -100);
+  fileselector = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+  fileselector.setAcceptAllFileFilterUsed(false);
+  FileNameExtensionFilter filter = new FileNameExtensionFilter("regular background (.deb)", "deb");
+  fileselector.addChoosableFileFilter(filter);
+  fileselector.setVisible(false);
 
   restoreDefaults();
   
@@ -179,8 +182,11 @@ void draw() {
   inactive++;
   realt++;
   background(0);
+  boolean editorFocused;
+  if (fullscreenModeEnabled) editorFocused = true;
+  else editorFocused = editor.focused; // to prevent NullPointerException
   if (backgroundName != "no background loaded...") {
-    if((config[7]==0)&&(!(focused||editor.focused))){
+    if((config[7]==0)&&(!(focused||editorFocused))){
       fill(255);
       text("Please click on any ebgg window to resume.", 0, 380);
       return;
@@ -189,8 +195,8 @@ void draw() {
       for (int y = 0; y < height/scale; y++) {
         Mxtemp = Math.sin(Math.toRadians((y+t))*Mxfreq)*Mxscale*((int(y%2==0)*-Mxinterl*2+1));
         Mytemp = Math.sin(Math.toRadians((y+t))*Myfreq)*Myscale;
+        int ptmy = rem(Math.round(y+Cy+(int)(Math.round(Mytemp))), ptm.length);
         for (int x = 0; x < width/scale; x++) {
-          int ptmy = rem(Math.round(y+Cy+(int)(Math.round(Mytemp))), ptm.length);
           int ptmx = rem(Math.round(x+Cx+(int)(Math.round(Mxtemp))+random(0, staticx)), ptm[0].length);
           if (ptm[ptmy][ptmx] < palssa) {
             fill(pal[ptm[ptmy][ptmx]]);
@@ -248,19 +254,7 @@ String[] loadFilenames(String path, String filename) {
   for (int i = 0; i<files.length; i++) if (files[i].toLowerCase().endsWith("."+filename)) filteredfiles = append(filteredfiles, files[i]);
   return filteredfiles;
 }
-/*
-void loadbg() {
-  menu = 0;
-  t = 0;
-  Cx = 0;
-  Cy = 0;
-  paloffset = 0;
-  loadbglist();
-  loadbg(bglist[menuselect]);
-  inactive = 0;
-  bgno = menuselect;
-}
-*/
+
 void optionsCheckKeyPress(int kc) {
   switch (kc) {
   case UP: {
@@ -404,7 +398,6 @@ void optionsCheckKeyPress(int kc) {
 }
 void updateSize() {
   widthf = config[6]==1?displayWidth:960; heightf = config[6]==1?displayHeight:720;
-  // if (config[6]==1) surface.setLocation(0, 0); // causes it to randomly lag
   this.windowResize(widthf, heightf);
 }
 void saveConfig() {

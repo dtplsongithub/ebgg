@@ -165,6 +165,7 @@ class ChildAppletEditor extends PApplet {
       }
       case 10: {
         text(versionString, 30, 700);
+        text(fullscreenModeEnabled?"fullscreen mode is enabled":"", 30, 670);
         break;
       }
       case 14: { // RESIZE PTM
@@ -195,12 +196,12 @@ class ChildAppletEditor extends PApplet {
         boldText("bug fixers:", 50, 156);
         wavyText("dtpls, Ponali", 170, 156, 0, 3, 0.14, 0.14, 0, 0, 10, 0, 2);
         boldText("backgrounds:", 50, 187);
-        wavyText("dtpls, Ponali, slinx92", 180, 187, 0, 3, 0.14, 0.134, 0, 0, 10, 0, 2);
+        wavyText("dtpls, Ponali, slinx92, hexahedron1", 180, 187, 0, 3, 0.14, 0.134, 0, 0, 10, 0, 2); // square was cube's idea
         boldText("assets:", 50, 218);
         wavyText("dtpls", 130, 218, 0, 3, 0.14, 0.12, 0, 0, 10, 0, 2);
         boldText("special thanks to:", 50, 400);
         wavyText("hexahedron1, slinx92 , Restart, tom1212 (aka potato camputerr), ", 240, 400, 2, 4, 0.11, 0.02, 0, 0, 10, 0, 2);
-        wavyText("laf9769, Shigesato Itoi, ", 240, 425, 2, 4, 0.11, 0.02, 0, 0, 10, 0, 2);
+        wavyText("laf9769, Shigesato Itoi, Retro Game Mechanics Explained,", 240, 425, 2, 4, 0.11, 0.02, 0, 0, 10, 0, 2);
         boldText("and you for using ebgg! :D", 240, 450);
         wavyText("Written in Processing 4.3", 355, 660, 3, 5, 0.11, 0.02, 0, 0, 10, 0, 2); //<>//
         break;
@@ -229,12 +230,10 @@ class ChildAppletEditor extends PApplet {
   if (menu == 5 || menu == 8 ) keyboardDetection(editor.keyCode, editor.key);
     optionsCheckKeyPress(editor.keyCode);
     if (key == ESC) logexit();
-    /**/
     if (key == 's') {
       image(cursor.image, this.mouseX, this.mouseY);
       saveFrame("screenshot.png");
     }
-    /**/
   }
   void option(float what, int i, int y) {
     if( what == -0 ) what = 0;
