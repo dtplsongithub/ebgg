@@ -169,8 +169,8 @@ void setup() {
   errhandler.setLocation(-100, -100);
   fileselector = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
   fileselector.setAcceptAllFileFilterUsed(false);
-  FileNameExtensionFilter filter = new FileNameExtensionFilter("regular background (.deb)", "deb");
-  fileselector.addChoosableFileFilter(filter);
+  fileselector.addChoosableFileFilter(new FileNameExtensionFilter(".deb", "deb"));
+  // fileselector.addChoosableFileFilter(new FileNameExtensionFilter(".deb2", "deb2")); // soon
   fileselector.setVisible(false);
 
   restoreDefaults();
