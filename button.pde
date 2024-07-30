@@ -109,7 +109,7 @@ void checkButtons() {
           public void run() {
             int returnValue = fileselector.showSaveDialog(null);
             if (returnValue == JFileChooser.APPROVE_OPTION) {
-              saveStrings(fileselector.getSelectedFile().getPath()+fileselector.getFileFilter().getDescription(), getBackground());
+              saveStrings(fileselector.getSelectedFile().getPath()+fileselector.getFileFilter().getDescription().split(" ")[0], getBackground());
             }/*else {
               println("ok bro");
             }*/

@@ -169,7 +169,7 @@ void setup() {
   errhandler.setLocation(-100, -100);
   fileselector = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
   fileselector.setAcceptAllFileFilterUsed(false);
-  fileselector.addChoosableFileFilter(new FileNameExtensionFilter(".deb", "deb"));
+  fileselector.addChoosableFileFilter(new FileNameExtensionFilter(".deb (default format)", "deb"));
   // fileselector.addChoosableFileFilter(new FileNameExtensionFilter(".deb2", "deb2")); // soon
   fileselector.setVisible(false);
 
