@@ -167,11 +167,11 @@ void setup() {
   awt = new AwtProgram1();
   awt2 = new AwtProgramSettings();
   errhandler.setLocation(-100, -100);
+  errhandler.setAlwaysOnTop(true);
   fileselector = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
   fileselector.setAcceptAllFileFilterUsed(false);
   fileselector.addChoosableFileFilter(new FileNameExtensionFilter(".deb (default format)", "deb"));
   // fileselector.addChoosableFileFilter(new FileNameExtensionFilter(".deb2", "deb2")); // soon
-  fileselector.setVisible(false);
 
   restoreDefaults();
   

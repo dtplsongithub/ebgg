@@ -22,7 +22,7 @@ class ChildAppletEditor extends PApplet {
   public void draw() {
     if (oldmenu != menu && menu>=0) {
       try {
-        menuselect=0; //<>// //<>//
+        menuselect=0; //<>//
         windowTitle(menutitle[menu]);
       } catch (ArrayIndexOutOfBoundsException e) {
         log.error(e+" on changing window title", true);
@@ -203,7 +203,7 @@ class ChildAppletEditor extends PApplet {
         wavyText("hexahedron1, slinx92 , Restart, tom1212 (aka potato camputerr), ", 240, 400, 2, 4, 0.11, 0.02, 0, 0, 10, 0, 2);
         wavyText("laf9769, Shigesato Itoi, Retro Game Mechanics Explained,", 240, 425, 2, 4, 0.11, 0.02, 0, 0, 10, 0, 2);
         boldText("and you for using ebgg! :D", 240, 450);
-        wavyText("Written in Processing 4.3", 355, 660, 3, 5, 0.11, 0.02, 0, 0, 10, 0, 2); //<>// //<>//
+        wavyText("Written in Processing 4.3", 355, 660, 3, 5, 0.11, 0.02, 0, 0, 10, 0, 2); //<>//
         break;
       }
       default: {

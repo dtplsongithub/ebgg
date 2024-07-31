@@ -107,7 +107,8 @@ void checkButtons() {
         EventQueue.invokeLater(new Runnable() {
           @Override
           public void run() {
-            int returnValue = fileselector.showSaveDialog(null);
+            errhandler.setLocation(displayWidth/2, displayHeight/2);
+            int returnValue = fileselector.showSaveDialog(errhandler);
             if (returnValue == JFileChooser.APPROVE_OPTION) {
               saveStrings(fileselector.getSelectedFile().getPath()+fileselector.getFileFilter().getDescription().split(" ")[0], getBackground());
             }/*else {
@@ -115,6 +116,7 @@ void checkButtons() {
             }*/
           }
         });
+        errhandler.setLocation(-100, -100);
         break;
       }
       case "createPaletteColor": {
@@ -152,7 +154,8 @@ void checkButtons() {
         EventQueue.invokeLater(new Runnable() {
           @Override
           public void run() {
-            int returnValue = fileselector.showOpenDialog(null);
+            errhandler.setLocation(displayWidth/2, displayHeight/2);
+            int returnValue = fileselector.showOpenDialog(errhandler);
             if (returnValue == JFileChooser.APPROVE_OPTION) {
               restoreDefaults();
               loadbg(fileselector.getSelectedFile().getPath());
@@ -161,6 +164,7 @@ void checkButtons() {
             }*/
           }
         });
+        errhandler.setLocation(-100, -100);
         break;
       }
       case "goToHelp": awt.window2.setVisible(true);awt.tabPanel.setSelectedIndex(1);break;
