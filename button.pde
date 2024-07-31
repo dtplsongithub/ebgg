@@ -104,6 +104,7 @@ void checkButtons() {
       case "saveBackground": {
         fileselector.setVisible(true);
         fileselector.setDialogTitle("Please select output file...");
+            errhandler.setLocation(displayWidth/2, displayHeight/2);
         EventQueue.invokeLater(new Runnable() {
           @Override
           public void run() {
@@ -116,7 +117,6 @@ void checkButtons() {
             }*/
           }
         });
-        errhandler.setLocation(-100, -100);
         break;
       }
       case "createPaletteColor": {
@@ -151,10 +151,10 @@ void checkButtons() {
       case "goToLoader": {
         fileselector.setVisible(true);
         fileselector.setDialogTitle("Please select file...");
+            errhandler.setLocation(displayWidth/2, displayHeight/2);
         EventQueue.invokeLater(new Runnable() {
           @Override
           public void run() {
-            errhandler.setLocation(displayWidth/2, displayHeight/2);
             int returnValue = fileselector.showOpenDialog(errhandler);
             if (returnValue == JFileChooser.APPROVE_OPTION) {
               restoreDefaults();
@@ -164,7 +164,6 @@ void checkButtons() {
             }*/
           }
         });
-        errhandler.setLocation(-100, -100);
         break;
       }
       case "goToHelp": awt.window2.setVisible(true);awt.tabPanel.setSelectedIndex(1);break;

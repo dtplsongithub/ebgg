@@ -35,6 +35,9 @@ void loadbg(String selection){
     Myfreq = float(values[14+ptmheight]);
     staticx = int(values[15+ptmheight]);
     palcmult = int(values[16+ptmheight]);
+    println(backgroundName+": ");
+    println(".deb file size: "+ join(values, '\n').length());
+    println(".debc file size: "+ (41+pal.length*3+ptmwidth*ptmheight));
   } catch (ArrayIndexOutOfBoundsException | NumberFormatException | Error e) {
     log.warn(e+". Failed to fully load background. Potential wrong background format.");
     restoreDefaults();
