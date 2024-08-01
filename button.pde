@@ -32,11 +32,11 @@ public class TextButton {
       else
         editor.fill(128, 192, 255);
     }
-    anim+=(animTarget-anim)/5;
     editor.rect(this.x+anim, this.y-anim, this.w, this.h);
     editor.fill(0);
     editor.text(this.text, this.x+10+anim, this.y+20-anim);
     editor.fill(255);
+    anim+=(animTarget-anim)/5;
     
   }
 }
@@ -92,7 +92,7 @@ void renderButtons() {
 }
 
 void checkButtons() {
-  if(mouseHold) return;
+  //if(mouseHold) return;
   for (TextButton i: buttons) {
     if (i.activeMenu != menu || !i.active) continue; // god i love continue
     if (!i.checkIfHovered()) continue;
@@ -101,20 +101,21 @@ void checkButtons() {
       case "editName": menu = 5; break;
       case "editPalette": menu = 6; break;
       case "editPaletteMap": menu = 7; break;
+      case "goToLoader":
       case "saveBackground": {
-        fileselector.setVisible(true);
-        fileselector.setDialogTitle("Please select output file...");
-            errhandler.setLocation(displayWidth/2, displayHeight/2);
+        fileselector.setDialogTitle(i.id=="goToLoader"?"Please select file...":"Please select output file...");
         EventQueue.invokeLater(new Runnable() {
           @Override
           public void run() {
-            errhandler.setLocation(displayWidth/2, displayHeight/2);
-            int returnValue = fileselector.showSaveDialog(errhandler);
+            int returnValue = fileselector.showDialog(errhandler, i.id=="goToLoader"?"Open":"Save");
             if (returnValue == JFileChooser.APPROVE_OPTION) {
-              saveStrings(fileselector.getSelectedFile().getPath()+fileselector.getFileFilter().getDescription().split(" ")[0], getBackground());
-            }/*else {
-              println("ok bro");
-            }*/
+              if (i.id=="goToLoader") {
+                restoreDefaults();
+                loadbg(fileselector.getSelectedFile().getPath());
+              } else {
+                saveStrings(fileselector.getSelectedFile().getPath()+fileselector.getFileFilter().getDescription().split(" ")[0], getBackground());
+              }
+            }
           }
         });
         break;
@@ -146,24 +147,6 @@ void checkButtons() {
           pal = shorten(pal);
         };
         if (menuselect>0)menuselect--;
-        break;
-      }
-      case "goToLoader": {
-        fileselector.setVisible(true);
-        fileselector.setDialogTitle("Please select file...");
-            errhandler.setLocation(displayWidth/2, displayHeight/2);
-        EventQueue.invokeLater(new Runnable() {
-          @Override
-          public void run() {
-            int returnValue = fileselector.showOpenDialog(errhandler);
-            if (returnValue == JFileChooser.APPROVE_OPTION) {
-              restoreDefaults();
-              loadbg(fileselector.getSelectedFile().getPath());
-            }/*else {
-              println("ok bro");
-            }*/
-          }
-        });
         break;
       }
       case "goToHelp": awt.window2.setVisible(true);awt.tabPanel.setSelectedIndex(1);break;

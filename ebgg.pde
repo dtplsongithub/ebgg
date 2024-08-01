@@ -171,7 +171,7 @@ void setup() {
   fileselector = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
   fileselector.setAcceptAllFileFilterUsed(false);
   fileselector.addChoosableFileFilter(new FileNameExtensionFilter(".deb (default format)", "deb"));
-  // fileselector.addChoosableFileFilter(new FileNameExtensionFilter(".deb2", "deb2")); // soon
+  fileselector.addChoosableFileFilter(new FileNameExtensionFilter(".debc (compressed format)", "debc")); // soon't
 
   restoreDefaults();
   
