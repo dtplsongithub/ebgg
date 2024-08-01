@@ -188,7 +188,7 @@ class ChildAppletEditor extends PApplet {
         fill(255);
         noStroke();
         textFont(MSGothic32);
-        wavyText("ebgg "+versionString, 408, 66, 5, 5, 0.1, 0.1, 0, HALF_PI, 16, 0, 3);
+        wavyText("ebgg "+versionString, (int)(width/2-textWidth("ebgg "+versionString)/2), 66, 5, 5, 0.1, 0.1, 0, HALF_PI, 16, 0, 3);
         textFont(MSGothic20);
         wavyText("by dtpls and Ponali", 385, 94, 3, 0, 0.15, 0, 0, 0, 10, 0, 2);
         boldText("coders:", 50, 125);
@@ -196,9 +196,11 @@ class ChildAppletEditor extends PApplet {
         boldText("bug fixers:", 50, 156);
         wavyText("dtpls, Ponali", 170, 156, 0, 3, 0.14, 0.14, 0, 0, 10, 0, 2);
         boldText("backgrounds:", 50, 187);
-        wavyText("dtpls, Ponali, slinx92, hexahedron1", 180, 187, 0, 3, 0.14, 0.134, 0, 0, 10, 0, 2); // square was cube's idea
+        wavyText("dtpls, Ponali, slinx92, hexahedron1", 180, 187, 0, 3, 0.14, 0.134, 0, 0, 10, 0, 2);
         boldText("assets:", 50, 218);
         wavyText("dtpls", 130, 218, 0, 3, 0.14, 0.12, 0, 0, 10, 0, 2);
+        boldText("beta testers:", 50, 249);
+        wavyText("slinx92", 190, 249, 0, 3, 0.14, 0.12, 0, 0, 10, 0, 2);
         boldText("special thanks to:", 50, 400);
         wavyText("hexahedron1, slinx92 , Restart, tom1212 (aka potato camputerr), ", 240, 400, 2, 4, 0.11, 0.02, 0, 0, 10, 0, 2);
         wavyText("laf9769, Shigesato Itoi, Retro Game Mechanics Explained,", 240, 425, 2, 4, 0.11, 0.02, 0, 0, 10, 0, 2);
@@ -271,9 +273,9 @@ class ChildAppletEditor extends PApplet {
   }
   public void mouseMoved() {
     if (boolean(config[5])) {
-      if (isButtonHovered()) { cursor(HAND); }
-      else if (menu == 5 || menu == 8) { cursor(TEXT); }
-      else { cursor(ARROW); }
+      if (isButtonHovered()) cursor(HAND); 
+      else if (menu == 5 || menu == 8) cursor(TEXT);
+      else cursor(ARROW);
     }
   }
   public void mouseReleased() {

@@ -1,5 +1,9 @@
-String whatsnewText = "<html><h1>v1.6.0</h1>"+ // you dont need to use the id anymore
-"<h2>2024 July 17</h2>"+ // also just so you know cool means new and important thing added, awesome means not *as* important
+ // just so you know cool means new and important thing added, awesome means not *as* important
+String whatsnewText = "<html><h1>v1.6.1</h1>"+
+"<h2>2024 August the somethingth</h2>"+
+"TODO: insert changelog"+
+"<h1>v1.6.0</h1>"+
+"<h2>2024 July 17</h2>"+
 "<b>[COOL]</b> New Troubleshooting FAQ and misc help tab!<br>"+
 "<b>[COOL]</b> Updated about screen!<br>"+
 "<b>[AWESOME]</b> Fancy button and menu selection transitions<br>"+
