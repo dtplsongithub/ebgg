@@ -1,7 +1,8 @@
-void loadbg(String selection){
+void loadbg(String selection){ // yes
   if (selection == null) return;
   try {
-    String[] values = loadStrings(selection);
+    String[] values;
+    values = loadStrings(selection);
     backgroundName = values[0];
     pal = new color[values[1].split(",").length];
     for (int i = 0; i<pal.length; i++){
@@ -37,7 +38,7 @@ void loadbg(String selection){
     palcmult = int(values[16+ptmheight]);
     println(backgroundName+": ");
     println(".deb file size: "+ join(values, '\n').length());
-    println(".debc file size: "+ (41+pal.length*3+ptmwidth*ptmheight));
+    println(".debc file size: "+ (39+pal.length*3+ptmwidth*ptmheight));
   } catch (ArrayIndexOutOfBoundsException | NumberFormatException | Error e) {
     log.warn(e+". Failed to fully load background. Potential wrong background format.");
     restoreDefaults();
@@ -56,7 +57,7 @@ boolean fileExists(String filename) {
 }
 
 String[] getBackground() {
-  String[] backgroundTemp = new String[16+ptm.length+1];
+  String[] backgroundTemp = new String[17+ptm.length];
   backgroundTemp[0] = backgroundName;
   String[] paltemp = new String[0];
   for (int i = 0; i<pal.length; i++) {
@@ -82,6 +83,38 @@ String[] getBackground() {
   backgroundTemp[15+ptm.length] = staticx+"";
   backgroundTemp[16+ptm.length] = palcmult+"";
   return backgroundTemp;
+}
+
+byte[] getdebcBackground() {
+  byte[] out = new byte[0];
+  out = concat(out, getBytes("debc"));
+  out = append(out, version);
+  out = append(out, (byte)backgroundName.length());
+  out = concat(out, getBytes(backgroundName));
+  out = concat(out, getBytes((short)pal.length));
+  for(color i: pal) {
+    out = append(out, (byte)red(i));
+    out = append(out, (byte)green(i));
+    out = append(out, (byte)blue(i));
+  }
+  out = append(out, (byte)palf);
+  out = append(out, (byte)(palc?1:0|(palcreverse?2:0)|(Mxinterl<<2))); // <<2 because mxinterl is an int for some reason?? ask me from 8 months ago as to **why**
+  out = append(out, (byte)palssa);
+  out = concat(out, getBytes(vCx));
+  out = concat(out, getBytes(vCy));
+  out = append(out, (byte)ptm[0].length);
+  out = append(out, (byte)ptm.length);
+  for (int[] i: ptm) {
+    for (int j: i) {
+      out = append(out, (byte)j);
+    }
+  }
+  out = concat(out, getBytes(Mxscale));
+  out = concat(out, getBytes(Mxfreq));
+  out = concat(out, getBytes(Myscale));
+  out = concat(out, getBytes(Myfreq));
+  out = append(out, (byte)staticx);
+  return out;
 }
 
 boolean checkSave() {
@@ -115,4 +148,29 @@ boolean checkSave() {
   
   saveBytes("config.dat", config);
   return problem;
+}
+
+byte[] getBytes(float x) {
+  byte[] out = new byte[4];
+  int xint = Float.floatToIntBits(x);
+  for (int i = 0; i<4;i++) out[i]=(byte)((xint>>8*i)%256);
+  return out;
+}
+
+byte[] getBytes(int x) {
+  byte[] out = new byte[4];
+  for (int i = 0; i<4;i++) out[i]=(byte)((x>>8*i)%256);
+  return out;
+}
+
+byte[] getBytes(short x) {
+  byte[] out = new byte[2];
+  for (int i = 0; i<2;i++) out[i]=(byte)((x>>8*i)%256);
+  return out;
+}
+
+byte[] getBytes(String x) {
+  byte[] out = new byte[x.length()];
+  for (int i = 0; i<out.length;i++) out[i]=(byte)x.charAt(i);
+  return out;
 }

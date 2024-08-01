@@ -40,8 +40,8 @@ JFileChooser fileselector; // am i inconsistent with where i define things?
 boolean errorIsBeingShown = false, warnIsBeingShown = false;
 
 // settings-related things
-byte version = (byte)161;
-String versionString = "v1.6.1";
+byte version = (byte)17;
+String versionString = "v1.7";
 byte[] defaultSettings = {version, 1, 30, 0, 0, 1, 0, 0}, config;
 String settingsType = "csccccc";
 String[] settingsDescription = {

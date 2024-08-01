@@ -20,23 +20,21 @@ public class TextButton {
   }
   public void render() {
     float animTarget=0;
-    if (this.activeMenu != menu || !this.active) return;
+    boolean canDraw = this.activeMenu == menu && this.active;
     editor.fill(196,64);
     editor.noStroke();
-    editor.rect(this.x, this.y, this.w, this.h);
+    if (canDraw) editor.rect(this.x, this.y, this.w, this.h);
     editor.fill(255);
     if (this.checkIfHovered()) {
       animTarget=8;
-      if (config[3] == 1)
-        editor.fill(192);
-      else
-        editor.fill(128, 192, 255);
+      if (config[3] == 1) editor.fill(192);
+      else editor.fill(128, 192, 255);
     }
-    editor.rect(this.x+anim, this.y-anim, this.w, this.h);
+    if (canDraw) editor.rect(this.x+anim, this.y-anim, this.w, this.h);
     editor.fill(0);
-    editor.text(this.text, this.x+10+anim, this.y+20-anim);
+    if (canDraw) editor.text(this.text, this.x+10+anim, this.y+20-anim);
     editor.fill(255);
-    anim+=(animTarget-anim)/5;
+    anim+=(animTarget-anim)/5; // so it always updates, but it updates after its drawn.
     
   }
 }
@@ -92,7 +90,6 @@ void renderButtons() {
 }
 
 void checkButtons() {
-  //if(mouseHold) return;
   for (TextButton i: buttons) {
     if (i.activeMenu != menu || !i.active) continue; // god i love continue
     if (!i.checkIfHovered()) continue;
@@ -109,11 +106,16 @@ void checkButtons() {
           public void run() {
             int returnValue = fileselector.showDialog(errhandler, i.id=="goToLoader"?"Open":"Save");
             if (returnValue == JFileChooser.APPROVE_OPTION) {
+              String path = fileselector.getSelectedFile().getPath(),
+                ext = fileselector.getFileFilter().getDescription().split(" ")[0]; // to avoid copy+pasting code
               if (i.id=="goToLoader") {
                 restoreDefaults();
                 loadbg(fileselector.getSelectedFile().getPath());
               } else {
-                saveStrings(fileselector.getSelectedFile().getPath()+fileselector.getFileFilter().getDescription().split(" ")[0], getBackground());
+                switch (ext) {
+                  case ".deb":saveStrings(path+(path.endsWith(ext)?"":ext), getBackground());break;
+                  case ".debc":saveBytes(path+ext, getdebcBackground());break;
+                }
               }
             }
           }
