@@ -19,23 +19,13 @@ class ChildAppletEditor extends PApplet {
   }
 
   public void draw() {
-    if (oldmenu != menu && menu>=0) {
-      try {
-        menuselect=0; //<>// //<>// //<>//
-        windowTitle(menutitle[menu]);
-      } catch (ArrayIndexOutOfBoundsException e) {
-        log.error(e+" on changing window title", true);
-      }
-      log.log("switched to menu "+menu);
-      oldmenu = menu;
-    }
+    // you know what stop updating the window title //<>//
     background(0);
     
     menuselectAnim+=(((float)menuselect)-menuselectAnim)/5;
     
     String[] menulist={};
     switch (menu) {
-      case 0: menulist=bglist;break;
       case 1: menulist=edopname;break;
       case 14: menulist=menu14;break;
     };
@@ -47,7 +37,7 @@ class ChildAppletEditor extends PApplet {
         for (int i = 0; i<menulist.length; i++){
           float chance = max(1-abs((min(menuselectAnim-(float)i,1)+1)%2-1),0);
           fill((1-chance)*255, 255, (1-chance)*255);
-          text(menulist[i], (int)(30+chance*6), i*30+100+scrollY);
+          text(menulist[i], (int)(30+chance*6), i*30+100);
         }
         break;
       }
@@ -62,7 +52,7 @@ class ChildAppletEditor extends PApplet {
       case 1: {
         fill(255);
         for (int i = 0; i<edopname.length; i++) {
-          int y = 100+i*30+scrollY;
+          int y = 100+i*30;
           if (edopset[i].length != 1) {
             switch (i) {
               case 3:
@@ -202,9 +192,10 @@ class ChildAppletEditor extends PApplet {
         wavyText("slinx92", 190, 249, 0, 3, 0.14, 0.12, 0, 0, 10, 0, 2);
         boldText("special thanks to:", 50, 400);
         wavyText("hexahedron1, slinx92 , Restart, tom1212 (aka potato camputerr), ", 240, 400, 2, 4, 0.11, 0.02, 0, 0, 10, 0, 2);
-        wavyText("laf9769, Shigesato Itoi, Retro Game Mechanics Explained,", 240, 425, 2, 4, 0.11, 0.02, 0, 0, 10, 0, 2);
+        wavyText("laf9769, tema5002, ", 240, 425, 2, 4, 0.11, 0.02, 0, 0, 10, 0, 2);
         boldText("and you for using ebgg! :D", 240, 450);
-        wavyText("Written in Processing 4.3", 355, 660, 3, 5, 0.11, 0.02, 0, 0, 10, 0, 2); //<>// //<>// //<>//
+        wavyText("Project started on 2023 December 31", 305, 629, 3, 5, 0.11, 0.02, 0, 0, 10, 0, 2);
+        wavyText("Written in Processing 4.3", 355, 660, 3, 5, 0.11, 0.02, 0, 0, 10, 0, 2); //<>//
         break;
       }
       default: {

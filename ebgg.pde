@@ -41,7 +41,7 @@ boolean errorIsBeingShown = false, warnIsBeingShown = false;
 
 // settings-related things
 byte version = (byte)17;
-String versionString = "v1.7";
+String versionString = "v1.7.0";
 byte[] defaultSettings = {version, 1, 30, 0, 0, 1, 0, 0}, config;
 String settingsType = "csccccc";
 String[] settingsDescription = {
@@ -59,7 +59,7 @@ String[] settingsDescription = {
   "",
   "",
   "",
-  "if all windows are not active, the window will still render. if this option is disabled, the background window will not render when all ebgg windows are inactive and performance will be gained."
+  "if all windows are not active, the window will still render. if this option is disabled, the background window will not render when all ebgg windows are inactive for better performance." // ngl sounds better this way
 };
 int[] o5 = {5, 255, 30};
 
@@ -260,9 +260,6 @@ void optionsCheckKeyPress(int kc) {
   case UP: {
       menuselect--;
       switch (menu) {
-      case 0:
-        if (menuselect<0) menuselect=bglist.length-1;
-        break;
       case 1:
         if (menuselect<0) menuselect=edopname.length-1;
         break;
@@ -279,9 +276,6 @@ void optionsCheckKeyPress(int kc) {
   case DOWN: {
       menuselect++;
       switch (menu) {
-      case 0:
-        if (menuselect>bglist.length-1) menuselect=0;
-        break;
       case 1:
         if (menuselect>edopname.length-1) menuselect=0;
         break;
@@ -406,8 +400,9 @@ void saveConfig() {
 }
 void restoreDefaults() {
   backgroundName = "no background loaded...";
+  t = 0;Cx=0;Cy=0;paloffset=0;
   pal = new color[2];
-  palf = 1; palssa = 0; scale = 1; Mxinterl = 0; staticx = 0; palcmult = 1;
+  palf = 1; palssa = 0; scale = 6; Mxinterl = 0; staticx = 0; palcmult = 1;
   vCx = 0; vCy = 0; Mxscale = 0; Mxfreq = 0; Myscale = 0; Myfreq = 0;
   palc = false; palcreverse = false;
   ptm = new int[2][2];

@@ -97,7 +97,7 @@ void checkButtons() {
     switch (i.id) {
       case "editName": menu = 5; break;
       case "editPalette": menu = 6; break;
-      case "editPaletteMap": menu = 7; break;
+      case "editPaletteMap": menu = 7; toolbox.CANDRAW = false; break;
       case "goToLoader":
       case "saveBackground": {
         fileselector.setDialogTitle(i.id=="goToLoader"?"Please select file...":"Please select output file...");
@@ -110,7 +110,10 @@ void checkButtons() {
                 ext = fileselector.getFileFilter().getDescription().split(" ")[0]; // to avoid copy+pasting code
               if (i.id=="goToLoader") {
                 restoreDefaults();
-                loadbg(fileselector.getSelectedFile().getPath());
+                switch (ext) {
+                  case ".deb":loadBackground(loadStrings(fileselector.getSelectedFile().getPath()));break;
+                  case ".debc":loaddebcBackground(loadBytes(fileselector.getSelectedFile().getPath()));break;
+                }
               } else {
                 switch (ext) {
                   case ".deb":saveStrings(path+(path.endsWith(ext)?"":ext), getBackground());break;
