@@ -20,6 +20,10 @@ class ChildAppletEditor extends PApplet {
 
   public void draw() {
     // you know what stop updating the window title //<>//
+    if (oldmenu != menu) {
+      oldmenu=menu;
+      menuselect=0;
+    }
     background(0);
     
     menuselectAnim+=(((float)menuselect)-menuselectAnim)/5;
