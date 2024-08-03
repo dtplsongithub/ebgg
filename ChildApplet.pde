@@ -18,8 +18,7 @@ class ChildAppletEditor extends PApplet {
     log.loaded("childapplet");
   }
 
-  public void draw() {
-    // you know what stop updating the window title //<>//
+  public void draw() { //<>//
     if (oldmenu != menu) {
       oldmenu=menu;
       menuselect=0;
