@@ -117,7 +117,7 @@ void checkButtons() {
               } else {
                 switch (ext) {
                   case ".deb":saveStrings(path+(path.endsWith(ext)?"":ext), getBackground());break;
-                  case ".debc":saveBytes(path+ext, getdebcBackground());break;
+                  case ".debc":saveBytes(path+(path.endsWith(ext)?"":ext), getdebcBackground());break;
                 }
               }
             }

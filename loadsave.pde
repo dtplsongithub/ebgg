@@ -71,14 +71,13 @@ void loaddebcBackground(byte[] data) { // are there binary streams in java? what
         ptm[y][x] = file.readInt(ptmbitdepth);
       }
     }
-    println(file.file.length-1, file.i);
     scale = file.readUnsignedByte();
     Mxscale = file.readFloat();
     Mxfreq = file.readFloat();
     Myscale = file.readFloat();
     Myfreq = file.readFloat();
     staticx = file.readUnsignedByte();
-    println(file.file.length-1, file.i);
+    palcmult = file.readUnsignedByte();
     backgroundName = newBackgroundName; // sometimes ebgg displays a background while its loading and its fuckin annoying so i did this because its restoring defaults before it loads and if the background name is "no background loaded..." it WONT actually display the background or else it would lag.
   } catch (ArrayIndexOutOfBoundsException | Error e) {
     log.warn(e+". Failed to load background. Potential wrong background format.");
@@ -160,6 +159,7 @@ byte[] getdebcBackground() {
   out = concat(out, getBytes(Myscale));
   out = concat(out, getBytes(Myfreq));
   out = append(out, (byte)staticx);
+  out = append(out, (byte)palcmult);
   return out;
 }
 

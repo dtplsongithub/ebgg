@@ -45,6 +45,7 @@ class ChildAppletEditor extends PApplet {
         break;
       }
     }
+    fill(255);
     
     switch (menu) {
       case 0: {

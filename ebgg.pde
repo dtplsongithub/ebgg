@@ -41,7 +41,7 @@ boolean errorIsBeingShown = false, warnIsBeingShown = false;
 
 // settings-related things
 byte version = (byte)17;
-String versionString = "v1.7.0";
+String versionString = "v1.7";
 byte[] defaultSettings = {version, 1, 30, 0, 0, 1, 0, 0}, config;
 String settingsType = "csccccc";
 String[] settingsDescription = {
@@ -96,14 +96,12 @@ void setup() {
   log.created("LOGFILE");
 
   log.log("checking save...");
-  boolean isNotNew = fileExists("config.dat");
+  boolean saveFileExists = fileExists("config.dat");
   config = loadBytes("config.dat");
-  boolean isnotok = checkSave(); // hoo
+  boolean saveFileValid = checkSave();
   
-  if (isnotok){
-    if(isNotNew) log.warn("config.dat problems were found and fixed.");
-  }
-  log.log(isnotok?"config.dat problems were found and fixed.":"No config.dat problems found.");
+  if (saveFileValid && saveFileExists) log.warn("config.dat problems were found and fixed.");
+  log.log(saveFileValid?"config.dat problems were found and fixed.":"No config.dat problems found.");
   size(960, 720, P2D);
   fullscreenModeEnabled = args!=null&&((String)args[0]).startsWith("--fullscreen");
   if (fullscreenModeEnabled) {
