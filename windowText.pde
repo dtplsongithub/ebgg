@@ -1,5 +1,10 @@
  // just so you know cool means new and important thing added, awesome means not *as* important
-String whatsnewText = "<html><h1>v1.7</h1>"+
+String whatsnewText = "<html><h1>v1.75</h1>"+
+"<h2>2024 August 123456789</h2>"+
+"<b>[AWESOME]</b> Added editor categories!<br>"+ // TODO: add editor categories
+"<b>[NEW]</b> animation setting!<br>"+
+"<b>[FIX]</b> button animations updating weirdly<br>"+
+"<h1>v1.7</h1>"+
 "<h2>2024 August 7</h2>"+
 "<b>[COOL]</b> new file format! (.debc)<br>"+
 "<b>[NEW]</b> new file chooser!<br>"+
@@ -38,6 +43,7 @@ String whatsnewText = "<html><h1>v1.7</h1>"+
 "<h1>v1.5.1</h1>"+
 "<h2>2024 July 8</h2>"+
 "<p><b>[FIX]</b> made editor only 960x720 because of linux <br>"+
+"<h3>LAST LINUX RELEASE</h3>"+
 "<html><h1 id='v1-5-0'>v1.5.0</h1>"+
 "<h2 id='2024-july-7'>2024 July 7</h2>"+
 "<p><b>[NEW]</b> SETTINGS!!!<br>"+

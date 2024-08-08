@@ -40,10 +40,10 @@ JFileChooser fileselector; // am i inconsistent with where i define things?
 boolean errorIsBeingShown = false, warnIsBeingShown = false;
 
 // settings-related things
-byte version = (byte)17;
-String versionString = "v1.7";
-byte[] defaultSettings = {version, 1, 30, 0, 0, 1, 0, 0}, config;
-String settingsType = "csccccc";
+byte version = (byte)175;
+String versionString = "v1.75";
+byte[] defaultSettings = {version, 1, 30, 0, 0, 1, 0, 0, 1}, config;
+String settingsType = "cscccccc";
 String[] settingsDescription = {
   "show big steps tip",
   "scroll sensitivity",
@@ -51,7 +51,8 @@ String[] settingsDescription = {
   "enable java default window look and feel (requires restart)",
   "enable custom cursors (requires restart if disabling)",
   "fullscreen mode",
-  "render when window is not active"
+  "render when window is not active",
+  "enable menu and button animations"
 }, settingsHelp = {
   "",
   "",
@@ -59,7 +60,8 @@ String[] settingsDescription = {
   "",
   "",
   "",
-  "if all windows are not active, the window will still render. if this option is disabled, the background window will not render when all ebgg windows are inactive for better performance." // ngl sounds better this way
+  "if no windows are active, the window will still render. if this option is disabled, the background window will not render when all ebgg windows are inactive for better performance.",
+  ""
 };
 int[] o5 = {5, 255, 30};
 

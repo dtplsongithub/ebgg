@@ -26,7 +26,7 @@ public class TextButton {
     if (canDraw) editor.rect(this.x, this.y, this.w, this.h);
     editor.fill(255);
     if (this.checkIfHovered()) {
-      animTarget=8;
+      if (config[8]==1) animTarget=8;
       if (config[3] == 1) editor.fill(192);
       else editor.fill(128, 192, 255);
     }
@@ -34,8 +34,8 @@ public class TextButton {
     editor.fill(0);
     if (canDraw) editor.text(this.text, this.x+10+anim, this.y+20-anim);
     editor.fill(255);
-    anim+=(animTarget-anim)/5; // so it always updates, but it updates after its drawn.
-    
+    anim+=(animTarget-anim)/5;
+    if (abs(animTarget - anim) < 0.5f || config[8]==0) anim = animTarget;
   }
 }
 public class ImageButton {
