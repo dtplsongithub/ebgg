@@ -25,7 +25,7 @@ class ChildAppletEditor extends PApplet {
     }
     background(0);
     
-    menuselectAnim+=(((float)menuselect)-menuselectAnim)/5;
+    menuselectAnim+=(((float)menuselect)-menuselectAnim)/(config[8]==1?5:1);
     
     String[] menulist={};
     switch (menu) {
