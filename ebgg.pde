@@ -93,6 +93,9 @@ double Mxtemp, Mytemp;
 int scrollY = 0;
 boolean fullscreenModeEnabled;
 
+void settings() {
+  size(960, 720, P2D);
+}
 void setup() {
   log = new LOGFILE();
   log.created("LOGFILE");
@@ -104,7 +107,6 @@ void setup() {
   
   if (saveFileValid && saveFileExists) log.warn("config.dat problems were found and fixed.");
   log.log(saveFileValid?"config.dat problems were found and fixed.":"No config.dat problems found.");
-  size(960, 720, P2D);
   fullscreenModeEnabled = args!=null&&((String)args[0]).startsWith("--fullscreen");
   if (fullscreenModeEnabled) {
     this.windowResize(displayWidth, displayHeight);
@@ -117,14 +119,13 @@ void setup() {
   
   noStroke();
   background(0);
+  hint(DISABLE_OPENGL_ERRORS);
   
   MSGothic20 = loadFont("MS-Gothic-20.vlw");
   log.loaded("font MSGothic20");
   MSGothic32 = loadFont("MS-Gothic-32.vlw");
   log.loaded("font MSGothic32");
   textFont(MSGothic20);
-  
-  menu = 10;
 
   buttons[0] = new TextButton("editName", 600, 75, 150, 30, "click to edit", 1);
   buttons[1] = new TextButton("editPalette", 600, 105, 150, 30, "click to edit", 1);
@@ -261,7 +262,8 @@ void optionsCheckKeyPress(int kc) {
       menuselect--;
       switch (menu) {
       case 1:
-        if (menuselect<0) menuselect=edopname.length-1;
+        if (menuselect==-1)menuselect=1;
+        if (edopname[menuselect].charAt(0)=='\0') menuselect--;
         break;
       case 6: // palette editor
         if (menuselect<0) menuselect=pal.length-1;
@@ -277,9 +279,10 @@ void optionsCheckKeyPress(int kc) {
       menuselect++;
       switch (menu) {
       case 1:
-        if (menuselect>edopname.length-1) menuselect=0;
+        if (menuselect>edopname.length-1)menuselect=edopname.length-1;
+        if (edopname[menuselect].charAt(0)=='\0') menuselect++;
         break;
-      case 6: // palette editor
+      case 6:
         if (menuselect>pal.length-1) menuselect=0;
         scrollY = -menuselect*40+height/2-100;
         break;
@@ -296,76 +299,76 @@ void optionsCheckKeyPress(int kc) {
       if (menu == 1) {
         if (kc>60)bigstepsappear=false;
         switch (menuselect) {
-        case 3:
+        case 5:
           if (kc>60)return;
           if ((palf<=edopset[menuselect][0] && kc==LEFT) || (palf>=edopset[menuselect][2] && kc==RIGHT)) return;
           palf += edopset[3][1]*((kc==LEFT)?-1 :1);
           break;
-        case 4:
+        case 6:
           if (kc>60)return;
           palc = kc==RIGHT;
           break;
-        case 5:
+        case 7:
           if (kc>60)return;
           palcreverse = kc==RIGHT;
           break;
-        case 6:
+        case 8:
           if (kc>60)return;
           if ((palssa<=edopset[menuselect][0] && kc==LEFT) || (palssa>=edopset[menuselect][2] && kc==RIGHT)) return;
           palssa += edopset[menuselect][1]*((kc==LEFT)?-1 :1);
           break;
-        case 7:
+        case 9:
           if (kc>60)return;
           if ((palcmult<=edopset[menuselect][0] && kc==LEFT) || (palcmult>=edopset[menuselect][2] && kc==RIGHT)) return;
           palcmult += edopset[menuselect][1]*((kc==LEFT)?-1 :1);
           break;
-        case 8:
+        case 11:
           if ((vCx<=edopset[menuselect][0] && (kc==LEFT || kc==65)) || (vCx>=edopset[menuselect][2] && (kc==RIGHT || kc==68))) return;
           vCx += edopset[menuselect][1]*(kc>60?10:1)*((kc==LEFT||kc==65)?-1 :1);
           if (vCx<=edopset[menuselect][0]) vCx=(edopset[menuselect][0]);
           if (vCx>=edopset[menuselect][2]) vCx=(edopset[menuselect][2]);
           break;
-        case 9:
+        case 12:
           if ((vCy<=edopset[menuselect][0] && (kc==LEFT || kc==65)) || (vCy>=edopset[menuselect][2] && (kc==RIGHT || kc==68))) return;
           vCy += edopset[menuselect][1]*(kc>60?10:1)*((kc==LEFT||kc==65)?-1 :1);
           if (vCy<=edopset[menuselect][0]) vCy=(edopset[menuselect][0]);
           if (vCy>=edopset[menuselect][2]) vCy=(edopset[menuselect][2]);
           break;
-        case 10:
+        case 13:
           if (kc>60)return;
           if ((scale<=edopset[menuselect][0] && kc==LEFT) || (scale>=edopset[menuselect][2] && kc==RIGHT)) return;
           scale += edopset[menuselect][1]*((kc==LEFT)?-1 :1);
           break;
-        case 11:
+        case 14:
           if ((Mxscale<=edopset[menuselect][0] && (kc==LEFT || kc==65)) || (Mxscale>=edopset[menuselect][2] && (kc==RIGHT || kc==68))) return;
           Mxscale += edopset[menuselect][1]*(kc>60?10:1)*((kc==LEFT||kc==65)?-1 :1);
           if (Mxscale<=edopset[menuselect][0]) Mxscale=(edopset[menuselect][0]);
           if (Mxscale>=edopset[menuselect][2]) Mxscale=(edopset[menuselect][2]);
           break;
-        case 12:
+        case 15:
           if ((Mxfreq<=edopset[menuselect][0] && (kc==LEFT || kc==65)) || (Mxfreq>=edopset[menuselect][2] && (kc==RIGHT || kc==68))) return;
           Mxfreq += edopset[menuselect][1]*(kc>60?10:1)*((kc==LEFT||kc==65)?-1 :1);
           if (Mxscale<=edopset[menuselect][0]) Mxscale=(edopset[menuselect][0]);
           if (Mxscale>=edopset[menuselect][2]) Mxscale=(edopset[menuselect][2]);
           break;
-        case 13:
+        case 16:
           if (kc>60)return;
           if ((Mxinterl<=edopset[menuselect][0] && kc==LEFT) || (Mxinterl>=edopset[menuselect][2] && kc==RIGHT)) return;
           Mxinterl += edopset[menuselect][1]*((kc==LEFT)?-1 :1);
           break;
-        case 14:
+        case 17:
           if ((Myscale<=edopset[menuselect][0] && (kc==LEFT || kc==65)) || (Myscale>=edopset[menuselect][2] && (kc==RIGHT || kc==68))) return;
           Myscale += edopset[menuselect][1]*(kc>60?10:1)*((kc==LEFT||kc==65)?-1 :1);
           if (Myscale<=edopset[menuselect][0]) Myscale=(edopset[menuselect][0]);
           if (Myscale>=edopset[menuselect][2]) Myscale=(edopset[menuselect][2]);
           break;
-        case 15:
+        case 18:
           if ((Myfreq<=edopset[menuselect][0] && (kc==LEFT || kc==65)) || (Myfreq>=edopset[menuselect][2] && (kc==RIGHT || kc==68))) return;
           Myfreq += edopset[menuselect][1]*(kc>60?10:1)*((kc==LEFT||kc==65)?-1 :1);
           if (Myfreq<=edopset[menuselect][0]) Myfreq=(edopset[menuselect][0]);
           if (Myfreq>=edopset[menuselect][2]) Myfreq=(edopset[menuselect][2]);
           break;
-        case 16:
+        case 19:
           if (kc>60)return;
           if ((staticx<=edopset[menuselect][0] && kc==LEFT) || (staticx>=edopset[menuselect][2] && kc==RIGHT)) return;
           staticx += edopset[menuselect][1]*((kc==LEFT)?-1 :1);
@@ -406,4 +409,16 @@ void restoreDefaults() {
   vCx = 0; vCy = 0; Mxscale = 0; Mxfreq = 0; Myscale = 0; Myfreq = 0;
   palc = false; palcreverse = false;
   ptm = new int[2][2];
+}
+color lerpRGBAColor(float r0, float g0, float b0, float a0, float r1, float g1, float b1, float a1, float amt) {
+  return color(lerp(r0, r1, amt), lerp(g0, g1, amt), lerp(b0, b1, amt), lerp(a0, a1, amt));
+}
+void gradient(int x, int y, int w, int h, float r0, float g0, float b0, float a0, float r1, float g1, float b1, float a1) { // vertical only because yes
+  editor.pushStyle();
+  editor.noStroke();
+  for (int i = 0; i<h;  i++) {
+    editor.fill(lerpRGBAColor(r0, g0, b0, a0, r1, g1, b1, a1, (float)i/h));
+    editor.rect(x, y+i, w, 1);
+  }
+  editor.popStyle();
 }

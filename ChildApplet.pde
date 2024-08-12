@@ -16,12 +16,14 @@ class ChildAppletEditor extends PApplet {
     editor.background(0);
     ((PGraphicsOpenGL)g).textureSampling(3); // disable antialiasing on images (magic)
     log.loaded("childapplet");
+    hint(DISABLE_OPENGL_ERRORS);
   }
 
   public void draw() { //<>//
     if (oldmenu != menu) {
       oldmenu=menu;
-      menuselect=0;
+      menuselect=menu==1?1:0;
+      scrollY=0;
     }
     background(0);
     
@@ -33,6 +35,7 @@ class ChildAppletEditor extends PApplet {
       case 14: menulist=menu14;break;
     };
     
+    int offsetY = 0;
     switch(menu) {
       case 0:
       case 1:
@@ -40,7 +43,8 @@ class ChildAppletEditor extends PApplet {
         for (int i = 0; i<menulist.length; i++){
           float chance = max(1-abs((min(menuselectAnim-(float)i,1)+1)%2-1),0);
           fill((1-chance)*255, 255, (1-chance)*255);
-          text(menulist[i], (int)(30+chance*6), i*30+100);
+          if (edopname[i].charAt(0)!='\0') text(menulist[i], (int)(30+chance*6), i*30+100+scrollY+offsetY);
+          else offsetY += 20;
         }
         break;
       }
@@ -55,56 +59,68 @@ class ChildAppletEditor extends PApplet {
       }
       case 1: {
         fill(255);
+        buttons[0].y=120+scrollY;
+        buttons[1].y=195+scrollY;
+        buttons[2].y=225+scrollY;
+        offsetY=0;
         for (int i = 0; i<edopname.length; i++) {
-          int y = 100+i*30;
-          if (edopset[i].length != 1) {
+          int y = 100+i*30+scrollY+offsetY;
+          if (edopname[i].charAt(0)!='\0') {
             switch (i) {
-              case 3:
+              case 5:
                 option(int(palf), i, y);
                 break;
-              case 4: 
+              case 6: 
                 option(int(palc), i, y);
                 break;
-              case 5: 
+              case 7: 
                 option(int(palcreverse), i, y);
                 break;
-              case 6: 
+              case 8: 
                 option(palssa, i, y);
                 break;
-              case 7:
+              case 9:
                 option(palcmult, i, y);
                 break;
-              case 8: 
+              case 11: 
                 option(vCx, i, y, true);
                 break;
-              case 9: 
+              case 12: 
                 option(vCy, i, y, true);
                 break;
-              case 10: 
+              case 13: 
                 option(scale, i, y);
                 break;
-              case 11: 
+              case 14: 
                 option(Mxscale, i, y, true);
                 break;
-              case 12: 
+              case 15: 
                 option(Mxfreq, i, y, true);
                 break;
-              case 13: 
+              case 16: 
                 option(Mxinterl, i, y);
                 break;
-              case 14: 
+              case 17: 
                 option(Myscale, i, y, true);
                 break;
-              case 15: 
+              case 18: 
                 option(Myfreq, i, y, true);
                 break;
-              case 16: 
+              case 19: 
                 option(staticx, i, y);
                 break;
             }
+          } else {
+            textFont(MSGothic32);
+            text(edopname[i], 20, y+20);
+            offsetY+=15;
+            textFont(MSGothic20);
           }
         }        
-        if (bigstepsappear && boolean(config[1])) image(bigsteps.image, 717, 178);
+        if (bigstepsappear && boolean(config[1])) image(bigsteps.image, 717, 328+scrollY);
+        gradient(0, 610, width, 30, 0, 0, 0, 0, 0, 0, 0, 255);
+        fill(0);
+        rect(0, 640, width, 80);
         break;
       }
       case 5: {
@@ -207,9 +223,10 @@ class ChildAppletEditor extends PApplet {
         menu = 10;
       }
     }
+    renderButtons();
     textFont(MSGothic32);
     fill(0);
-    if (menutitle[menu] != "") rect(0, 0, 999, 50);
+    if (menutitle[menu] != "") gradient(0, 0, width, 70, 0, 0, 0, 255, 0, 0, 0, 0);
     fill(255);
     if (menu>=0) {
       try {
@@ -219,7 +236,6 @@ class ChildAppletEditor extends PApplet {
       }
     }
     textFont(MSGothic20);
-    renderButtons();
   }
   public void keyPressed() {
   if (menu == 5 || menu == 8 ) keyboardDetection(editor.keyCode, editor.key);
@@ -262,7 +278,7 @@ class ChildAppletEditor extends PApplet {
     checkButtons();
   }
   public void mouseWheel(processing.event.MouseEvent e) {
-    if (menu == 0 || menu == 6) scrollY -= e.getCount()*(config[2]&0xFF);
+    if (menu == 0 || menu == 6 || menu == 1) scrollY -= e.getCount()*(config[2]&0xFF);
   }
   public void mouseMoved() {
     if (boolean(config[5])) {

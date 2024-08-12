@@ -1,12 +1,15 @@
 float[][] edopset = {
-  {1},
-  {2},
-  {3},
+  {0},
+  {},
+  {0},
+  {},
+  {},
   {1, 1, 999},
   {0, 1, 1},
   {0, 1, 1},
   {0, 1, 999},
   {1, 1, 100},
+  {0},
   {-50, 0.05, 50},
   {-50, 0.05, 50},
   {1, 1, 16},
@@ -18,7 +21,9 @@ float[][] edopset = {
   {0, 1, 100}
 };
 final String[] edopname = {
+  "\0METADATA",
   "name",
+  "\0PALETTE",
   "palette",
   "palette map",
   "switch pal colors every n frames",
@@ -26,6 +31,7 @@ final String[] edopname = {
   "switch pal colors in reverse?",
   "dont switch the first n items",
   "palette switch multiplier",
+  "\0MOVEMENT",
   "camera x velocity",
   "camera y velocity",
   "scale",
