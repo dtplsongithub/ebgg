@@ -137,10 +137,10 @@ void setup() {
   
   buttons[6] = new TextButton("saveBackground", 30, 650, 60, 30, "save", 1);
   
-  buttons[7] = new TextButton("createPaletteColor", 600, 680, 0, 30, "create new palette color", 6);
-  buttons[8] = new TextButton("savePaletteColor", 600, 680, 0, 30, "save palette color", 8);
-  buttons[9] = new TextButton("deletePaletteColor", 600, 650, 0, 30, "delete this palette color", 6);
-  buttons[10] = new TextButton("editPaletteColor", 600, 620, 0, 30, "edit this palette color", 6);
+  buttons[7] = new TextButton("editPaletteColor", 600, 620, 0, 30, "edit this palette color", 6);
+  buttons[8] = new TextButton("deletePaletteColor", 600, 650, 0, 30, "delete this palette color", 6);
+  buttons[9] = new TextButton("savePaletteColor", 600, 680, 0, 30, "save palette color", 8);
+  buttons[10] = new TextButton("createPaletteColor", 600, 680, 0, 30, "create new palette color", 6);
   
   buttons[11] = new TextButton("goToLoader", 385, 200, 0, 30,  "load a background", 10);
   buttons[12] = new TextButton("goToEditor", 440, 250, 0, 30,  "editor", 10);
@@ -373,8 +373,6 @@ void optionsCheckKeyPress(int kc) {
           if ((staticx<=edopset[menuselect][0] && kc==LEFT) || (staticx>=edopset[menuselect][2] && kc==RIGHT)) return;
           staticx += edopset[menuselect][1]*((kc==LEFT)?-1 :1);
           break;
-        default:
-          menuselect = 0;
         }
       }
       if (menu==14) {
@@ -416,9 +414,9 @@ color lerpRGBAColor(float r0, float g0, float b0, float a0, float r1, float g1, 
 void gradient(int x, int y, int w, int h, float r0, float g0, float b0, float a0, float r1, float g1, float b1, float a1) { // vertical only because yes
   editor.pushStyle();
   editor.noStroke();
-  for (int i = 0; i<h;  i++) {
+  for (int i = 1; i<h;  i++) {
     editor.fill(lerpRGBAColor(r0, g0, b0, a0, r1, g1, b1, a1, (float)i/h));
-    editor.rect(x, y+i, w, 1);
+    editor.rect(x, y+i-1, w, 1);
   }
   editor.popStyle();
 }

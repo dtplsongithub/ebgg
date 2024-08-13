@@ -44,7 +44,7 @@ class ChildAppletEditor extends PApplet {
           float chance = max(1-abs((min(menuselectAnim-(float)i,1)+1)%2-1),0);
           fill((1-chance)*255, 255, (1-chance)*255);
           if (edopname[i].charAt(0)!='\0') text(menulist[i], (int)(30+chance*6), i*30+100+scrollY+offsetY);
-          else offsetY += 20;
+          else offsetY += 15;
         }
         break;
       }
@@ -59,9 +59,9 @@ class ChildAppletEditor extends PApplet {
       }
       case 1: {
         fill(255);
-        buttons[0].y=120+scrollY;
-        buttons[1].y=195+scrollY;
-        buttons[2].y=225+scrollY;
+        buttons[0].y=130+scrollY;
+        buttons[1].y=200+scrollY;
+        buttons[2].y=230+scrollY;
         offsetY=0;
         for (int i = 0; i<edopname.length; i++) {
           int y = 100+i*30+scrollY+offsetY;
@@ -111,14 +111,17 @@ class ChildAppletEditor extends PApplet {
                 break;
             }
           } else {
+            fill(((menuselect<2&&i<2)||(menuselect>2&&menuselect<10&&i>1&&i<10)||(menuselect>10&&i>9))?40:20);
+            rect(0, y-15, width, 40);
+            fill(255);
             textFont(MSGothic32);
-            text(edopname[i], 20, y+20);
+            text(edopname[i], 20, y+15);
             offsetY+=15;
             textFont(MSGothic20);
           }
         }        
         if (bigstepsappear && boolean(config[1])) image(bigsteps.image, 717, 328+scrollY);
-        gradient(0, 610, width, 30, 0, 0, 0, 0, 0, 0, 0, 255);
+        gradient(0, 610, width, 31, 0, 0, 0, 0, 0, 0, 0, 255);
         fill(0);
         rect(0, 640, width, 80);
         break;
@@ -278,7 +281,9 @@ class ChildAppletEditor extends PApplet {
     checkButtons();
   }
   public void mouseWheel(processing.event.MouseEvent e) {
-    if (menu == 0 || menu == 6 || menu == 1) scrollY -= e.getCount()*(config[2]&0xFF);
+    if (menu == 1 || menu == 6) scrollY -= e.getCount()*(config[2]&0xFF);
+    if (menu==1&&scrollY>0) scrollY=0;
+    if (menu==1 && scrollY<-110) scrollY=-120;
   }
   public void mouseMoved() {
     if (boolean(config[5])) {
