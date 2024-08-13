@@ -1,62 +1,63 @@
-[2024/07/10	10:25:54	frame 0 		1581 ms]	 CREATED:	LOGFILE
-[2024/07/10	10:25:54	frame 0 		1583 ms]	 DEBUG:		checking save...
-[2024/07/10	10:25:54	frame 0 		1603 ms]	 DEBUG:		No config.dat problems found.
-[2024/07/10	10:25:54	frame 0 		1660 ms]	 CREATED:	childapplet
-[2024/07/10	10:25:54	frame 0 		1679 ms]	 LOADED:	font MSGothic32
-[2024/07/10	10:25:54	frame 0 		1693 ms]	 LOADED:	font MSGothic20
-[2024/07/10	10:25:54	frame 0 		1694 ms]	 DEBUG:		succesfully loaded background list
-[2024/07/10	10:25:54	frame 0 		1707 ms]	 CREATED:	button 01_name
-[2024/07/10	10:25:54	frame 0 		1708 ms]	 CREATED:	button 01_pal
-[2024/07/10	10:25:54	frame 0 		1708 ms]	 CREATED:	button 01_ptm
-[2024/07/10	10:25:54	frame 0 		1708 ms]	 CREATED:	button goToEditor
-[2024/07/10	10:25:54	frame 0 		1708 ms]	 CREATED:	button goToEditor
-[2024/07/10	10:25:54	frame 0 		1709 ms]	 CREATED:	button goToEditor
-[2024/07/10	10:25:54	frame 0 		1709 ms]	 CREATED:	button saveBackground
-[2024/07/10	10:25:54	frame 0 		1709 ms]	 CREATED:	button cancelOverwrite
-[2024/07/10	10:25:54	frame 0 		1709 ms]	 CREATED:	button cancelExit
-[2024/07/10	10:25:54	frame 0 		1709 ms]	 CREATED:	button createPaletteColor
-[2024/07/10	10:25:54	frame 0 		1710 ms]	 CREATED:	button savePaletteColor
-[2024/07/10	10:25:54	frame 0 		1710 ms]	 CREATED:	button deletePaletteColor
-[2024/07/10	10:25:54	frame 0 		1710 ms]	 CREATED:	button editPaletteColor
-[2024/07/10	10:25:54	frame 0 		1710 ms]	 CREATED:	button goToLoader
-[2024/07/10	10:25:54	frame 0 		1711 ms]	 CREATED:	button goToWindow2
-[2024/07/10	10:25:54	frame 0 		1711 ms]	 CREATED:	button goToEditor
-[2024/07/10	10:25:54	frame 0 		1711 ms]	 CREATED:	button goToTitlescreen
-[2024/07/10	10:25:54	frame 0 		1711 ms]	 CREATED:	button goToTitlescreen
-[2024/07/10	10:25:54	frame 0 		1712 ms]	 CREATED:	button applyResize
-[2024/07/10	10:25:54	frame 0 		1712 ms]	 CREATED:	button cancelResize
-[2024/07/10	10:25:54	frame 0 		1712 ms]	 CREATED:	button goToSettings
-[2024/07/10	10:25:54	frame 0 		1746 ms]	 LOADED:	asset assets/bigsteps.png
-[2024/07/10	10:25:54	frame 0 		1756 ms]	 LOADED:	asset assets/bigsteps_.png
-[2024/07/10	10:25:54	frame 0 		1779 ms]	 LOADED:	asset for imageButton assets/pencil.png
-[2024/07/10	10:25:54	frame 0 		1779 ms]	 CREATED:	imageButton editorPencil
-[2024/07/10	10:25:54	frame 0 		1783 ms]	 LOADED:	asset for imageButton assets/line.png
-[2024/07/10	10:25:54	frame 0 		1783 ms]	 CREATED:	imageButton editorLine
-[2024/07/10	10:25:54	frame 0 		1785 ms]	 LOADED:	asset for imageButton assets/rectangle.png
-[2024/07/10	10:25:54	frame 0 		1785 ms]	 CREATED:	imageButton editorRect
-[2024/07/10	10:25:54	frame 0 		1788 ms]	 LOADED:	asset for imageButton assets/filledRectangle.png
-[2024/07/10	10:25:54	frame 0 		1788 ms]	 CREATED:	imageButton editorFillRect
-[2024/07/10	10:25:54	frame 0 		1789 ms]	 LOADED:	asset for imageButton assets/circle.png
-[2024/07/10	10:25:54	frame 0 		1790 ms]	 CREATED:	imageButton editorCircle
-[2024/07/10	10:25:54	frame 0 		1792 ms]	 LOADED:	asset for imageButton assets/filledCircle.png
-[2024/07/10	10:25:54	frame 0 		1792 ms]	 CREATED:	imageButton editorFillCircle
-[2024/07/10	10:25:54	frame 0 		1792 ms]	 CREATED:	button editorGrid
-[2024/07/10	10:25:54	frame 0 		1792 ms]	 CREATED:	button editorResizePtm
-[2024/07/10	10:25:54	frame 0 		1792 ms]	 CREATED:	button editorPreviewMode
-[2024/07/10	10:25:54	frame 0 		1792 ms]	 CREATED:	button editorUsePaloffset
-[2024/07/10	10:25:54	frame 0 		1793 ms]	 LOADED:	asset for imageButton assets/zoomin.png
-[2024/07/10	10:25:54	frame 0 		1794 ms]	 CREATED:	imageButton editorZoomIn
-[2024/07/10	10:25:54	frame 0 		1796 ms]	 LOADED:	asset for imageButton assets/zoomout.png
-[2024/07/10	10:25:54	frame 0 		1796 ms]	 CREATED:	imageButton editorZoomOut
-[2024/07/10	10:25:54	frame 0 		1799 ms]	 LOADED:	asset for imageButton assets/left.png
-[2024/07/10	10:25:54	frame 0 		1799 ms]	 CREATED:	imageButton editorMoveL
-[2024/07/10	10:25:54	frame 0 		1802 ms]	 LOADED:	asset for imageButton assets/up.png
-[2024/07/10	10:25:54	frame 0 		1802 ms]	 CREATED:	imageButton editorMoveU
-[2024/07/10	10:25:54	frame 0 		1803 ms]	 LOADED:	asset for imageButton assets/down.png
-[2024/07/10	10:25:54	frame 0 		1803 ms]	 CREATED:	imageButton editorMoveD
-[2024/07/10	10:25:54	frame 0 		1805 ms]	 LOADED:	asset for imageButton assets/right.png
-[2024/07/10	10:25:54	frame 0 		1805 ms]	 CREATED:	imageButton editorMoveR
-[2024/07/10	10:25:54	frame 0 		2057 ms]	 LOADED:	finished loading
-[2024/07/10	10:25:54	frame 0 		2061 ms]	 LOADED:	childapplet
-[2024/07/10	10:25:54	frame 1 		2336 ms]	 DEBUG:		switched to menu 10
-[2024/07/10	10:26:00	frame 165 		8333 ms]	 DEBUG:		exiting...
+[2024/08/13	10:36:20	frame 0 		1183 ms]	 CREATED:	LOGFILE
+[2024/08/13	10:36:20	frame 0 		1183 ms]	 DEBUG:		checking save...
+[2024/08/13	10:36:20	frame 0 		1200 ms]	 DEBUG:		No config.dat problems found.
+[2024/08/13	10:36:20	frame 0 		1253 ms]	 CREATED:	childapplet
+[2024/08/13	10:36:20	frame 0 		1259 ms]	 LOADED:	font MSGothic20
+[2024/08/13	10:36:20	frame 0 		1262 ms]	 LOADED:	font MSGothic32
+[2024/08/13	10:36:20	frame 0 		1262 ms]	 CREATED:	button editName
+[2024/08/13	10:36:20	frame 0 		1262 ms]	 CREATED:	button editPalette
+[2024/08/13	10:36:20	frame 0 		1263 ms]	 CREATED:	button editPaletteMap
+[2024/08/13	10:36:20	frame 0 		1263 ms]	 CREATED:	button goToEditor
+[2024/08/13	10:36:20	frame 0 		1263 ms]	 CREATED:	button goToEditor
+[2024/08/13	10:36:20	frame 0 		1264 ms]	 CREATED:	button goToEditor
+[2024/08/13	10:36:20	frame 0 		1264 ms]	 CREATED:	button saveBackground
+[2024/08/13	10:36:20	frame 0 		1265 ms]	 CREATED:	button editPaletteColor
+[2024/08/13	10:36:20	frame 0 		1265 ms]	 CREATED:	button deletePaletteColor
+[2024/08/13	10:36:20	frame 0 		1266 ms]	 CREATED:	button savePaletteColor
+[2024/08/13	10:36:20	frame 0 		1266 ms]	 CREATED:	button createPaletteColor
+[2024/08/13	10:36:20	frame 0 		1266 ms]	 CREATED:	button goToLoader
+[2024/08/13	10:36:20	frame 0 		1267 ms]	 CREATED:	button goToEditor
+[2024/08/13	10:36:20	frame 0 		1267 ms]	 CREATED:	button goToSettings
+[2024/08/13	10:36:20	frame 0 		1267 ms]	 CREATED:	button goToChangelog
+[2024/08/13	10:36:20	frame 0 		1267 ms]	 CREATED:	button goToAbout
+[2024/08/13	10:36:20	frame 0 		1268 ms]	 CREATED:	button goToHelp
+[2024/08/13	10:36:20	frame 0 		1268 ms]	 CREATED:	button goToTitlescreen
+[2024/08/13	10:36:20	frame 0 		1269 ms]	 CREATED:	button goToTitlescreen
+[2024/08/13	10:36:20	frame 0 		1269 ms]	 CREATED:	button goToTitlescreen
+[2024/08/13	10:36:20	frame 0 		1269 ms]	 CREATED:	button applyResize
+[2024/08/13	10:36:20	frame 0 		1269 ms]	 CREATED:	button cancelResize
+[2024/08/13	10:36:20	frame 0 		1303 ms]	 LOADED:	asset assets/bigsteps.png
+[2024/08/13	10:36:20	frame 0 		1312 ms]	 LOADED:	asset assets/bigsteps_.png
+[2024/08/13	10:36:20	frame 0 		1317 ms]	 LOADED:	asset assets/arrow_r.png
+[2024/08/13	10:36:20	frame 0 		1319 ms]	 LOADED:	asset assets/arrow_r_.png
+[2024/08/13	10:36:20	frame 0 		1325 ms]	 LOADED:	asset for imageButton assets/pencil.png
+[2024/08/13	10:36:20	frame 0 		1325 ms]	 CREATED:	imageButton editorPencil
+[2024/08/13	10:36:20	frame 0 		1326 ms]	 LOADED:	asset for imageButton assets/line.png
+[2024/08/13	10:36:20	frame 0 		1326 ms]	 CREATED:	imageButton editorLine
+[2024/08/13	10:36:20	frame 0 		1327 ms]	 LOADED:	asset for imageButton assets/rectangle.png
+[2024/08/13	10:36:20	frame 0 		1327 ms]	 CREATED:	imageButton editorRect
+[2024/08/13	10:36:20	frame 0 		1328 ms]	 LOADED:	asset for imageButton assets/filledRectangle.png
+[2024/08/13	10:36:20	frame 0 		1328 ms]	 CREATED:	imageButton editorFillRect
+[2024/08/13	10:36:20	frame 0 		1329 ms]	 LOADED:	asset for imageButton assets/circle.png
+[2024/08/13	10:36:20	frame 0 		1330 ms]	 CREATED:	imageButton editorCircle
+[2024/08/13	10:36:20	frame 0 		1332 ms]	 LOADED:	asset for imageButton assets/filledCircle.png
+[2024/08/13	10:36:20	frame 0 		1332 ms]	 CREATED:	imageButton editorFillCircle
+[2024/08/13	10:36:20	frame 0 		1332 ms]	 CREATED:	button editorGrid
+[2024/08/13	10:36:20	frame 0 		1332 ms]	 CREATED:	button editorResizePtm
+[2024/08/13	10:36:20	frame 0 		1334 ms]	 CREATED:	button editorPreviewMode
+[2024/08/13	10:36:20	frame 0 		1334 ms]	 CREATED:	button editorUsePaloffset
+[2024/08/13	10:36:20	frame 0 		1337 ms]	 LOADED:	asset for imageButton assets/zoomin.png
+[2024/08/13	10:36:20	frame 0 		1337 ms]	 CREATED:	imageButton editorZoomIn
+[2024/08/13	10:36:20	frame 0 		1338 ms]	 LOADED:	asset for imageButton assets/zoomout.png
+[2024/08/13	10:36:20	frame 0 		1338 ms]	 CREATED:	imageButton editorZoomOut
+[2024/08/13	10:36:20	frame 0 		1339 ms]	 LOADED:	asset for imageButton assets/left.png
+[2024/08/13	10:36:20	frame 0 		1339 ms]	 CREATED:	imageButton editorMoveL
+[2024/08/13	10:36:20	frame 0 		1340 ms]	 LOADED:	asset for imageButton assets/up.png
+[2024/08/13	10:36:20	frame 0 		1340 ms]	 CREATED:	imageButton editorMoveU
+[2024/08/13	10:36:20	frame 0 		1341 ms]	 LOADED:	asset for imageButton assets/down.png
+[2024/08/13	10:36:20	frame 0 		1341 ms]	 CREATED:	imageButton editorMoveD
+[2024/08/13	10:36:20	frame 0 		1342 ms]	 LOADED:	asset for imageButton assets/right.png
+[2024/08/13	10:36:20	frame 0 		1342 ms]	 CREATED:	imageButton editorMoveR
+[2024/08/13	10:36:20	frame 0 		1859 ms]	 LOADED:	finished loading
+[2024/08/13	10:36:20	frame 0 		1862 ms]	 LOADED:	childapplet
+[2024/08/13	10:37:08	frame 1102 		49634 ms]	 DEBUG:		exiting...

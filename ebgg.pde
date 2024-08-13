@@ -262,8 +262,9 @@ void optionsCheckKeyPress(int kc) {
       menuselect--;
       switch (menu) {
       case 1:
-        if (menuselect==-1)menuselect=1;
         if (edopname[menuselect].charAt(0)=='\0') menuselect--;
+        if (menuselect==2) scrollY=0;
+        if (menuselect==-1)menuselect=1;
         break;
       case 6: // palette editor
         if (menuselect<0) menuselect=pal.length-1;
@@ -280,6 +281,7 @@ void optionsCheckKeyPress(int kc) {
       switch (menu) {
       case 1:
         if (menuselect>edopname.length-1)menuselect=edopname.length-1;
+        if (menuselect==10) scrollY=-120;
         if (edopname[menuselect].charAt(0)=='\0') menuselect++;
         break;
       case 6:
