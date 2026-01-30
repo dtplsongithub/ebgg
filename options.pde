@@ -1,4 +1,4 @@
-int menuselect = 0;
+int menuSelection = 0;
 int menu = 10;
 String[] menutitle = {
   "load a background",

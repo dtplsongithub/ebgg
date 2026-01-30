@@ -1,10 +1,25 @@
  // just so you know cool means new and important thing added, awesome means not *as* important
+<<<<<<< HEAD
+String whatsnewText = "<html"+
+"It's 2026! Thank you for still using ebgg!"+
+"<h1>v1.75</h1>"+
+"<h2>2026 January 27</h2>"+
+"<b>[AWESOME]</b> Added editor categories!<br>"+
+"<b>[NEW]</b> animation setting!<br>"+
+"<b>[NEW]</b> better error handling! (hopefully)<br>"+
+"<b>[FIX]</b> button animations updating weirdly<br>"+
+"<b>[FIX]</b> some buttons overlapping<br>"+
+"<b>[FIX]</b> edit palette color breaking if typing invalid characters (thanks @fluxdrive)<br>"+
+"<b>[CHANGE]</b> \"enable beta button\" setting has been renamed to \"alternative button color\"<br>"+
+"[OTHER] renamed some stuff to make code more readable"+
+=======
 String whatsnewText = "<html><h1>v1.75</h1>"+
 "<h2>2024 August 98989898</h2>"+
 "<b>[AWESOME]</b> Added editor categories!<br>"+ // TODO: add editor categories
 "<b>[NEW]</b> animation setting!<br>"+
 "<b>[FIX]</b> button animations updating weirdly<br>"+
 "<b>[FIX]</b> some buttons overlapping<br>"+
+>>>>>>> d44e56f3a1db1b47a269f6a1b494092d54af6c65
 "<h1>v1.7</h1>"+
 "<h2>2024 August 7</h2>"+
 "<b>[COOL]</b> new file format! (.debc)<br>"+
@@ -16,6 +31,10 @@ String whatsnewText = "<html><h1>v1.75</h1>"+
 "<b>[FIX]</b> button animation not being updated when not shown<br>"+
 "<b>[FIX]</b> many other fixes...<br>"+
 "<h3>FROM NOW ON, VERSIONS ARE WRITTEN IN EITHER x.yz OR x.y</h3>"+
+<<<<<<< HEAD
+"<p><b>Full Changelog</b>: <a href='https://github.com/dtplsongithub/ebgg/compare/v1.6.0...v1.7'>https://github.com/dtplsongithub/ebgg/compare/v1.6.0...v1.7</a></p>"+
+=======
+>>>>>>> d44e56f3a1db1b47a269f6a1b494092d54af6c65
 "<h1>v1.6.0</h1>"+
 "<h2>2024 July 17</h2>"+
 "<b>[COOL]</b> New Troubleshooting FAQ and misc help tab!<br>"+
@@ -33,7 +52,8 @@ String whatsnewText = "<html><h1>v1.75</h1>"+
 "<b>[CHANGE]</b> Recolored headers<br>"+
 "<b>[CHANGE]</b> No more \"config.dat problems were found and fixed.\" warning when config.dat couldn't be found<br>"+
 "<b>[CHANGE]</b> Some of the buttons now have different width<br>"+
-"<h1 id='v1-5-2'>v1.5.2</h1>"+
+"<p><b>Full Changelog</b>: <a href='https://github.com/dtplsongithub/ebgg/compare/v1.5.2...v1.6.0'>https://github.com/dtplsongithub/ebgg/compare/v1.5.2...v1.6.0</a></p>"+
+"<h1>v1.5.2</h1>"+
 "<h2>2024 July 9</h2>"+
 "<p><b>[FIX]</b> Palette map: made color palette stretch to window proportions so that it doesn't go out of bounds<br>"+
 "<b>[FIX]</b> Palette map: made current color pointer in color palette show up everytime<br>"+
@@ -41,17 +61,22 @@ String whatsnewText = "<html><h1>v1.75</h1>"+
 "<b>[FIX]</b> When the menu changes, the selection cursor resets, so that it doesn't go out of bounds until an arrow key gets pressed<br>"+
 "<b>[CHANGE]</b> Added numpad support to the color hex editor and name input.<br>"+
 "<b>[CHANGE]</b> Added color preview to the color hex editor.</p>"+
+"<p><b>Full Changelog</b>: <a href='https://github.com/dtplsongithub/ebgg/compare/v1.5.1...v1.5.2'>https://github.com/dtplsongithub/ebgg/compare/v1.5.1...v1.5.2</a></p>"+
 "<h1>v1.5.1</h1>"+
 "<h2>2024 July 8</h2>"+
 "<p><b>[FIX]</b> made editor only 960x720 because of linux <br>"+
 "<h3>LAST LINUX RELEASE</h3>"+
+<<<<<<< HEAD
+"<p><b>Full Changelog</b>: <a href='https://github.com/dtplsongithub/ebgg/compare/v1.5.0...v1.5.1'>https://github.com/dtplsongithub/ebgg/compare/v1.5.0...v1.5.1</a></p>"+
+=======
+>>>>>>> d44e56f3a1db1b47a269f6a1b494092d54af6c65
 "<html><h1 id='v1-5-0'>v1.5.0</h1>"+
-"<h2 id='2024-july-7'>2024 July 7</h2>"+
+"<h2>2024 July 7</h2>"+
 "<p><b>[NEW]</b> SETTINGS!!!<br>"+
 "<b>[FIX]</b> lots of bug fixes...</p>"+
 "<p><b>Full Changelog</b>: <a href='https://github.com/dtplsongithub/ebgg/compare/v1.4.0...v1.5.0'>https://github.com/dtplsongithub/ebgg/compare/v1.4.0...v1.5.0</a></p>"+
-"<h1 id='v1-4-0'>v1.4.0</h1>"+
-"<h2 id='2024-june-12'>2024 June 12</h2>"+
+"<h1>v1.4.0</h1>"+
+"<h2>2024 June 12</h2>"+
 "<p><b>[COOL]</b> new &quot;What&#39;s new&quot; menu and &quot;About&quot; menu :)<br>"+
 "<b>[NEW]</b> rezise tool for editing pattern<br>"+
 "<b>[NEW]</b> title screen! ;)<br>"+
@@ -67,14 +92,14 @@ String whatsnewText = "<html><h1>v1.75</h1>"+
 "<b>[CHANGE]</b> palette map (or ptm) has been renamed to PATTERN.<br>"+
 "<b>[DELETED]</b> deleted status bar button since it did NOTHING<br><br>"+
 "<b>Full Changelog</b>: <a href='https://github.com/dtplsongithub/ebgg/compare/v1.3.1...v1.4.0'>https://github.com/dtplsongithub/ebgg/compare/v1.3.1...v1.4.0</a></p>"+
-"<h1 id='v1-3-1'>v1.3.1</h1>"+
-"<h2 id='2024-june-10'>2024 June 10</h2>"+
+"<h1>v1.3.1</h1>"+
+"<h2>2024 June 10</h2>"+
 "<p><b>[FIX]</b> editor is now usable... sorry...<br></p>"+
 "<p><b>Full Changelog</b>: <a href='https://github.com/dtplsongithub/ebgg/compare/v1.3.0...v1.3.1'>https://github.com/dtplsongithub/ebgg/compare/v1.3.0...v1.3.1</a></p>"+
-"<h1 id='v1-3-0'>v1.3.0</h1>"+
-"<h2 id='2024-june-9'>2024 June 9</h2>"+
-"<h4 id='the-biggest-update-so-far-'>THE BIGGEST UPDATE (so far)</h4>"+
-"<p><b>[NEW]</b> you can now make backgrounds inside of ebgg!<br>"+
+"<h1>v1.3.0</h1>"+
+"<h2>2024 June 9</h2>"+
+"<h4>THE BIGGEST UPDATE (so far)</h4>"+
+"<p><b>[COOL]</b> you can now make backgrounds inside of ebgg!<br>"+
 "<b>[NEW]</b> you can get the latest version with the new batch updater! (powershell 5.0 and above; windows only)<br>"+
 "<b>[FIX]</b> titles now use a higher resolution font.<br>"+
 "<b>[FIX]</b> pallete can now reverse switching or stop switching colors entirely now. (did not notice until now ;-;)<br>"+
@@ -83,35 +108,52 @@ String whatsnewText = "<html><h1>v1.75</h1>"+
 "versions, trust me.<br>"+
 "<b>!!NOTICE!!</b> if you want to get the source code, please get it from <a href='https://github.com/dtplsongithub/ebgg/archive/dfd267b2770e60cf83f9abc952c0a11d6f8b1dd6.zip'>here</a>. i accidentally released v1.3 before commiting ;-;</p>"+
 "<p><b>Full Changelog</b>: <a href='https://github.com/dtplsongithub/ebgg/compare/v1.2.1...v1.3.0'>https://github.com/dtplsongithub/ebgg/compare/v1.2.1...v1.3.0</a></p>"+
-"<h1 id='v1-2-1'>v1.2.1</h1>"+
-"<h2 id='2024-march-9'>2024 March 9</h2>"+
-"<p><b>[FIX]</b> Fixed child window&#39;s title not updating at all</p>"+
+"<h1>v1.2.1</h1>"+
+"<h2>2024 March 9</h2>"+
+"<p><b>[FIX]</b> Fixed child window's title not updating at all</p>"+
 "<p><b>Full Changelog</b>: <a href='https://github.com/dtplsongithub/ebgg/compare/v1.2.0...v1.2.1'>https://github.com/dtplsongithub/ebgg/compare/v1.2.0...v1.2.1</a></p>"+
-"<h1 id='v1-2-0'>v1.2.0</h1>"+
-"<h2 id='2024-march-9'>2024 March 9</h2>"+
+"<h1>v1.2.0</h1>"+
+"<h2>2024 March 9</h2>"+
 "<p><b>[COOL]</b> ebgg is now split screen (background on the right, menu on the left<br>"+
 "<b>[COOL]</b> In the menu it now shows what background is currently being displayed</p>"+
 "<p><b>Full Changelog</b>: <a href='https://github.com/dtplsongithub/ebgg/compare/v1.1.0...v1.2.0'>https://github.com/dtplsongithub/ebgg/compare/v1.1.0...v1.2.0</a></p>"+
-"<h1 id='v1-1-0'>v1.1.0</h1>"+
-"<h2 id='2024-march-8'>2024 March 8</h2>"+
+"<h1>v1.1.0</h1>"+
+"<h2>2024 March 8</h2>"+
 "<p><b>[NEW]</b> Added background list<br>"+
 "<b>[COOL]</b> bglist is now removed, it will just scan the /data/ folder<br>"+
 "<b>[CHANGE]</b> bghelp because of change above ^^^^<br>"+
 "<b>[NEW]</b> Added templates from webebgg<br></p>"+
-"<h3 id='first-linux-release'>FIRST LINUX RELEASE</h3>"+
+"<h3>FIRST LINUX RELEASE</h3>"+
 "<p><b>Full Changelog</b>: <a href='https://github.com/dtplsongithub/ebgg/compare/v1.0.0...v1.1.0'>https://github.com/dtplsongithub/ebgg/compare/v1.0.0...v1.1.0</a></p>"+
-"<h1 id='v1-0-0'>v1.0.0</h1>"+
-"<h2 id='2024-march-8'>2024 March 8</h2>"+
+"<h1>v1.0.0</h1>"+
+"<h2>2024 March 8</h2>"+
 "<p>First public release of ebgg.</p>"+
 "<p><b>Full Changelog</b>: <a href='https://github.com/dtplsongithub/ebgg/commits/v1.0.0'>https://github.com/dtplsongithub/ebgg/commits/v1.0.0</a></p>"+
 "</html>";
+<<<<<<< HEAD
+String TFAQText = 
+" <h3> - IF YOUR EBGG IS RANDOMLY CRASHING...</h3>"+
+" if its a sudden crash (no freezing) then: <br>"+
+" - the only solution would be to download processing and run ebgg there, as from my testing, that would make the program more stable<br>"+
+" - i have no idea how to solve this problem, as it's not a problem with processing, or my code, its a java error.<br>"+
+" <h3> - IF YOU FIND A REPRODUCIBLE CRASH OR BUG...</h3>"+
+" - if there isn't one already, post an issue about it on <a href='https://github.com/dtplsongithub/ebgg/issues/'>GitHub</a>. (Requires a GitHub account)"+
+"<h3> - IF YOU STILL DO NOT FIND A WAY TO FIX YOUR PROBLEM...</h3>"+
+=======
 String TFAQText = "<html><h3> - IF YOU STILL DO NOT FIND A WAY TO FIX YOUR PROBLEM...</h3>"+
+>>>>>>> d44e56f3a1db1b47a269f6a1b494092d54af6c65
 " - check <a href=\"https://github.com/dtplsongithub/ebgg/releases\">here</a> for new updates. <br>"+
 " - make an issue on github <a href=\"https://github.com/dtplsongithub/ebgg/issues\">here</a>"+
 " <h2>STARTUP PROBLEMS</h2>"+
 "<h3>- \"could not load background. The application will now close.\"</h3>"+
+<<<<<<< HEAD
+" - in the v1.6 release, backgrounds are stored in a folder called \"backgrounds\". if you updated from v1.5.2 or below, if you find any, move all .deb files from the data folder to the new backgrounds folder. if you do NOT find any, redownloading ebgg would fix the problem."+
+=======
 " - in the v1.6 release, backgrounds are stored in a folder called \"backgrounds\". if you updated from v1.5.2 or below, if you find any, move all .deb files from the data folder to the new backgrounds folder. if you do NOT fold any, redownloading ebgg would fix the problem."+
+>>>>>>> d44e56f3a1db1b47a269f6a1b494092d54af6c65
 " <h2>OTHER FAQ</h2>"+
 "<h3> - what does \"config.dat problems were found and fixed.\" mean?</h3>"+
-" - either you ran a new version of ebgg for the first time, or the save file data got corrupted. when this happens, the save data is automatically updated/restored. if you are on v1.5.2 and below, it could also mean the save file was missing.</html>";
-String helpText = "<html><a href='https://dtplsongithub.github.io/ebgghelpwebsite/'>go to ebgg misc help website</a></html>";
+" - either you ran a new version of ebgg for the first time, or the save file data got corrupted. when this happens, the save data is automatically updated/restored. if you are on v1.5.2 and below, it could also mean the save file was missing.";
+String helpText = 
+" <h3> - FOR HELP WITH LOADING OR EDITING A BACKGROUND...</h3>"+
+"<a href='https://dtplsongithub.github.io/ebgghelpwebsite/'>go to ebgg misc help website</a>";

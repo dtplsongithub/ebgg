@@ -34,7 +34,11 @@ void loadBackground(String[] values){
     println(backgroundName+": ");
     println(".deb file size: "+ join(values, '\n').length());
     println(".debc file size: "+ (39+pal.length*3+ptmwidth*ptmheight));
+<<<<<<< HEAD
+  } catch (Throwable e) {
+=======
   } catch (ArrayIndexOutOfBoundsException | NumberFormatException | Error e) {
+>>>>>>> d44e56f3a1db1b47a269f6a1b494092d54af6c65
     log.warn(e+". Failed to load background. Potential wrong background format.");
     restoreDefaults();
   }
@@ -45,7 +49,11 @@ void loaddebcBackground(byte[] data) { // are there binary streams in java? what
     BinaryInputStream file = new BinaryInputStream(data);
     file.reset();
     file.skipBytes(4); // "debc"
+<<<<<<< HEAD
+    file.skipBytes(1); // ebgg version, so far not really used, but will be useful later
+=======
     file.skipBytes(1); // ebgg version
+>>>>>>> d44e56f3a1db1b47a269f6a1b494092d54af6c65
     int nameLength = file.readUnsignedByte();
     String newBackgroundName = file.readString(nameLength);
     pal = new color[file.readInt(2)];

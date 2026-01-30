@@ -30,7 +30,7 @@ class AwtProgram1 {
     JPanel page1 = new JPanel(new BorderLayout());
     page1.setBorder(BorderFactory.createEmptyBorder());
 
-    JEditorPane textArea = new JEditorPane();
+    JTextPane textArea = new JTextPane();
     textArea.setContentType("text/html");
     textArea.setText(whatsnewText);
     textArea.setEditable(false);
@@ -92,8 +92,8 @@ class AwtProgram1 {
 
 class AwtProgramSettings {
   JFrame settings;
-  Checkbox[] chset = new Checkbox[7];
-  JSlider[] jsset = new JSlider[2];
+  Checkbox[] checkParameters = new Checkbox[7];
+  JSlider[] sliderParameters = new JSlider[2];
   JLabel[] ttset = new JLabel[3];
   JLabel[] olset = new JLabel[1];
   public AwtProgramSettings() {
@@ -113,14 +113,14 @@ class AwtProgramSettings {
       final int finali = i;
       switch (s) {
         case 'c':
-          chset[temporder[0]] = new Checkbox(settingsDescription[i], boolean(config[i+1]));
-          chset[temporder[0]].setBounds(30, 40+i*20+yoffset, 400, 20);
-          chset[temporder[0]].addItemListener(new ItemListener() {
+          checkParameters[temporder[0]] = new Checkbox(settingsDescription[i], boolean(config[i+1]));
+          checkParameters[temporder[0]].setBounds(30, 40+i*20+yoffset, 400, 20);
+          checkParameters[temporder[0]].addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
               config[finali+1] = byte(int(e.getStateChange()==1));
             }
           });
-          settings.add(chset[temporder[0]]);
+          settings.add(checkParameters[temporder[0]]);
           if (settingsHelp[i]!="") {
             ttset[temporder[2]] = new JLabel(settingsHelp[i].indexOf("!") == 0 ? "!" : "?");
             ttset[temporder[2]].setBounds(10, 40+i*20+yoffset, 200, 20);
@@ -132,19 +132,19 @@ class AwtProgramSettings {
           break;
         case 's':
           final int temporder1 = temporder[1];
-          jsset[temporder[1]] = new JSlider(o5[0], o5[1], o5[2]);
-          jsset[temporder[1]].setBounds(30, 60+i*20+yoffset, 300, 50);
-          jsset[temporder[1]].setPaintTrack(true);
-          jsset[temporder[1]].setPaintTicks(true);
-          //jsset[temporder[1]].setPaintLabels(true);
-          jsset[temporder[1]].setMajorTickSpacing(50);
-          jsset[temporder[1]].setMinorTickSpacing(10);
-          jsset[temporder[1]].addChangeListener(new ChangeListener() {
+          sliderParameters[temporder[1]] = new JSlider(o5[0], o5[1], o5[2]);
+          sliderParameters[temporder[1]].setBounds(30, 60+i*20+yoffset, 300, 50);
+          sliderParameters[temporder[1]].setPaintTrack(true);
+          sliderParameters[temporder[1]].setPaintTicks(true);
+          //sliderParameters[temporder[1]].setPaintLabels(true);
+          sliderParameters[temporder[1]].setMajorTickSpacing(50);
+          sliderParameters[temporder[1]].setMinorTickSpacing(10);
+          sliderParameters[temporder[1]].addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
-              config[finali+1] = byte(jsset[temporder1].getValue());
+              config[finali+1] = byte(sliderParameters[temporder1].getValue());
             }
           });
-          settings.add(jsset[temporder[1]]);
+          settings.add(sliderParameters[temporder[1]]);
           olset[temporder[1]] = new JLabel(settingsDescription[i]);
           olset[temporder[1]].setBounds(30, 40+i*20+yoffset, 200, 20);
           settings.add(olset[temporder[1]]);
