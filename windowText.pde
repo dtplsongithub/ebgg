@@ -1,5 +1,4 @@
  // just so you know cool means new and important thing added, awesome means not *as* important
-<<<<<<< HEAD
 String whatsnewText = "<html"+
 "It's 2026! Thank you for still using ebgg!"+
 "<h1>v1.75</h1>"+
@@ -9,17 +8,8 @@ String whatsnewText = "<html"+
 "<b>[NEW]</b> better error handling! (hopefully)<br>"+
 "<b>[FIX]</b> button animations updating weirdly<br>"+
 "<b>[FIX]</b> some buttons overlapping<br>"+
-"<b>[FIX]</b> edit palette color breaking if typing invalid characters (thanks @fluxdrive)<br>"+
 "<b>[CHANGE]</b> \"enable beta button\" setting has been renamed to \"alternative button color\"<br>"+
 "[OTHER] renamed some stuff to make code more readable"+
-=======
-String whatsnewText = "<html><h1>v1.75</h1>"+
-"<h2>2024 August 98989898</h2>"+
-"<b>[AWESOME]</b> Added editor categories!<br>"+ // TODO: add editor categories
-"<b>[NEW]</b> animation setting!<br>"+
-"<b>[FIX]</b> button animations updating weirdly<br>"+
-"<b>[FIX]</b> some buttons overlapping<br>"+
->>>>>>> d44e56f3a1db1b47a269f6a1b494092d54af6c65
 "<h1>v1.7</h1>"+
 "<h2>2024 August 7</h2>"+
 "<b>[COOL]</b> new file format! (.debc)<br>"+
@@ -31,10 +21,7 @@ String whatsnewText = "<html><h1>v1.75</h1>"+
 "<b>[FIX]</b> button animation not being updated when not shown<br>"+
 "<b>[FIX]</b> many other fixes...<br>"+
 "<h3>FROM NOW ON, VERSIONS ARE WRITTEN IN EITHER x.yz OR x.y</h3>"+
-<<<<<<< HEAD
 "<p><b>Full Changelog</b>: <a href='https://github.com/dtplsongithub/ebgg/compare/v1.6.0...v1.7'>https://github.com/dtplsongithub/ebgg/compare/v1.6.0...v1.7</a></p>"+
-=======
->>>>>>> d44e56f3a1db1b47a269f6a1b494092d54af6c65
 "<h1>v1.6.0</h1>"+
 "<h2>2024 July 17</h2>"+
 "<b>[COOL]</b> New Troubleshooting FAQ and misc help tab!<br>"+
@@ -66,10 +53,7 @@ String whatsnewText = "<html><h1>v1.75</h1>"+
 "<h2>2024 July 8</h2>"+
 "<p><b>[FIX]</b> made editor only 960x720 because of linux <br>"+
 "<h3>LAST LINUX RELEASE</h3>"+
-<<<<<<< HEAD
 "<p><b>Full Changelog</b>: <a href='https://github.com/dtplsongithub/ebgg/compare/v1.5.0...v1.5.1'>https://github.com/dtplsongithub/ebgg/compare/v1.5.0...v1.5.1</a></p>"+
-=======
->>>>>>> d44e56f3a1db1b47a269f6a1b494092d54af6c65
 "<html><h1 id='v1-5-0'>v1.5.0</h1>"+
 "<h2>2024 July 7</h2>"+
 "<p><b>[NEW]</b> SETTINGS!!!<br>"+
@@ -130,7 +114,6 @@ String whatsnewText = "<html><h1>v1.75</h1>"+
 "<p>First public release of ebgg.</p>"+
 "<p><b>Full Changelog</b>: <a href='https://github.com/dtplsongithub/ebgg/commits/v1.0.0'>https://github.com/dtplsongithub/ebgg/commits/v1.0.0</a></p>"+
 "</html>";
-<<<<<<< HEAD
 String TFAQText = 
 " <h3> - IF YOUR EBGG IS RANDOMLY CRASHING...</h3>"+
 " if its a sudden crash (no freezing) then: <br>"+
@@ -139,18 +122,11 @@ String TFAQText =
 " <h3> - IF YOU FIND A REPRODUCIBLE CRASH OR BUG...</h3>"+
 " - if there isn't one already, post an issue about it on <a href='https://github.com/dtplsongithub/ebgg/issues/'>GitHub</a>. (Requires a GitHub account)"+
 "<h3> - IF YOU STILL DO NOT FIND A WAY TO FIX YOUR PROBLEM...</h3>"+
-=======
-String TFAQText = "<html><h3> - IF YOU STILL DO NOT FIND A WAY TO FIX YOUR PROBLEM...</h3>"+
->>>>>>> d44e56f3a1db1b47a269f6a1b494092d54af6c65
 " - check <a href=\"https://github.com/dtplsongithub/ebgg/releases\">here</a> for new updates. <br>"+
 " - make an issue on github <a href=\"https://github.com/dtplsongithub/ebgg/issues\">here</a>"+
 " <h2>STARTUP PROBLEMS</h2>"+
 "<h3>- \"could not load background. The application will now close.\"</h3>"+
-<<<<<<< HEAD
 " - in the v1.6 release, backgrounds are stored in a folder called \"backgrounds\". if you updated from v1.5.2 or below, if you find any, move all .deb files from the data folder to the new backgrounds folder. if you do NOT find any, redownloading ebgg would fix the problem."+
-=======
-" - in the v1.6 release, backgrounds are stored in a folder called \"backgrounds\". if you updated from v1.5.2 or below, if you find any, move all .deb files from the data folder to the new backgrounds folder. if you do NOT fold any, redownloading ebgg would fix the problem."+
->>>>>>> d44e56f3a1db1b47a269f6a1b494092d54af6c65
 " <h2>OTHER FAQ</h2>"+
 "<h3> - what does \"config.dat problems were found and fixed.\" mean?</h3>"+
 " - either you ran a new version of ebgg for the first time, or the save file data got corrupted. when this happens, the save data is automatically updated/restored. if you are on v1.5.2 and below, it could also mean the save file was missing.";

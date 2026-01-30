@@ -261,21 +261,12 @@ String[] loadFilenames(String path, String filename) {
 void optionsCheckKeyPress(int kc) {
   switch (kc) {
   case UP: {
-<<<<<<< HEAD
       menuSelection--;
       switch (menu) {
       case 1:
         if (editorName[menuSelection].charAt(0)=='\0') menuSelection--;
         if (menuSelection==2) scrollY=0;
         if (menuSelection==-1)menuSelection=1;
-=======
-      menuselect--;
-      switch (menu) {
-      case 1:
-        if (edopname[menuselect].charAt(0)=='\0') menuselect--;
-        if (menuselect==2) scrollY=0;
-        if (menuselect==-1)menuselect=1;
->>>>>>> d44e56f3a1db1b47a269f6a1b494092d54af6c65
         break;
       case 6: // palette editor
         if (menuSelection<0) menuSelection=pal.length-1;
@@ -288,7 +279,6 @@ void optionsCheckKeyPress(int kc) {
       break;
     }
   case DOWN: {
-<<<<<<< HEAD
       menuSelection++;
       switch (menu) {
       case 1:
@@ -299,18 +289,6 @@ void optionsCheckKeyPress(int kc) {
       case 6:
         if (menuSelection>pal.length-1) menuSelection=0;
         scrollY = -menuSelection*40+height/2-100;
-=======
-      menuselect++;
-      switch (menu) {
-      case 1:
-        if (menuselect>edopname.length-1)menuselect=edopname.length-1;
-        if (menuselect==10) scrollY=-120;
-        if (edopname[menuselect].charAt(0)=='\0') menuselect++;
-        break;
-      case 6:
-        if (menuselect>pal.length-1) menuselect=0;
-        scrollY = -menuselect*40+height/2-100;
->>>>>>> d44e56f3a1db1b47a269f6a1b494092d54af6c65
         break;
       case 14:
         if (menuSelection>menu14.length-1) menuSelection=0;
@@ -324,61 +302,30 @@ void optionsCheckKeyPress(int kc) {
   case LEFT: {
       if (menu == 1) {
         if (kc>60)bigstepsappear=false;
-<<<<<<< HEAD
         switch (menuSelection) {
         case 5:
-=======
-        switch (menuselect) {
-        case 5:
           if (kc>60)return;
-          if ((palf<=edopset[menuselect][0] && kc==LEFT) || (palf>=edopset[menuselect][2] && kc==RIGHT)) return;
-          palf += edopset[3][1]*((kc==LEFT)?-1 :1);
+          if ((palf<=editorParameters[menuSelection][0] && kc==LEFT) || (palf>=editorParameters[menuSelection][2] && kc==RIGHT)) return;
+          palf += editorParameters[3][1]*((kc==LEFT)?-1 :1);
           break;
         case 6:
           if (kc>60)return;
           palc = kc==RIGHT;
           break;
         case 7:
->>>>>>> d44e56f3a1db1b47a269f6a1b494092d54af6c65
-          if (kc>60)return;
-          if ((palf<=editorParameters[menuSelection][0] && kc==LEFT) || (palf>=editorParameters[menuSelection][2] && kc==RIGHT)) return;
-          palf += editorParameters[3][1]*((kc==LEFT)?-1 :1);
-          break;
-        case 8:
-          if (kc>60)return;
-          palc = kc==RIGHT;
-          break;
-        case 9:
           if (kc>60)return;
           palcreverse = kc==RIGHT;
           break;
-<<<<<<< HEAD
         case 8:
           if (kc>60)return;
           if ((palssa<=editorParameters[menuSelection][0] && kc==LEFT) || (palssa>=editorParameters[menuSelection][2] && kc==RIGHT)) return;
           palssa += editorParameters[menuSelection][1]*((kc==LEFT)?-1 :1);
           break;
         case 9:
-=======
-        case 11:
-          if ((vCx<=edopset[menuselect][0] && (kc==LEFT || kc==65)) || (vCx>=edopset[menuselect][2] && (kc==RIGHT || kc==68))) return;
-          vCx += edopset[menuselect][1]*(kc>60?10:1)*((kc==LEFT||kc==65)?-1 :1);
-          if (vCx<=edopset[menuselect][0]) vCx=(edopset[menuselect][0]);
-          if (vCx>=edopset[menuselect][2]) vCx=(edopset[menuselect][2]);
-          break;
-        case 12:
-          if ((vCy<=edopset[menuselect][0] && (kc==LEFT || kc==65)) || (vCy>=edopset[menuselect][2] && (kc==RIGHT || kc==68))) return;
-          vCy += edopset[menuselect][1]*(kc>60?10:1)*((kc==LEFT||kc==65)?-1 :1);
-          if (vCy<=edopset[menuselect][0]) vCy=(edopset[menuselect][0]);
-          if (vCy>=edopset[menuselect][2]) vCy=(edopset[menuselect][2]);
-          break;
-        case 13:
->>>>>>> d44e56f3a1db1b47a269f6a1b494092d54af6c65
           if (kc>60)return;
           if ((palcmult<=editorParameters[menuSelection][0] && kc==LEFT) || (palcmult>=editorParameters[menuSelection][2] && kc==RIGHT)) return;
           palcmult += editorParameters[menuSelection][1]*((kc==LEFT)?-1 :1);
           break;
-<<<<<<< HEAD
         case 11:
           if ((vCx<=editorParameters[menuSelection][0] && (kc==LEFT || kc==65)) || (vCx>=editorParameters[menuSelection][2] && (kc==RIGHT || kc==68))) return;
           vCx += editorParameters[menuSelection][1]*(kc>60?10:1)*((kc==LEFT||kc==65)?-1 :1);
@@ -390,26 +337,12 @@ void optionsCheckKeyPress(int kc) {
           vCy += editorParameters[menuSelection][1]*(kc>60?10:1)*((kc==LEFT||kc==65)?-1 :1);
           if (vCy<=editorParameters[menuSelection][0]) vCy=(editorParameters[menuSelection][0]);
           if (vCy>=editorParameters[menuSelection][2]) vCy=(editorParameters[menuSelection][2]);
-=======
-        case 14:
-          if ((Mxscale<=edopset[menuselect][0] && (kc==LEFT || kc==65)) || (Mxscale>=edopset[menuselect][2] && (kc==RIGHT || kc==68))) return;
-          Mxscale += edopset[menuselect][1]*(kc>60?10:1)*((kc==LEFT||kc==65)?-1 :1);
-          if (Mxscale<=edopset[menuselect][0]) Mxscale=(edopset[menuselect][0]);
-          if (Mxscale>=edopset[menuselect][2]) Mxscale=(edopset[menuselect][2]);
           break;
-        case 15:
-          if ((Mxfreq<=edopset[menuselect][0] && (kc==LEFT || kc==65)) || (Mxfreq>=edopset[menuselect][2] && (kc==RIGHT || kc==68))) return;
-          Mxfreq += edopset[menuselect][1]*(kc>60?10:1)*((kc==LEFT||kc==65)?-1 :1);
-          if (Mxscale<=edopset[menuselect][0]) Mxscale=(edopset[menuselect][0]);
-          if (Mxscale>=edopset[menuselect][2]) Mxscale=(edopset[menuselect][2]);
->>>>>>> d44e56f3a1db1b47a269f6a1b494092d54af6c65
-          break;
-        case 16:
+        case 13:
           if (kc>60)return;
           if ((scale<=editorParameters[menuSelection][0] && kc==LEFT) || (scale>=editorParameters[menuSelection][2] && kc==RIGHT)) return;
           scale += editorParameters[menuSelection][1]*((kc==LEFT)?-1 :1);
           break;
-<<<<<<< HEAD
         case 14:
           if ((Mxscale<=editorParameters[menuSelection][0] && (kc==LEFT || kc==65)) || (Mxscale>=editorParameters[menuSelection][2] && (kc==RIGHT || kc==68))) return;
           Mxscale += editorParameters[menuSelection][1]*(kc>60?10:1)*((kc==LEFT||kc==65)?-1 :1);
@@ -421,21 +354,8 @@ void optionsCheckKeyPress(int kc) {
           Mxfreq += editorParameters[menuSelection][1]*(kc>60?10:1)*((kc==LEFT||kc==65)?-1 :1);
           if (Mxscale<=editorParameters[menuSelection][0]) Mxscale=(editorParameters[menuSelection][0]);
           if (Mxscale>=editorParameters[menuSelection][2]) Mxscale=(editorParameters[menuSelection][2]);
-=======
-        case 17:
-          if ((Myscale<=edopset[menuselect][0] && (kc==LEFT || kc==65)) || (Myscale>=edopset[menuselect][2] && (kc==RIGHT || kc==68))) return;
-          Myscale += edopset[menuselect][1]*(kc>60?10:1)*((kc==LEFT||kc==65)?-1 :1);
-          if (Myscale<=edopset[menuselect][0]) Myscale=(edopset[menuselect][0]);
-          if (Myscale>=edopset[menuselect][2]) Myscale=(edopset[menuselect][2]);
           break;
-        case 18:
-          if ((Myfreq<=edopset[menuselect][0] && (kc==LEFT || kc==65)) || (Myfreq>=edopset[menuselect][2] && (kc==RIGHT || kc==68))) return;
-          Myfreq += edopset[menuselect][1]*(kc>60?10:1)*((kc==LEFT||kc==65)?-1 :1);
-          if (Myfreq<=edopset[menuselect][0]) Myfreq=(edopset[menuselect][0]);
-          if (Myfreq>=edopset[menuselect][2]) Myfreq=(edopset[menuselect][2]);
->>>>>>> d44e56f3a1db1b47a269f6a1b494092d54af6c65
-          break;
-        case 19:
+        case 16:
           if (kc>60)return;
           if ((Mxinterl<=editorParameters[menuSelection][0] && kc==LEFT) || (Mxinterl>=editorParameters[menuSelection][2] && kc==RIGHT)) return;
           Mxinterl += editorParameters[menuSelection][1]*((kc==LEFT)?-1 :1);
